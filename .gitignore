@@ -34,4 +34,3 @@ build/
 
 # Misc
 .env.local
-.env.example
