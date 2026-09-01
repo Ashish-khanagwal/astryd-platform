@@ -27,6 +27,7 @@ class Config:
     )
     CELERY_TASK_TRACK_STARTED = True
     CELERY_TASK_TIME_LIMIT = int(os.getenv("CELERY_TASK_TIME_LIMIT", "300"))
+    MONGO_CREATE_INDEXES = True
 
 
 class DevelopmentConfig(Config):
@@ -40,6 +41,7 @@ class ProductionConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+    MONGO_CREATE_INDEXES = False
     MONGO_URI = os.getenv("TEST_MONGO_URI", "mongodb://localhost:27017/astryd_test")
 
 
