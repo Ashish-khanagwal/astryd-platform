@@ -9,6 +9,7 @@ from pymongo.errors import PyMongoError
 
 from app.celery_app import create_celery
 from app.common.tenant import register_tenant_error_handler
+from app.database.indexes import initialize_indexes
 from app.extensions import jwt, mongo
 from config import config_by_name
 
@@ -25,6 +26,8 @@ def create_app(config_name=None):
         _validate_production_secrets(app)
 
     mongo.init_app(app)
+    if app.config["MONGO_CREATE_INDEXES"]:
+        initialize_indexes(mongo.db)
     jwt.init_app(app)
     CORS(
         app,
