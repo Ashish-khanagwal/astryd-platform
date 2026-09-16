@@ -2,7 +2,7 @@
 
 import os
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_jwt_extended.exceptions import JWTExtendedException
 from pymongo.errors import PyMongoError
@@ -40,6 +40,12 @@ def create_app(config_name=None):
     _register_error_handlers(app)
     _register_blueprints(app)
     app.extensions["celery"] = create_celery(app)
+
+    os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+
+    @app.get("/uploads/<path:filename>")
+    def uploaded_file(filename):
+        return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
     @app.get("/health")
     def health_check():

@@ -10,6 +10,7 @@ class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "development-only-secret-change-before-production")
     MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/astryd")
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", SECRET_KEY)
+    JWT_VERIFY_SUB = False
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(
         minutes=int(os.getenv("JWT_ACCESS_TOKEN_EXPIRES_MINUTES", "30"))
     )
@@ -28,6 +29,7 @@ class Config:
     CELERY_TASK_TRACK_STARTED = True
     CELERY_TASK_TIME_LIMIT = int(os.getenv("CELERY_TASK_TIME_LIMIT", "300"))
     MONGO_CREATE_INDEXES = True
+    UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER", os.path.join(os.getcwd(), "uploads"))
 
 
 class DevelopmentConfig(Config):

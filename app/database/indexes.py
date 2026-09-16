@@ -23,6 +23,23 @@ INDEXES = {
         ([ ("business_id", ASCENDING), ("status", ASCENDING), ("created_at", DESCENDING) ], {}),
         ([ ("order_number", ASCENDING) ], {"unique": True}),
     ),
+    "restaurants": (([("slug", ASCENDING)], {"unique": True}),),
+    "restaurant_users": (
+        ([("restaurantId", ASCENDING), ("email", ASCENDING)], {"unique": True}),
+        ([("email", ASCENDING)], {"unique": True}),
+    ),
+    "menu_categories": (([("restaurantId", ASCENDING), ("deletedAt", ASCENDING), ("displayOrder", ASCENDING)], {}),),
+    "menu_items": (
+        ([("restaurantId", ASCENDING), ("categoryId", ASCENDING), ("deletedAt", ASCENDING), ("displayOrder", ASCENDING)], {}),
+        ([("restaurantId", ASCENDING), ("isAvailable", ASCENDING), ("isFeatured", ASCENDING)], {}),
+    ),
+    "addons": (([("restaurantId", ASCENDING), ("isAvailable", ASCENDING)], {}),),
+    "offers": (([("restaurantId", ASCENDING), ("isActive", ASCENDING), ("endDate", ASCENDING)], {}),),
+    "homepage_sections": (([("restaurantId", ASCENDING), ("type", ASCENDING)], {"unique": True}),),
+    "brand_settings": (([("restaurantId", ASCENDING)], {"unique": True}),),
+    "website_settings": (([("restaurantId", ASCENDING)], {"unique": True}),),
+    "media_assets": (([("restaurantId", ASCENDING), ("folder", ASCENDING), ("createdAt", ASCENDING)], {}),),
+    "audit_logs": (([("restaurantId", ASCENDING), ("createdAt", DESCENDING)], {}),),
 }
 
 
