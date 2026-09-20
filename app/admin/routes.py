@@ -7,7 +7,13 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from pymongo import ReturnDocument
 
 from app.extensions import mongo
-from app.common.api import current_identity, log_audit_event, require_restaurant, serialize_doc
+from app.availability.service import (
+    NotFoundError,
+    generate_time_slots,
+    get_availability_config,
+    update_availability_config,
+)
+from app.common.api import log_audit_event, require_restaurant, serialize_doc
 from werkzeug.security import generate_password_hash
 
 bp = Blueprint("admin", __name__, url_prefix="")
@@ -15,12 +21,105 @@ bp = Blueprint("admin", __name__, url_prefix="")
 RESERVATION_STATUSES = {"confirmed", "seated", "completed", "cancelled", "no_show"}
 
 
+@bp.get("/admin/reservation-availability")
+@jwt_required()
+def reservation_availability_get():
+    """Return real booking availability for the authenticated business."""
+    business_id = _authenticated_business_id()
+    try:
+        return jsonify(get_availability_config(mongo.db, business_id))
+    except NotFoundError as exc:
+        return jsonify(error="not_found", message=str(exc)), 404
+
+
+@bp.put("/admin/reservation-availability")
+@jwt_required()
+def reservation_availability_put():
+    """Persist real booking availability for the authenticated business."""
+    payload = request.get_json(silent=True)
+    error = _validate_availability_payload(payload)
+    if error:
+        return jsonify(error="validation_error", message=error), 400
+    business_id = _authenticated_business_id()
+    try:
+        settings = update_availability_config(
+            mongo.db,
+            business_id,
+            payload["operating_hours"],
+            payload["blocked_dates"],
+        )
+    except NotFoundError as exc:
+        return jsonify(error="not_found", message=str(exc)), 404
+    return jsonify(settings)
+
+
+def _authenticated_business_id():
+    identity = get_jwt_identity()
+    return identity["restaurantId"] if isinstance(identity, dict) else identity
+
+
+def _validate_availability_payload(payload):
+    if not isinstance(payload, dict):
+        return "JSON request body is required"
+    operating_hours = payload.get("operating_hours")
+    blocked_dates = payload.get("blocked_dates")
+    if not isinstance(operating_hours, list) or len(operating_hours) != 7:
+        return "operating_hours must contain exactly seven days"
+    if not isinstance(blocked_dates, list):
+        return "blocked_dates must be an array"
+
+    seen_days = set()
+    for hours in operating_hours:
+        if not isinstance(hours, dict):
+            return "each operating_hours entry must be an object"
+        day = hours.get("day_of_week")
+        if isinstance(day, bool) or not isinstance(day, int) or day not in range(7) or day in seen_days:
+            return "day_of_week must contain each integer from 0 through 6 once"
+        seen_days.add(day)
+        for field in ("open_time", "close_time"):
+            try:
+                datetime.strptime(hours.get(field, ""), "%H:%M")
+            except (TypeError, ValueError):
+                return f"{field} must use HH:MM format"
+        if hours["open_time"] == hours["close_time"]:
+            return "open_time and close_time must be different"
+        duration = hours.get("slot_duration_mins")
+        if isinstance(duration, bool) or not isinstance(duration, int) or not 15 <= duration <= 240:
+            return "slot_duration_mins must be an integer between 15 and 240"
+        maximum = hours.get("max_per_slot")
+        if isinstance(maximum, bool) or not isinstance(maximum, int) or not 1 <= maximum <= 100:
+            return "max_per_slot must be an integer between 1 and 100"
+        if not isinstance(hours.get("is_closed"), bool):
+            return "is_closed must be a boolean"
+        disabled_slots = hours.get("disabled_slots", [])
+        if not isinstance(disabled_slots, list) or any(not isinstance(slot, str) for slot in disabled_slots):
+            return "disabled_slots must be an array of HH:MM strings"
+        generated_slots = set(generate_time_slots(hours["open_time"], hours["close_time"], duration))
+        if any(slot not in generated_slots for slot in disabled_slots):
+            return "disabled_slots must contain generated slots for that day"
+
+    seen_dates = set()
+    for blocked_date in blocked_dates:
+        if not isinstance(blocked_date, dict):
+            return "each blocked_dates entry must be an object"
+        value = blocked_date.get("date")
+        try:
+            datetime.strptime(value, "%Y-%m-%d")
+        except (TypeError, ValueError):
+            return "blocked date must use YYYY-MM-DD format"
+        if value in seen_dates:
+            return "blocked_dates must not contain duplicates"
+        seen_dates.add(value)
+        if not isinstance(blocked_date.get("reason", ""), str):
+            return "blocked date reason must be a string"
+    return None
+
+
 @bp.get("/admin/reservations")
 @jwt_required()
 def list_reservations():
     """List reservations for the business represented by the JWT identity."""
-    identity = get_jwt_identity()
-    business_id = identity["restaurantId"] if isinstance(identity, dict) else identity
+    business_id = _authenticated_business_id()
     date = request.args.get("date")
     status = request.args.get("status")
     try:
@@ -48,8 +147,7 @@ def list_reservations():
 @jwt_required()
 def update_reservation_status(reservation_id):
     """Update one reservation scoped to the authenticated business."""
-    identity = get_jwt_identity()
-    business_id = identity["restaurantId"] if isinstance(identity, dict) else identity
+    business_id = _authenticated_business_id()
     payload = request.get_json(silent=True) or {}
     status = payload.get("status")
     if status not in RESERVATION_STATUSES:

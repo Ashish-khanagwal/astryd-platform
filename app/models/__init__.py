@@ -11,12 +11,13 @@ class DocumentModel:
 
 @dataclass
 class OperatingHours(DocumentModel):
-    day: str | None = None
+    day_of_week: int | None = None
     open_time: str | None = None
     close_time: str | None = None
     slot_duration_mins: int | None = None
     max_per_slot: int | None = None
     is_closed: bool | None = None
+    disabled_slots: list[str] = field(default_factory=list)
 
 
 @dataclass
