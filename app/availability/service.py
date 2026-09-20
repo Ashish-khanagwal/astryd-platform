@@ -1,7 +1,6 @@
-"""Read-only availability calculations for restaurant booking resources."""
+"""Availability calculations and persisted booking configuration."""
 
 from collections import Counter
-from datetime import date as date_type
 from datetime import datetime, timedelta
 
 from pymongo import ReturnDocument
@@ -33,11 +32,13 @@ def get_available_slots(db, business_id, date, party_size):
     if any(blocked_date.get("date") == date for blocked_date in business.get("blocked_dates", [])):
         return {"available": False, "reason": "blocked", "slots": _empty_slots()}
 
-    time_slots = _generate_slots(
+    time_slots = generate_time_slots(
         operating_hours["open_time"],
         operating_hours["close_time"],
         operating_hours["slot_duration_mins"],
     )
+    disabled_slots = set(operating_hours.get("disabled_slots", []))
+    time_slots = [time_slot for time_slot in time_slots if time_slot not in disabled_slots]
     eligible_tables = list(
         db.tables.find(
             {"business_id": business_id, "capacity": {"$gte": party_size}, "is_active": True},
@@ -98,15 +99,83 @@ def _hours_for_day(operating_hours, day_of_week):
     return next((hours for hours in operating_hours if hours.get("day_of_week") == day_of_week), None)
 
 
-def _generate_slots(open_time, close_time, slot_duration_mins):
+def generate_time_slots(open_time, close_time, slot_duration_mins):
+    """Generate HH:MM slots, treating a close time at/before open as next day."""
     start = datetime.strptime(open_time, "%H:%M")
     end = datetime.strptime(close_time, "%H:%M")
+    if end <= start:
+        end += timedelta(days=1)
     interval = timedelta(minutes=slot_duration_mins)
     slots = []
     while start < end:
         slots.append(start.strftime("%H:%M"))
         start += interval
     return slots
+
+
+def get_availability_config(db, business_id):
+    """Return the persisted availability configuration for one business."""
+    business = db.businesses.find_one({"business_id": business_id})
+    if business is None:
+        raise NotFoundError("Business not found")
+    return _serialize_availability_config(business)
+
+
+def update_availability_config(db, business_id, operating_hours, blocked_dates):
+    """Replace the real availability fields on the tenant's business document."""
+    business = db.businesses.find_one_and_update(
+        {"business_id": business_id},
+        {
+            "$set": {
+                "operating_hours": operating_hours,
+                "blocked_dates": blocked_dates,
+                "updated_at": datetime.utcnow(),
+            }
+        },
+        return_document=ReturnDocument.AFTER,
+    )
+    if business is None:
+        raise NotFoundError("Business not found")
+    return _serialize_availability_config(business)
+
+
+def _serialize_availability_config(business):
+    operating_hours = []
+    stored_hours = business.get("operating_hours", [])
+    for day_of_week in range(7):
+        hours = _hours_for_day(stored_hours, day_of_week) or {
+            "day_of_week": day_of_week,
+            "open_time": "12:00",
+            "close_time": "22:00",
+            "slot_duration_mins": 60,
+            "max_per_slot": 1,
+            "is_closed": True,
+            "disabled_slots": [],
+        }
+        disabled_slots = set(hours.get("disabled_slots", []))
+        slots = generate_time_slots(
+            hours["open_time"], hours["close_time"], hours["slot_duration_mins"]
+        )
+        operating_hours.append(
+            {
+                "day_of_week": day_of_week,
+                "open_time": hours["open_time"],
+                "close_time": hours["close_time"],
+                "slot_duration_mins": hours["slot_duration_mins"],
+                "max_per_slot": hours.get("max_per_slot") or 100,
+                "is_closed": hours.get("is_closed", False),
+                "disabled_slots": sorted(disabled_slots),
+                "slots": [
+                    {"time": time_slot, "is_open": time_slot not in disabled_slots}
+                    for time_slot in slots
+                ],
+            }
+        )
+    return {
+        "business_id": business["business_id"],
+        "operating_hours": operating_hours,
+        "blocked_dates": business.get("blocked_dates", []),
+    }
 
 
 def _booked_table_counts(db, business_id, date, eligible_table_ids):
