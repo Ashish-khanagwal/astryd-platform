@@ -19,7 +19,7 @@ class Config:
     )
     CORS_ORIGINS = [
         origin.strip()
-        for origin in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+        for origin in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
         if origin.strip()
     ]
     CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")

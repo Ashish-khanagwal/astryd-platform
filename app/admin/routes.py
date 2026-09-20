@@ -4,13 +4,15 @@ from bson import ObjectId
 
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
+from pymongo import ReturnDocument
 
 from app.extensions import mongo
-from app.reservations.service import serialize_reservation
 from app.common.api import current_identity, log_audit_event, require_restaurant, serialize_doc
 from werkzeug.security import generate_password_hash
 
 bp = Blueprint("admin", __name__, url_prefix="")
+
+RESERVATION_STATUSES = {"confirmed", "seated", "completed", "cancelled", "no_show"}
 
 
 @bp.get("/admin/reservations")
@@ -34,12 +36,37 @@ def list_reservations():
     total = mongo.db.reservations.count_documents(criteria)
     cursor = mongo.db.reservations.find(criteria).sort("created_at", -1).skip((page - 1) * limit).limit(limit)
     return jsonify(
-        reservations=[serialize_reservation(reservation) for reservation in cursor],
+        reservations=[serialize_doc(reservation) for reservation in cursor],
         total=total,
         page=page,
         limit=limit,
         pages=ceil(total / limit) if total else 0,
     )
+
+
+@bp.patch("/admin/reservations/<reservation_id>/status")
+@jwt_required()
+def update_reservation_status(reservation_id):
+    """Update one reservation scoped to the authenticated business."""
+    identity = get_jwt_identity()
+    business_id = identity["restaurantId"] if isinstance(identity, dict) else identity
+    payload = request.get_json(silent=True) or {}
+    status = payload.get("status")
+    if status not in RESERVATION_STATUSES:
+        return jsonify(error="validation_error", message="status is invalid"), 400
+    try:
+        object_id = ObjectId(reservation_id)
+    except Exception:
+        return jsonify(error="not_found", message="Reservation not found"), 404
+
+    reservation = mongo.db.reservations.find_one_and_update(
+        {"_id": object_id, "business_id": business_id},
+        {"$set": {"status": status, "updated_at": datetime.utcnow()}},
+        return_document=ReturnDocument.AFTER,
+    )
+    if reservation is None:
+        return jsonify(error="not_found", message="Reservation not found"), 404
+    return jsonify(reservation=serialize_doc(reservation))
 
 def _owner(rid): return require_restaurant(rid,{"owner","super_admin"})
 def _audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,i["restaurantId"],i["userId"],i["name"],a,t,e,s,d)
