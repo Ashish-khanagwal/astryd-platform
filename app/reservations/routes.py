@@ -3,7 +3,7 @@ from datetime import datetime
 
 from flask import Blueprint, current_app, jsonify, request
 
-from app.availability.service import ConflictError
+from app.availability.service import ConflictError, NotFoundError
 from app.extensions import mongo
 from app.notifications.tasks import send_confirmation_email
 from app.reservations.service import (
@@ -12,6 +12,7 @@ from app.reservations.service import (
     serialize_reservation,
     update_reservation,
 )
+from app.payments.service import create_reservation_payment, serialize_payment
 
 bp = Blueprint("reservations", __name__, url_prefix="/reservations")
 
@@ -22,10 +23,17 @@ def create():
     error = _validate_create_payload(payload)
     if error:
         return jsonify(error="validation_error", message=error), 400
+    if current_app.config["RESERVATION_DEPOSIT_PER_GUEST_CENTS"] > 0:
+        return jsonify(
+            error="payment_required",
+            message="Use /api/v1/reservations/checkout to pay the reservation deposit",
+        ), 402
     try:
         reservation_id, reservation = create_reservation(mongo.db, payload)
     except ConflictError as exc:
         return jsonify(error="conflict", message=str(exc)), 409
+    except NotFoundError as exc:
+        return jsonify(error="not_found", message=str(exc)), 404
     _queue_confirmation_email(reservation_id, reservation)
     booking = reservation["booking"]
     guest = reservation["guest"]
@@ -42,6 +50,28 @@ def create():
             "guest_email": guest["email"],
         },
     ), 201
+
+
+@bp.post("/checkout")
+def checkout():
+    payload = request.get_json(silent=True)
+    error = _validate_create_payload(payload)
+    if error:
+        return jsonify(error="validation_error", message=error), 400
+    try:
+        payment, checkout_secret = create_reservation_payment(
+            mongo.db,
+            payload,
+            current_app.config["RESERVATION_DEPOSIT_PER_GUEST_CENTS"],
+            current_app.config["PAYMENT_AMOUNT_OVERRIDE_CENTS"],
+        )
+    except ConflictError as exc:
+        return jsonify(error="conflict", message=str(exc)), 409
+    except NotFoundError as exc:
+        return jsonify(error="not_found", message=str(exc)), 404
+    response = serialize_payment(mongo.db, payment)
+    response["checkout_secret"] = checkout_secret
+    return jsonify(response), 201
 
 
 @bp.get("/<confirmation_code>")
@@ -63,6 +93,15 @@ def modify(confirmation_code):
         return _not_found()
     if reservation["status"] == "cancelled":
         return jsonify(error="invalid_state", message="Cannot modify a cancelled reservation"), 400
+    if (
+        reservation.get("payment_id")
+        and payload.get("party_size", reservation["booking"]["party_size"])
+        > reservation["booking"]["party_size"]
+    ):
+        return jsonify(
+            error="additional_payment_required",
+            message="Increasing party size for a paid reservation requires staff assistance",
+        ), 409
     try:
         updated = update_reservation(mongo.db, reservation, payload)
     except ConflictError as exc:

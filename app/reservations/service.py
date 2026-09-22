@@ -8,7 +8,7 @@ from pymongo.errors import DuplicateKeyError
 from app.availability.service import ConflictError, find_available_table_atomic
 
 
-def create_reservation(db, payload):
+def create_reservation(db, payload, payment=None):
     """Persist a confirmed reservation after selecting a qualifying table."""
     booking = payload["booking"]
     guest = payload["guest"]
@@ -43,12 +43,27 @@ def create_reservation(db, payload):
         "reminder_sent": False,
         "created_at": datetime.utcnow(),
     }
+    if payment:
+        document.update({
+            "payment_id": payment["payment_id"],
+            "deposit_amount_cents": payment["amount_cents"],
+            "currency": payment.get("currency", "USD"),
+        })
     for _ in range(5):
         document["confirmation_code"] = generate_confirmation_code()
         try:
             result = db.reservations.insert_one(document)
             return result.inserted_id, document
         except DuplicateKeyError:
+            table = find_available_table_atomic(
+                db,
+                payload["business_id"],
+                booking["date"],
+                booking["time_slot"],
+                booking["party_size"],
+                booking["seating_preference"],
+            )
+            document["booking"]["table_id"] = table["_id"]
             continue
     raise RuntimeError("Unable to generate a unique confirmation code")
 

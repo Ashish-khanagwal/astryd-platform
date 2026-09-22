@@ -4,6 +4,16 @@ import os
 from datetime import timedelta
 
 
+def _optional_positive_int(name):
+    raw_value = os.getenv(name, "").strip()
+    if not raw_value:
+        return None
+    value = int(raw_value)
+    if value <= 0:
+        raise ValueError(f"{name} must be a positive integer number of cents")
+    return value
+
+
 class Config:
     """Base configuration loaded only from environment variables."""
 
@@ -30,6 +40,25 @@ class Config:
     CELERY_TASK_TIME_LIMIT = int(os.getenv("CELERY_TASK_TIME_LIMIT", "300"))
     MONGO_CREATE_INDEXES = True
     UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER", os.path.join(os.getcwd(), "uploads"))
+    FINIX_API_URL = os.getenv(
+        "FINIX_API_URL", "https://finix.sandbox-payments-api.com"
+    ).rstrip("/")
+    FINIX_API_USERNAME = os.getenv("FINIX_API_USERNAME", "")
+    FINIX_API_PASSWORD = os.getenv("FINIX_API_PASSWORD", "")
+    FINIX_MERCHANT_ID = os.getenv("FINIX_MERCHANT_ID", "")
+    FINIX_WEBHOOK_SIGNING_KEY = os.getenv("FINIX_WEBHOOK_SIGNING_KEY", "")
+    FINIX_WEBHOOK_BEARER_TOKEN = os.getenv("FINIX_WEBHOOK_BEARER_TOKEN", "")
+    FINIX_WEBHOOK_MAX_AGE_SECONDS = int(
+        os.getenv("FINIX_WEBHOOK_MAX_AGE_SECONDS", "300")
+    )
+    RESERVATION_DEPOSIT_PER_GUEST_CENTS = int(
+        os.getenv("RESERVATION_DEPOSIT_PER_GUEST_CENTS", "2500")
+    )
+    PAYMENT_AMOUNT_OVERRIDE_CENTS = _optional_positive_int(
+        "PAYMENT_AMOUNT_OVERRIDE_CENTS"
+    )
+    ORDER_TAX_BASIS_POINTS = int(os.getenv("ORDER_TAX_BASIS_POINTS", "850"))
+    ORDER_DELIVERY_FEE_CENTS = int(os.getenv("ORDER_DELIVERY_FEE_CENTS", "1500"))
 
 
 class DevelopmentConfig(Config):

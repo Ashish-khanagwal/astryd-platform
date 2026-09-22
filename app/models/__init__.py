@@ -93,6 +93,9 @@ class Reservation(DocumentModel):
     internal_notes: str | None = None
     created_at: Any = None
     reminder_sent: bool = False
+    payment_id: Any = None
+    deposit_amount_cents: int | None = None
+    currency: str | None = None
 
 
 @dataclass
@@ -153,6 +156,26 @@ class Order(DocumentModel):
     status: str | None = None
     estimated_prep_time: int | None = None
     created_at: Any = None
+
+
+@dataclass
+class Payment(DocumentModel):
+    _id: Any = None
+    business_id: str | None = None
+    context_type: str | None = None
+    context_id: Any = None
+    amount_cents: int | None = None
+    currency: str = "USD"
+    status: str = "created"
+    fulfillment_status: str = "pending"
+    idempotency_id: str | None = None
+    checkout_secret_hash: str | None = None
+    customer: dict[str, Any] = field(default_factory=dict)
+    context_snapshot: dict[str, Any] = field(default_factory=dict)
+    finix: dict[str, Any] = field(default_factory=dict)
+    failure: dict[str, Any] = field(default_factory=dict)
+    created_at: Any = None
+    updated_at: Any = None
 
 
 @dataclass

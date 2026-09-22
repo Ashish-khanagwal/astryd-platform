@@ -33,7 +33,7 @@ def create_app(config_name=None):
         app,
         resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}},
         supports_credentials=True,
-        allow_headers=["Authorization", "Content-Type"],
+        allow_headers=["Authorization", "Content-Type", "X-Checkout-Secret"],
         methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     )
 
@@ -68,6 +68,23 @@ def _validate_production_secrets(app):
         value = app.config.get(setting, "")
         if value in insecure_values or len(value) < 32:
             raise RuntimeError(f"{setting} must be a unique secret of at least 32 characters.")
+    required_finix_settings = (
+        "FINIX_API_USERNAME",
+        "FINIX_API_PASSWORD",
+        "FINIX_MERCHANT_ID",
+        "FINIX_WEBHOOK_SIGNING_KEY",
+        "FINIX_WEBHOOK_BEARER_TOKEN",
+    )
+    missing_finix_settings = [
+        setting for setting in required_finix_settings if not app.config.get(setting)
+    ]
+    if missing_finix_settings:
+        raise RuntimeError(
+            "Production Finix configuration is incomplete: "
+            + ", ".join(missing_finix_settings)
+        )
+    if app.config.get("FINIX_API_URL") != "https://finix.live-payments-api.com":
+        raise RuntimeError("Production must use the Finix live API URL.")
 
 
 def _register_blueprints(app):
