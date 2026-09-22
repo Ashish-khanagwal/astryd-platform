@@ -10,6 +10,12 @@ INDEXES = {
             ("business_id", ASCENDING),
             ("booking.date", ASCENDING),
             ("booking.time_slot", ASCENDING),
+            ("booking.table_id", ASCENDING),
+        ], {"unique": True, "partialFilterExpression": {"status": "confirmed"}}),
+        ([
+            ("business_id", ASCENDING),
+            ("booking.date", ASCENDING),
+            ("booking.time_slot", ASCENDING),
             ("booking.seating_preference", ASCENDING),
         ], {}),
     ),
@@ -22,6 +28,15 @@ INDEXES = {
     "orders": (
         ([ ("business_id", ASCENDING), ("status", ASCENDING), ("created_at", DESCENDING) ], {}),
         ([ ("order_number", ASCENDING) ], {"unique": True}),
+    ),
+    "payments": (
+        ([ ("business_id", ASCENDING), ("created_at", DESCENDING) ], {}),
+        ([ ("finix.transfer_id", ASCENDING) ], {"sparse": True}),
+        ([ ("idempotency_id", ASCENDING) ], {"unique": True}),
+        ([ ("context_type", ASCENDING), ("context_id", ASCENDING) ], {}),
+    ),
+    "payment_webhook_events": (
+        ([ ("provider", ASCENDING), ("event_id", ASCENDING) ], {"unique": True}),
     ),
     "restaurants": (([("slug", ASCENDING)], {"unique": True}),),
     "restaurant_users": (

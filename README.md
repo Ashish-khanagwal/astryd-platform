@@ -6,8 +6,11 @@ Flask foundation for Astryd's multi-tenant Business Experience Platform.
 
 1. Create and activate a Python virtual environment.
 2. Install dependencies with `pip install -r requirements.txt`.
-3. Copy `.env.example` to `.env` and replace every secret before running.
-4. Start the API with `flask --app wsgi:app run`.
+3. Keep shared local values in `.env`, sandbox Finix values in `.env.staging`,
+   and live Finix values in `.env.production`. Both environment-specific files
+   are ignored by Git.
+4. Start staging with `ASTRYD_ENV=staging flask --app wsgi:app run` (staging is
+   also the default). Production must explicitly set `ASTRYD_ENV=production`.
 5. Start asynchronous workers with `celery -A app.celery_app worker --loglevel=info`.
 
 The API blueprints are available beneath `/api/v1`. `/health` is intentionally public for infrastructure checks. All business-owned API routes require a JWT whose claims include an active `business_id`; the backend never trusts a client-supplied tenant identifier.
@@ -18,6 +21,10 @@ Every business-owned MongoDB document must include `business_id`. Use `app.commo
 
 ## Environment variables
 
+`PAYMENT_AMOUNT_OVERRIDE_CENTS` is enforced by the backend for both orders and
+reservation deposits. Set it to `100` for a one-dollar staging charge. Leave it
+empty to use the normally calculated order total or reservation deposit.
+
 | Variable | Purpose |
 |---|---|
 | `MONGO_URI` | MongoDB Atlas connection string |
@@ -26,6 +33,12 @@ Every business-owned MongoDB document must include `business_id`. Use `app.commo
 | `CORS_ORIGINS` | Allowed frontend origin e.g. `http://localhost:5173` |
 | `CELERY_BROKER_URL` | Redis broker e.g. `redis://localhost:6379/0` |
 | `CELERY_RESULT_BACKEND` | Redis result store e.g. `redis://localhost:6379/1` |
+| `FINIX_API_USERNAME` / `FINIX_API_PASSWORD` | Server-only Finix API credentials |
+| `FINIX_MERCHANT_ID` | Finix merchant (`MU...`) receiving card transfers |
+| `FINIX_WEBHOOK_SIGNING_KEY` | HMAC key returned when the Finix webhook is created |
+| `FINIX_WEBHOOK_BEARER_TOKEN` | Astryd-generated bearer token configured on the webhook |
+| `RESERVATION_DEPOSIT_PER_GUEST_CENTS` | Required reservation deposit per guest; defaults to `2500` |
+| `PAYMENT_AMOUNT_OVERRIDE_CENTS` | Optional server-side override for every charge; `100` means `$1.00`, empty means use the normal calculated amount |
 
 ## Dependencies
 
@@ -41,7 +54,13 @@ Every business-owned MongoDB document must include `business_id`. Use `app.commo
 |---|---|---|
 | GET | `/health` | Health check |
 | GET | `/api/v1/availability/<business_id>` | Available time slots |
-| POST | `/api/v1/reservations` | Create reservation |
+| POST | `/api/v1/reservations` | Create a reservation only when the configured deposit is zero |
+| POST | `/api/v1/reservations/checkout` | Start a paid reservation checkout |
+| POST | `/api/v1/orders/checkout` | Start a backend-priced food order checkout |
+| POST | `/api/v1/payments/card` | Charge a Finix token for a checkout attempt |
+| GET | `/api/v1/payments/<payment_id>` | Poll checkout-secret-protected payment state |
+| POST | `/api/v1/payments/<payment_id>/retry` | Retry a failed attempt without recreating its order |
+| POST | `/api/v1/payments/webhooks/finix` | Receive signed Finix transfer updates |
 | GET | `/api/v1/reservations/<confirmation_code>` | Get reservation |
 | PATCH | `/api/v1/reservations/<confirmation_code>` | Modify reservation |
 | DELETE | `/api/v1/reservations/<confirmation_code>` | Cancel reservation |
@@ -83,7 +102,10 @@ Returns slots grouped by `afternoon` and `evening`. Each slot includes `time` (1
 
 Seating preference must be one of: `Indoor`, `Outdoor`, `The Bar`, `Private`.
 
-Returns `HTTP 201` with `confirmation_code` on success. Returns `HTTP 409` if the slot is no longer available.
+When a deposit is configured, start with `/reservations/checkout`, tokenize the card with
+Finix.js, then send the `TK...` token to `/payments/card`. The confirmed reservation and
+confirmation code are created only after the transfer succeeds and availability is rechecked.
+The legacy direct create route returns `HTTP 402` while deposits are enabled.
 
 ## Project structure
 
