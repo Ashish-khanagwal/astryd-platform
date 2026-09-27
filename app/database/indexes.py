@@ -22,9 +22,6 @@ INDEXES = {
     "tables": (
         ([ ("business_id", ASCENDING), ("seating_type", ASCENDING), ("is_active", ASCENDING) ], {}),
     ),
-    "menu_items": (
-        ([ ("business_id", ASCENDING), ("section_id", ASCENDING), ("is_available", ASCENDING) ], {}),
-    ),
     "orders": (
         ([ ("business_id", ASCENDING), ("status", ASCENDING), ("created_at", DESCENDING) ], {}),
         ([ ("order_number", ASCENDING) ], {"unique": True}),
@@ -41,10 +38,11 @@ INDEXES = {
     "restaurants": (([("slug", ASCENDING)], {"unique": True}),),
     "restaurant_users": (
         ([("restaurantId", ASCENDING), ("email", ASCENDING)], {"unique": True}),
-        ([("email", ASCENDING)], {"unique": True}),
+        ([("organizationId", ASCENDING), ("email", ASCENDING)], {"unique": True, "partialFilterExpression": {"organizationId": {"$type": "string"}}}),
     ),
     "menu_categories": (([("restaurantId", ASCENDING), ("deletedAt", ASCENDING), ("displayOrder", ASCENDING)], {}),),
     "menu_items": (
+        ([("business_id", ASCENDING), ("section_id", ASCENDING), ("is_available", ASCENDING)], {}),
         ([("restaurantId", ASCENDING), ("categoryId", ASCENDING), ("deletedAt", ASCENDING), ("displayOrder", ASCENDING)], {}),
         ([("restaurantId", ASCENDING), ("isAvailable", ASCENDING), ("isFeatured", ASCENDING)], {}),
     ),
@@ -55,6 +53,17 @@ INDEXES = {
     "website_settings": (([("restaurantId", ASCENDING)], {"unique": True}),),
     "media_assets": (([("restaurantId", ASCENDING), ("folder", ASCENDING), ("createdAt", ASCENDING)], {}),),
     "audit_logs": (([("restaurantId", ASCENDING), ("createdAt", DESCENDING)], {}),),
+    "organizations": (([("code", ASCENDING)], {"unique": True}),),
+    "page_configs": (([("restaurantId", ASCENDING), ("module", ASCENDING)], {"unique": True}),),
+    "page_content": (([("restaurantId", ASCENDING)], {"unique": True}),),
+    "membership_plans": (([("restaurantId", ASCENDING), ("isActive", ASCENDING), ("order", ASCENDING)], {}),),
+    "members": (([("restaurantId", ASCENDING), ("customerEmail", ASCENDING), ("planId", ASCENDING)], {"unique": True, "partialFilterExpression": {"deletedAt": None}}),),
+    "member_check_ins": (([("restaurantId", ASCENDING), ("memberId", ASCENDING), ("checkedInAt", DESCENDING)], {}),),
+    "account_tokens": (
+        ([("tokenHash", ASCENDING)], {"unique": True}),
+        ([("expiresAt", ASCENDING)], {"expireAfterSeconds": 0}),
+    ),
+    "api_rate_limits": (([("expiresAt", ASCENDING)], {"expireAfterSeconds": 0}),),
 }
 
 

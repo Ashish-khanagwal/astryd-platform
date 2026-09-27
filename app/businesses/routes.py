@@ -3,24 +3,44 @@ from datetime import datetime
 from bson import ObjectId
 from flask import Blueprint, current_app, jsonify, request
 from werkzeug.utils import secure_filename
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, verify_jwt_in_request
 from app.common.api import log_audit_event, require_restaurant, serialize_doc
 from app.extensions import mongo
 bp=Blueprint("businesses",__name__,url_prefix="")
 TYPES=["hero","about","featured_menu","gallery","testimonials","offers","location"]
 def gate(r):return require_restaurant(r)
-def audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,i["restaurantId"],i["userId"],i["name"],a,t,e,s,d)
+def audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,request.view_args.get('rid',i.get("restaurantId")),i["userId"],i["name"],a,t,e,s,d)
+
+@bp.before_request
+def tenant_boundary():
+ rid=(request.view_args or {}).get('rid')
+ if not rid:return None
+ site=mongo.db.restaurants.find_one({'restaurantId':rid})
+ if not site or site.get('status')=='suspended':return jsonify(error='not_found',message='Site not found'),404
+ if request.method=='GET' and request.endpoint in {'businesses.homepage','businesses.brand_get'}:
+  version=request.args.get('version','published')
+  if version not in {'draft','published'}:return jsonify(error='validation_error'),400
+  if version=='draft':
+   verify_jwt_in_request();_,failure=require_restaurant(rid)
+   if failure:return failure
+ if request.method not in {'GET','OPTIONS'}:
+  verify_jwt_in_request()
+  permission='media' if 'media' in request.endpoint else 'branding' if 'brand' in request.endpoint else 'settings' if 'web_' in request.endpoint or 'publish' in request.endpoint else 'homepage'
+  _,failure=require_restaurant(rid,permission=permission)
+  if failure:return failure
 def ensure(r):
  if not mongo.db.homepage_sections.count_documents({"restaurantId":r}):
   now=datetime.utcnow();mongo.db.homepage_sections.insert_many([{ "restaurantId":r,"type":t,"order":n,"visible":True,"draftContent":{},"publishedContent":{},"updatedAt":now} for n,t in enumerate(TYPES)])
 def section(d,v):
- x=serialize_doc(d);x["content"]=x.pop("draftContent" if v=="draft" else "publishedContent",{});x.pop("draftContent",None);x.pop("publishedContent",None);return x
+ x=serialize_doc(d);x["content"]=x.pop("draftContent" if v=="draft" else "publishedContent",{});x.pop("draftContent",None);x.pop("publishedContent",None)
+ if v=='published':x['visible']=d.get('publishedVisible',d.get('visible',True));x['order']=d.get('publishedOrder',d.get('order',0))
+ return x
 @bp.get("/restaurants/<rid>/homepage")
 # @jwt_required()
 def homepage(rid):
- v=request.args.get("version","draft")
+ v=request.args.get("version","published")
  if v not in {"draft","published"}:return jsonify(error="validation_error",message="version must be draft or published"),400
- ensure(rid);return jsonify(restaurantId=rid,status=v,sections=[section(d,v) for d in mongo.db.homepage_sections.find({"restaurantId":rid}).sort("order",1)])
+ return jsonify(restaurantId=rid,status=v,sections=sorted([section(d,v) for d in mongo.db.homepage_sections.find({"restaurantId":rid})],key=lambda d:d['order']))
 @bp.put("/restaurants/<rid>/homepage/sections/order")
 @jwt_required()
 def section_order(rid):
@@ -44,13 +64,13 @@ def defaults():return {"restaurantName":"Lumière","tagline":"","logoMediaId":No
 @bp.get("/restaurants/<rid>/brand")
 # @jwt_required()
 def brand_get(rid):
- d=mongo.db.brand_settings.find_one({"restaurantId":rid});return jsonify((d or {}).get(request.args.get("version","draft"),defaults()))
+ d=mongo.db.brand_settings.find_one({"restaurantId":rid});return jsonify((d or {}).get(request.args.get("version","published"),defaults()))
 @bp.put("/restaurants/<rid>/brand")
 @jwt_required()
 def brand_put(rid):
  i,f=gate(rid)
  if f:return f
- b=request.get_json(silent=True) or {};d=mongo.db.brand_settings.find_one_and_update({"restaurantId":rid},{"$set":{"draft":b,"updatedAt":datetime.utcnow()},"$setOnInsert":{"restaurantId":rid,"published":defaults()}},upsert=True,return_document=True);audit(i,"update","brand_settings",d["_id"],"Updated brand settings",b);return jsonify(d["draft"])
+ b=request.get_json(silent=True) or {};existing=mongo.db.brand_settings.find_one({'restaurantId':rid}) or {};merged={**existing.get('draft',defaults()),**b};d=mongo.db.brand_settings.find_one_and_update({"restaurantId":rid},{"$set":{"draft":merged,"updatedAt":datetime.utcnow()},"$setOnInsert":{"restaurantId":rid,"published":defaults()}},upsert=True,return_document=True);audit(i,"update","brand_settings",d["_id"],"Updated brand settings",b);return jsonify(d["draft"])
 @bp.get("/restaurants/<rid>/website")
 def web_get(rid):
  return jsonify(serialize_doc(mongo.db.website_settings.find_one({"restaurantId":rid}) or {"restaurantId":rid,"publishStatus":"draft","publishedAt":None,"seoTitle":"","seoDescription":""}))
@@ -65,11 +85,17 @@ def web_put(rid):
 def publish(rid):
  i,f=gate(rid)
  if f:return f
- now=datetime.utcnow();ensure(rid)
- for d in mongo.db.homepage_sections.find({"restaurantId":rid}):mongo.db.homepage_sections.update_one({"_id":d["_id"]},{"$set":{"publishedContent":d.get("draftContent",{}),"updatedAt":now}})
- b=mongo.db.brand_settings.find_one({"restaurantId":rid})
- if b:mongo.db.brand_settings.update_one({"_id":b["_id"]},{"$set":{"published":b.get("draft",defaults()),"updatedAt":now}})
- mongo.db.website_settings.update_one({"restaurantId":rid},{"$set":{"publishStatus":"published","publishedAt":now},"$setOnInsert":{"restaurantId":rid}},upsert=True);audit(i,"publish","website",rid,"Published website");return jsonify(publishedAt=now.isoformat(),message="Website published successfully")
+ if current_app.config.get('REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH',True) and not i.get('emailVerified',False):return jsonify(error='email_verification_required',message='Verify your email before publishing'),403
+ timestamp=datetime.utcnow()
+ def commit(session):
+  for d in mongo.db.homepage_sections.find({'restaurantId':rid},session=session):mongo.db.homepage_sections.update_one({'_id':d['_id']},{'$set':{'publishedContent':d.get('draftContent',{}),'publishedVisible':d.get('visible',True),'publishedOrder':d.get('order',0),'updatedAt':timestamp}},session=session)
+  for collection in ('brand_settings','page_content'):
+   d=mongo.db[collection].find_one({'restaurantId':rid},session=session)
+   if d:mongo.db[collection].update_one({'_id':d['_id']},{'$set':{'published':d.get('draft',{}),'updatedAt':timestamp}},session=session)
+  for d in mongo.db.page_configs.find({'restaurantId':rid},session=session):mongo.db.page_configs.update_one({'_id':d['_id']},{'$set':{'published':{k:d[k] for k in ('enabled','navLabel','order','templateVariant')}}},session=session)
+  mongo.db.website_settings.update_one({'restaurantId':rid},{'$set':{'publishStatus':'published','publishedAt':timestamp},'$setOnInsert':{'restaurantId':rid}},upsert=True,session=session)
+ with mongo.db.client.start_session() as session:session.with_transaction(commit)
+ audit(i,'publish','website',rid,'Published website');return jsonify(publishedAt=timestamp.isoformat(),message='Website published successfully')
 @bp.get("/restaurants/<rid>/media")
 def media_list(rid):
  try:p=max(1,int(request.args.get("page",1)))
@@ -86,7 +112,7 @@ def media_create(rid):
  if f:return f
  file=request.files.get("file")
  if not file or not file.filename:return jsonify(error="validation_error",message="file is required"),400
- name=f"{datetime.utcnow().strftime('%Y%m%d%H%M%S')}-{ObjectId()}-{secure_filename(file.filename)}";path=__import__("pathlib").Path(current_app.config["UPLOAD_FOLDER"])/name;file.save(path);typ="video" if (file.mimetype or "").startswith("video/") else "image";now=datetime.utcnow();d={"restaurantId":rid,"fileUrl":f"http://localhost:5000/uploads/{name}","thumbnailUrl":None,"fileType":typ,"mimeType":file.mimetype,"fileName":file.filename,"fileSizeBytes":path.stat().st_size,"altText":request.form.get("altText",""),"folder":request.form.get("folder","images"),"createdAt":now,"updatedAt":now};r=mongo.db.media_assets.insert_one(d);d["_id"]=r.inserted_id;audit(i,"create","media_asset",r.inserted_id,"Uploaded media");return jsonify(serialize_doc(d)),201
+ name=f"{datetime.utcnow().strftime('%Y%m%d%H%M%S')}-{ObjectId()}-{secure_filename(file.filename)}";path=__import__("pathlib").Path(current_app.config["UPLOAD_FOLDER"])/name;file.save(path);typ="video" if (file.mimetype or "").startswith("video/") else "image";now=datetime.utcnow();d={"restaurantId":rid,"fileUrl":f"{current_app.config.get('PUBLIC_API_URL') or request.host_url.rstrip('/')}/uploads/{name}","thumbnailUrl":None,"fileType":typ,"mimeType":file.mimetype,"fileName":file.filename,"fileSizeBytes":path.stat().st_size,"altText":request.form.get("altText",""),"folder":request.form.get("folder","images"),"createdAt":now,"updatedAt":now};r=mongo.db.media_assets.insert_one(d);d["_id"]=r.inserted_id;audit(i,"create","media_asset",r.inserted_id,"Uploaded media");return jsonify(serialize_doc(d)),201
 @bp.delete("/restaurants/<rid>/media/<mid>")
 @jwt_required()
 def media_delete(rid,mid):

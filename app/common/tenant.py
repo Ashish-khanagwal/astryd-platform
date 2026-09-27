@@ -2,7 +2,7 @@
 
 from functools import wraps
 
-from flask import g, jsonify
+from flask import g, jsonify, request
 from flask_jwt_extended import get_jwt, verify_jwt_in_request
 
 
@@ -18,15 +18,14 @@ def require_tenant(roles=None):
         @wraps(view)
         def wrapped(*args, **kwargs):
             verify_jwt_in_request()
-            claims = get_jwt()
-            business_id = claims.get("business_id")
-            business_ids = set(claims.get("business_ids", []))
-            if not business_id or (business_ids and business_id not in business_ids):
-                raise TenantAccessError("The token does not identify an authorized business.")
-            if allowed_roles and not allowed_roles.intersection(claims.get("roles", [])):
-                raise TenantAccessError("You do not have permission for this action.")
+            from app.common.api import current_identity, require_restaurant
+            user = current_identity()
+            business_id = request.args.get('siteId') or user.get('restaurantId')
+            _, failure = require_restaurant(business_id, roles=allowed_roles or None)
+            if failure:
+                raise TenantAccessError('Site access denied')
             g.business_id = business_id
-            g.current_roles = claims.get("roles", [])
+            g.current_roles = [user.get('role')]
             return view(*args, **kwargs)
 
         return wrapped

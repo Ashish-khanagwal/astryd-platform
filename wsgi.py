@@ -15,4 +15,4 @@ load_dotenv(repository_root / ".env")
 
 from app import create_app
 
-app = create_app()
+app = create_app('production' if runtime_environment == 'production' else 'development')

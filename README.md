@@ -1,141 +1,250 @@
 # Astryd API
 
-Flask foundation for Astryd's multi-tenant Business Experience Platform.
+Flask backend for a multi-tenant restaurant, gym and retail platform. Features
+include organization-scoped login, business onboarding, website drafts and
+publishing, catalogs, reservations, orders, memberships and Finix card payments.
 
-## Local setup
+## Prerequisites
 
-1. Create and activate a Python virtual environment.
-2. Install dependencies with `pip install -r requirements.txt`.
-3. Keep shared local values in `.env`, sandbox Finix values in `.env.staging`,
-   and live Finix values in `.env.production`. Both environment-specific files
-   are ignored by Git.
-4. Start staging with `ASTRYD_ENV=staging flask --app wsgi:app run` (staging is
-   also the default). Production must explicitly set `ASTRYD_ENV=production`.
-5. Start asynchronous workers with `celery -A app.celery_app worker --loglevel=info`.
+- Python 3.13, the version used for local verification.
+- MongoDB Atlas: allow your machine's IP and configure a database user. A replica
+  set is required for atomic onboarding and publishing transactions.
+- Redis and Celery for asynchronous notifications; SMTP for email delivery.
+- Node.js/npm in the separate frontend repository to run the full application.
 
-The API blueprints are available beneath `/api/v1`. `/health` is intentionally public for infrastructure checks. All business-owned API routes require a JWT whose claims include an active `business_id`; the backend never trusts a client-supplied tenant identifier.
+## Install dependencies
 
-## Tenant data rule
+From the backend repository:
 
-Every business-owned MongoDB document must include `business_id`. Use `app.common.repository.TenantRepository` (or a module-specific subclass) for all such persistence. Its methods scope every query and insert the authenticated tenant identifier, preventing cross-business reads and writes.
-
-## Environment variables
-
-`PAYMENT_AMOUNT_OVERRIDE_CENTS` is enforced by the backend for both orders and
-reservation deposits. Set it to `100` for a one-dollar staging charge. Leave it
-empty to use the normally calculated order total or reservation deposit.
-
-| Variable | Purpose |
-|---|---|
-| `MONGO_URI` | MongoDB Atlas connection string |
-| `SECRET_KEY` | Flask session secret (64 random chars) |
-| `JWT_SECRET_KEY` | JWT signing secret (64 random chars, different from above) |
-| `CORS_ORIGINS` | Allowed frontend origin e.g. `http://localhost:5173` |
-| `CELERY_BROKER_URL` | Redis broker e.g. `redis://localhost:6379/0` |
-| `CELERY_RESULT_BACKEND` | Redis result store e.g. `redis://localhost:6379/1` |
-| `FINIX_API_USERNAME` / `FINIX_API_PASSWORD` | Server-only Finix API credentials |
-| `FINIX_MERCHANT_ID` | Finix merchant (`MU...`) receiving card transfers |
-| `FINIX_WEBHOOK_SIGNING_KEY` | HMAC key returned when the Finix webhook is created |
-| `FINIX_WEBHOOK_BEARER_TOKEN` | Astryd-generated bearer token configured on the webhook |
-| `RESERVATION_DEPOSIT_PER_GUEST_CENTS` | Required reservation deposit per guest; defaults to `2500` |
-| `PAYMENT_AMOUNT_OVERRIDE_CENTS` | Optional server-side override for every charge; `100` means `$1.00`, empty means use the normal calculated amount |
-
-## Dependencies
-
-- Python 3.13
-- MongoDB Atlas (cluster: astryd-dev, AWS Mumbai)
-- Redis (for Celery background tasks — email and SMS notifications)
-
-## API endpoints
-
-### Public
-
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/health` | Health check |
-| GET | `/api/v1/availability/<business_id>` | Available time slots |
-| POST | `/api/v1/reservations` | Create a reservation only when the configured deposit is zero |
-| POST | `/api/v1/reservations/checkout` | Start a paid reservation checkout |
-| POST | `/api/v1/orders/checkout` | Start a backend-priced food order checkout |
-| POST | `/api/v1/payments/card` | Charge a Finix token for a checkout attempt |
-| GET | `/api/v1/payments/<payment_id>` | Poll checkout-secret-protected payment state |
-| POST | `/api/v1/payments/<payment_id>/retry` | Retry a failed attempt without recreating its order |
-| POST | `/api/v1/payments/webhooks/finix` | Receive signed Finix transfer updates |
-| GET | `/api/v1/reservations/<confirmation_code>` | Get reservation |
-| PATCH | `/api/v1/reservations/<confirmation_code>` | Modify reservation |
-| DELETE | `/api/v1/reservations/<confirmation_code>` | Cancel reservation |
-
-### Admin (JWT required)
-
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/v1/admin/reservations` | List reservations for business |
-
-## Availability query params
-
-```
-GET /api/v1/availability/lumiere-mayfair?date=2026-09-10&party_size=2
+```bash
+python3.13 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -r requirements-dev.txt
 ```
 
-Returns slots grouped by `afternoon` and `evening`. Each slot includes `time` (12hr display), `time_24` (storage format), and `available` flag.
+The two requirements files serve different purposes:
 
-## Reservation request body
+- `requirements.txt`: runtime dependencies, including Flask, PyMongo, Celery,
+  Redis and Gunicorn. Use it for runtime-only installations.
+- `requirements-dev.txt`: includes `requirements.txt` and adds `mongomock` for
+  isolated tests. Developers install this file only; no separate runtime install
+  is necessary.
 
-```json
-{
-  "business_id": "lumiere-mayfair",
-  "booking": {
-    "date": "2026-09-10",
-    "time_slot": "18:00",
-    "party_size": 2,
-    "seating_preference": "Indoor"
-  },
-  "guest": {
-    "full_name": "Ashish Khanagwal",
-    "email": "ashish@example.com",
-    "phone": "+91 9810215269",
-    "special_requests": "Window seat please",
-    "newsletter_opt_in": false
-  }
-}
+Runtime-only installation:
+
+```bash
+.venv/bin/python -m pip install -r requirements.txt
 ```
 
-Seating preference must be one of: `Indoor`, `Outdoor`, `The Bar`, `Private`.
+## Environment configuration
 
-When a deposit is configured, start with `/reservations/checkout`, tokenize the card with
-Finix.js, then send the `TK...` token to `/payments/card`. The confirmed reservation and
-confirmation code are created only after the transfer succeeds and availability is rechecked.
-The legacy direct create route returns `HTTP 402` while deposits are enabled.
+For a fresh checkout, copy `.env.example` into `.env.staging` and
+`.env.production`, then configure each independently. **Do not overwrite existing
+configured files.** Example values are placeholders, not working credentials.
+Generate separate random Flask and JWT secrets of at least 32 characters.
 
-## Project structure
+`wsgi.py` loads the selected profile, then `.env` as a fallback. Existing shell
+environment variables take precedence. Set `ASTRYD_ENV` in the startup command,
+not inside an env file. Staging is the default.
 
+| Setting | Purpose |
+| --- | --- |
+| `MONGO_URI` | Server-only Atlas connection string. |
+| `MONGO_DATABASE` | Optional database-name override. Keep staging and production separate; local profiles use `astryd_staging` and `astryd`. |
+| `SECRET_KEY`, `JWT_SECRET_KEY` | Separate signing secrets. |
+| `CORS_ORIGINS` | Comma-separated frontend origins; locally `http://localhost:5173`. |
+| `PUBLIC_API_URL` | Reachable backend URL used for uploaded media. |
+| `PLATFORM_ADMIN_URL` | Frontend URL used in account links. |
+| `PLATFORM_DOMAIN` | Optional platform domain; `/s/:slug` works without custom-domain infrastructure. |
+| `REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH` | Defaults to `true`. Set to `false` when deliberately deferring verification, as in the current local profiles. |
+| `CELERY_BROKER_URL`, `CELERY_RESULT_BACKEND` | Redis connections for background tasks. |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_FROM`, `SMTP_USERNAME`, `SMTP_PASSWORD` | Email delivery settings. |
+
+Verification is currently deferred in the local profiles. New accounts remain
+marked unverified but can edit and publish without SMTP. Password-reset emails,
+staff invitations and private email-link member lookup still need delivery
+configuration. Decide the verification policy explicitly before deployment.
+
+### Finix and payment safety
+
+Keep each environment's existing credentials, merchant and webhook settings intact.
+Never copy sandbox credentials into production or put server secrets in `VITE_*`
+frontend variables.
+
+- Staging: `FINIX_API_URL=https://finix.sandbox-payments-api.com`.
+- Production: `FINIX_API_URL=https://finix.live-payments-api.com`. Startup requires
+  `FINIX_API_USERNAME`, `FINIX_API_PASSWORD`, `FINIX_MERCHANT_ID`,
+  `FINIX_WEBHOOK_SIGNING_KEY` and `FINIX_WEBHOOK_BEARER_TOKEN`.
+- Webhook route: `/api/v1/payments/webhooks/finix`. Local delivery requires a
+  reachable tunnel such as ngrok and the matching registered Finix webhook URL.
+  Starting Flask alone does not expose it publicly.
+
+**Production uses real money even on localhost.** Submit a payment only when a
+live charge is intentional.
+
+Prices are server-side integer cents. `PAYMENT_AMOUNT_OVERRIDE_CENTS`, if set,
+overrides order, reservation-deposit and membership checkout charges: `50` is
+$0.50; `100` is $1.00. Leave it empty for calculated prices. Preserve existing
+profile values unless deliberately changing pricing. Normal pricing also uses
+`RESERVATION_DEPOSIT_PER_GUEST_CENTS`, `ORDER_TAX_BASIS_POINTS` and
+`ORDER_DELIVERY_FEE_CENTS`.
+
+## Run locally
+
+From the backend repository, staging:
+
+```bash
+ASTRYD_ENV=staging .venv/bin/flask --app wsgi:app run --host 127.0.0.1 --port 5000
 ```
-astryd/
-├── app/
-│   ├── __init__.py          # Application factory
-│   ├── extensions.py        # mongo, jwt instances
-│   ├── celery_app.py        # Celery setup
-│   ├── admin/               # Admin endpoints (JWT protected)
-│   ├── auth/                # Auth endpoints
-│   ├── availability/        # Slot availability engine
-│   ├── businesses/          # Business profile endpoints
-│   ├── common/              # Tenant isolation helpers
-│   ├── database/            # MongoDB index creation
-│   ├── menu/                # Menu endpoints
-│   ├── models/              # Schema definitions
-│   ├── notifications/       # Celery email/SMS tasks
-│   ├── orders/              # Order endpoints
-│   ├── payments/            # Payment endpoints
-│   └── reservations/        # Reservation CRUD
-├── config.py                # Environment-based config
-├── wsgi.py                  # Entry point
-└── .env                     # Environment variables (not in git)
+
+Production configuration for local testing:
+
+```bash
+ASTRYD_ENV=production .venv/bin/flask --app wsgi:app run --host 127.0.0.1 --port 5000
 ```
 
-## Test data
+Stop the previous process with Ctrl+C before switching profiles. Restart after
+changing environment values. Check health:
 
-Business `lumiere-mayfair` is seeded in Atlas with the following configuration:
+```bash
+curl http://127.0.0.1:5000/health
+```
 
-- Hours: Mon–Thu 18:00–23:00, Fri–Sat 12:00–00:00, Sun 12:00–21:00
-- Slot duration: 90 minutes
-- Tables: 5 tables across Indoor, Outdoor, The Bar, and Private seating types
+The Flask development server is not a public deployment server. Deployment needs
+Gunicorn or an equivalent production server, HTTPS/reverse proxy, private secrets,
+persistent media storage, network controls and backups. AWS deployment is not
+configured by these local commands.
+
+### Frontend on localhost:5173
+
+In a separate terminal, change to `Astryd-Lumiere-Reservations` and install
+dependencies with `npm install` on first setup.
+
+Staging:
+
+```bash
+npm run dev:staging -- --host localhost --port 5173 --strictPort
+```
+
+Production configuration:
+
+```bash
+npm run build:production
+npm run preview -- --host localhost --port 5173 --strictPort
+```
+
+The production frontend uses relative API URLs. Its Vite **preview** proxy forwards
+`/api` and `/uploads` to `http://127.0.0.1:5000`; the development server does not
+have that proxy. Use build plus preview, not `npx vite --mode production`.
+Keep the matching backend profile running and rebuild after frontend changes.
+Frontend preview is local testing, not production hosting.
+
+### Background notifications
+
+With Redis and delivery settings configured, run a matching worker:
+
+```bash
+ASTRYD_ENV=staging .venv/bin/celery -A celery_worker.celery worker --loglevel=info
+```
+
+Use `ASTRYD_ENV=production` only when the worker should use production settings.
+
+## Tenants, accounts and publishing
+
+Signup creates the organization, hashed-password owner and initial business in
+one transaction. New passwords require 10–128 characters including letters and
+numbers. Login uses the readable organization code, email and chosen password,
+not the organization's MongoDB ObjectId.
+
+Private routes check current organization membership, role, permissions and site
+access. Public storefronts resolve dynamically at `/s/:slug`. Legacy routes and
+IDs are preserved; existing documents use a mix of `business_id`, `restaurantId`
+and `organizationId`. Do not rename those fields blindly.
+
+Website edits save as drafts; authenticated preview shows them. Publish waits
+for pending saves, atomically stores published CMS/configuration snapshots and
+sets `publishStatus=published` and `publishedAt`. Later draft edits do not replace
+the published snapshot until publishing again. Publish does not configure DNS,
+custom domains, TLS or hosting.
+
+Paid bookings and public paid memberships are confirmed/activated only after
+server-verified payment success. Membership checkout is one-time enrollment,
+not recurring billing. Existing global Finix merchant routing is retained; this
+does not provision independent merchants or payouts for each business.
+
+## Tests and database scripts
+
+Isolated tests do not access Atlas or charge cards:
+
+```bash
+.venv/bin/python -m unittest discover -s tests
+```
+
+Optional demo provisioning is restricted to `astryd_staging`:
+
+```bash
+.venv/bin/python scripts/seed_multitenant.py
+.venv/bin/python scripts/seed_multitenant.py --apply
+.venv/bin/python scripts/verify_multitenant.py
+```
+
+The seed defaults to dry-run and preserves existing edits. Never seed production
+or copy staging into production. The staging verifier checks demo accounts and
+tenant contracts; login checks may update rate-limit counters.
+
+Atlas onboarding/publishing probes run inside explicitly aborted transactions:
+
+```bash
+.venv/bin/python scripts/verify_parity.py --environment staging
+.venv/bin/python scripts/verify_parity.py --environment production
+```
+
+These require `REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH=false`, make no Finix calls,
+and persist no probe tenants or payments.
+
+### Existing-database migration and backup
+
+The local-test production database has already been migrated. For another
+existing database, inspect the dry-run before applying:
+
+```bash
+.venv/bin/python scripts/migrate_multitenant.py --environment production
+```
+
+Migration checks tenant IDs and email collisions, backfills organization access
+and CMS defaults, and replaces global email uniqueness with scoped uniqueness.
+It preserves passwords, site IDs and financial records. It is idempotent but not
+one database-wide transaction; resolve interruptions and rerun before accepting
+writes.
+
+Before applying, pause writes and use a **new unique backup directory**:
+
+```bash
+.venv/bin/python scripts/backup_database.py --environment production --output .local-backups/pre-migration-UNIQUE
+.venv/bin/python scripts/migrate_multitenant.py --environment production --apply --backup-dir .local-backups/pre-migration-UNIQUE --maintenance-confirmed
+```
+
+The backup exports snapshot BSON data and index metadata and verifies checksums
+and BSON decoding. This is not a restore rehearsal. Before real deployment,
+require an Atlas snapshot and tested recovery procedure. Never restore over
+newer transactions without a reviewed recovery plan.
+
+## Repository hygiene
+
+Environment files, `.local-backups/`, new files under `uploads/`, virtual
+environments and build output are ignored. Older tracked uploads remain tracked;
+ignoring a directory does not remove Git history or delete local media. Never
+commit credentials, database dumps or customer uploads. Media needs its own
+backup and persistent-storage plan for deployment.
+
+## Main modules
+
+- `app/auth`, `app/platform`: accounts, organizations, sites and memberships.
+- `app/businesses`, `app/menu`: CMS, media and catalogs.
+- `app/availability`, `app/reservations`, `app/orders`: availability and booking/order flows.
+- `app/payments`: Finix checkout and webhook reconciliation.
+- `app/common`, `app/database`: access helpers and indexes.
+- `app/notifications`: asynchronous delivery.
+- `config.py`, `wsgi.py`, `celery_worker.py`: environment-aware entry points.
+
+API routes are under `/api/v1`; `/health` and `/uploads/<filename>` are separate.

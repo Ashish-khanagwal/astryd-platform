@@ -204,8 +204,6 @@ def _render_slots(time_slots, eligible_table_count, booked_by_slot, max_per_slot
         available = eligible_table_count - booked_count > 0
         if max_per_slot is not None:
             available = available and booked_count < max_per_slot
-        if time_slot < "12:00":
-            continue
         group = "afternoon" if time_slot < "17:00" else "evening"
         groups[group].append(
             {

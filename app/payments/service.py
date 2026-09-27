@@ -30,6 +30,7 @@ def create_payment_attempt(
     customer,
     snapshot=None,
     amount_override_cents=None,
+    session=None,
 ):
     effective_amount_cents = (
         amount_override_cents if amount_override_cents is not None else amount_cents
@@ -55,7 +56,7 @@ def create_payment_attempt(
         "created_at": now,
         "updated_at": now,
     }
-    result = db.payments.insert_one(document)
+    result = db.payments.insert_one(document, **({'session':session} if session else {}))
     document["_id"] = result.inserted_id
     return document, raw_secret
 
@@ -238,6 +239,15 @@ def fulfill_succeeded_payment(db, payment_id):
             )
             context_id = reservation_id
             _queue_reservation_confirmation(reservation_id, reservation)
+        elif payment['context_type'] == 'membership':
+            member = db.members.find_one_and_update(
+                {'_id':payment['context_id'],'restaurantId':payment['business_id'],'paymentId':payment['_id'],'deletedAt':None,'status':'paused'},
+                {'$set':{'status':'active','paymentStatus':'succeeded','paidAmountCents':payment['amount_cents'],'updatedAt':datetime.utcnow()}},
+                return_document=ReturnDocument.AFTER,
+            )
+            if not member:
+                raise PaymentStateError('Membership changed after checkout; staff assistance is required')
+            context_id=member['_id']
         else:
             raise PaymentStateError("Unsupported payment context")
     except ConflictError:
@@ -299,6 +309,12 @@ def create_retry(db, payment_id, checkout_secret):
             {"_id": original["context_id"], "business_id": original["business_id"]},
             {"$set": {"status": "payment_pending", "payment_status": "created", "payment_id": payment["_id"], "updated_at": datetime.utcnow()}},
         )
+    if original['context_type']=='membership':
+        result=db.members.update_one({'_id':original['context_id'],'restaurantId':original['business_id'],'paymentId':original['_id'],'status':'paused','deletedAt':None},
+            {'$set':{'paymentId':payment['_id'],'paymentStatus':'created','updatedAt':datetime.utcnow()}})
+        if not result.matched_count:
+            db.payments.update_one({'_id':payment['_id']},{'$set':{'status':'failed','failure':{'message':'Membership no longer eligible for retry'}}})
+            raise PaymentStateError('Membership no longer eligible for retry')
     return payment, secret
 
 
@@ -342,6 +358,9 @@ def serialize_payment(db, payment):
                 "guest_name": reservation["guest"]["full_name"],
                 "guest_email": reservation["guest"]["email"],
             }
+    elif payment.get('context_id') and payment['context_type']=='membership' and payment.get('fulfillment_status')=='completed':
+        member=db.members.find_one({'_id':payment['context_id'],'restaurantId':payment['business_id']})
+        if member:result['membership']={'id':str(member['_id']),'status':member['status'],'plan_id':member['planId']}
     return result
 
 
@@ -352,6 +371,9 @@ def _mark_context_failed(db, payment_id):
             {"_id": payment["context_id"], "business_id": payment["business_id"]},
             {"$set": {"status": "payment_failed", "payment_status": "failed", "updated_at": datetime.utcnow()}},
         )
+    if payment and payment['context_type']=='membership':
+        db.members.update_one({'_id':payment['context_id'],'restaurantId':payment['business_id'],'paymentId':payment['_id'],'status':'paused'},
+            {'$set':{'paymentStatus':'failed','updatedAt':datetime.utcnow()}})
 
 
 def _set_finix(db, payment_id, field, value):
