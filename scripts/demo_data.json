@@ -1,0 +1,5130 @@
+{
+  "organizations": [
+    {
+      "id": "org_lumiere",
+      "code": "LUMIERE",
+      "name": "Lumière",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "org_pulsefit",
+      "code": "PULSEFIT",
+      "name": "PulseFit Studios",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "org_novagoods",
+      "code": "NOVAGOODS",
+      "name": "Nova Goods",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "user_super",
+      "organizationId": "org_lumiere",
+      "email": "admin@platform.com",
+      "name": "Platform Admin",
+      "role": "super_admin",
+      "restaurantId": null,
+      "siteAccess": "all",
+      "isActive": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "user_owner",
+      "organizationId": "org_lumiere",
+      "email": "owner@lumiere.com",
+      "name": "Ava Whitfield",
+      "role": "owner",
+      "restaurantId": "rest_lumiere",
+      "siteAccess": "all",
+      "isActive": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "user_staff",
+      "organizationId": "org_lumiere",
+      "email": "staff@lumiere.com",
+      "name": "Jordan Reyes",
+      "role": "staff",
+      "restaurantId": "rest_lumiere",
+      "siteAccess": [
+        "rest_lumiere"
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "user_pulsefit_owner",
+      "organizationId": "org_pulsefit",
+      "email": "owner@pulsefit.com",
+      "name": "Marcus Bell",
+      "role": "owner",
+      "restaurantId": "site_pulsefit",
+      "siteAccess": "all",
+      "isActive": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "user_novagoods_owner",
+      "organizationId": "org_novagoods",
+      "email": "owner@novagoods.com",
+      "name": "Priya Nair",
+      "role": "owner",
+      "restaurantId": "site_novagoods",
+      "siteAccess": "all",
+      "isActive": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "rest_lumiere",
+      "organizationId": "org_lumiere",
+      "slug": "lumiere-mayfair",
+      "name": "Lumière",
+      "ownerUserId": "user_owner",
+      "status": "active",
+      "vertical": "restaurant",
+      "brandingBadgeEnabled": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "rest_lumiere_nh",
+      "organizationId": "org_lumiere",
+      "slug": "lumiere-notting-hill",
+      "name": "Lumière – Notting Hill",
+      "ownerUserId": "user_owner",
+      "status": "active",
+      "vertical": "restaurant",
+      "brandingBadgeEnabled": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "site_pulsefit",
+      "organizationId": "org_pulsefit",
+      "slug": "pulsefit-downtown",
+      "name": "PulseFit Studios",
+      "ownerUserId": "user_pulsefit_owner",
+      "status": "active",
+      "vertical": "gym",
+      "brandingBadgeEnabled": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "site_novagoods",
+      "organizationId": "org_novagoods",
+      "slug": "nova-goods",
+      "name": "Nova Goods",
+      "ownerUserId": "user_novagoods_owner",
+      "status": "active",
+      "vertical": "retail",
+      "brandingBadgeEnabled": true,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "brand": {
+    "rest_lumiere": {
+      "draft": {
+        "restaurantId": "rest_lumiere",
+        "restaurantName": "Lumière",
+        "tagline": "Modern French, Mayfair",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "dusty-gold",
+        "primaryFont": "Geist",
+        "headingFont": "Cormorant Garamond",
+        "fontWeight": "regular",
+        "buttonStyle": "rounded",
+        "borderRadius": "lg",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "",
+          "facebook": "",
+          "whatsapp": ""
+        },
+        "contact": {
+          "phone": "+44 (0) 20 7123 4567",
+          "email": "hello@lumiere-dining.com",
+          "address": "12 Berkeley Square, Mayfair, London"
+        },
+        "description": "Experience the invisible excellence of modern French cuisine in the heart of Mayfair. Part of the Haute-Cuisine Group.",
+        "cuisineType": "Modern French",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "21:00"
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      },
+      "published": {
+        "restaurantId": "rest_lumiere",
+        "restaurantName": "Lumière",
+        "tagline": "Modern French, Mayfair",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "dusty-gold",
+        "primaryFont": "Geist",
+        "headingFont": "Cormorant Garamond",
+        "fontWeight": "regular",
+        "buttonStyle": "rounded",
+        "borderRadius": "lg",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "",
+          "facebook": "",
+          "whatsapp": ""
+        },
+        "contact": {
+          "phone": "+44 (0) 20 7123 4567",
+          "email": "hello@lumiere-dining.com",
+          "address": "12 Berkeley Square, Mayfair, London"
+        },
+        "description": "Experience the invisible excellence of modern French cuisine in the heart of Mayfair. Part of the Haute-Cuisine Group.",
+        "cuisineType": "Modern French",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "21:00"
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      }
+    },
+    "rest_lumiere_nh": {
+      "draft": {
+        "restaurantId": "rest_lumiere_nh",
+        "restaurantName": "Lumière – Notting Hill",
+        "tagline": "Modern French, Notting Hill",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "dusty-gold",
+        "primaryFont": "Geist",
+        "headingFont": "Cormorant Garamond",
+        "fontWeight": "regular",
+        "buttonStyle": "rounded",
+        "borderRadius": "lg",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "",
+          "facebook": "",
+          "whatsapp": ""
+        },
+        "contact": {
+          "phone": "+44 (0) 20 7123 4567",
+          "email": "hello@lumiere-dining.com",
+          "address": "12 Berkeley Square, Mayfair, London"
+        },
+        "description": "Experience the invisible excellence of modern French cuisine in the heart of Mayfair. Part of the Haute-Cuisine Group.",
+        "cuisineType": "Modern French",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "21:00"
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      },
+      "published": {
+        "restaurantId": "rest_lumiere_nh",
+        "restaurantName": "Lumière – Notting Hill",
+        "tagline": "Modern French, Notting Hill",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "dusty-gold",
+        "primaryFont": "Geist",
+        "headingFont": "Cormorant Garamond",
+        "fontWeight": "regular",
+        "buttonStyle": "rounded",
+        "borderRadius": "lg",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "",
+          "facebook": "",
+          "whatsapp": ""
+        },
+        "contact": {
+          "phone": "+44 (0) 20 7123 4567",
+          "email": "hello@lumiere-dining.com",
+          "address": "12 Berkeley Square, Mayfair, London"
+        },
+        "description": "Experience the invisible excellence of modern French cuisine in the heart of Mayfair. Part of the Haute-Cuisine Group.",
+        "cuisineType": "Modern French",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "18:00",
+            "closeTime": "23:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "00:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "12:00",
+            "closeTime": "21:00"
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      }
+    },
+    "site_pulsefit": {
+      "draft": {
+        "restaurantId": "site_pulsefit",
+        "restaurantName": "PulseFit Studios",
+        "tagline": "Train harder, together.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "emerald",
+        "primaryFont": "Inter",
+        "headingFont": "Poppins",
+        "fontWeight": "semibold",
+        "buttonStyle": "pill",
+        "borderRadius": "full",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (312) 555-0142",
+          "email": "hello@pulsefitstudios.com",
+          "address": "480 Wells Street, Chicago, IL"
+        },
+        "description": "PulseFit Studios is a community-driven strength & conditioning gym - small-group programming, real coaching, no ego.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "21:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "16:00"
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      },
+      "published": {
+        "restaurantId": "site_pulsefit",
+        "restaurantName": "PulseFit Studios",
+        "tagline": "Train harder, together.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "emerald",
+        "primaryFont": "Inter",
+        "headingFont": "Poppins",
+        "fontWeight": "semibold",
+        "buttonStyle": "pill",
+        "borderRadius": "full",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (312) 555-0142",
+          "email": "hello@pulsefitstudios.com",
+          "address": "480 Wells Street, Chicago, IL"
+        },
+        "description": "PulseFit Studios is a community-driven strength & conditioning gym - small-group programming, real coaching, no ego.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "22:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "21:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "16:00"
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      }
+    },
+    "site_novagoods": {
+      "draft": {
+        "restaurantId": "site_novagoods",
+        "restaurantName": "Nova Goods",
+        "tagline": "Thoughtfully made, delivered.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "sapphire",
+        "primaryFont": "DM Sans",
+        "headingFont": "Montserrat",
+        "fontWeight": "medium",
+        "buttonStyle": "square",
+        "borderRadius": "sm",
+        "navPosition": "center",
+        "socialLinks": {
+          "instagram": ""
+        },
+        "contact": {
+          "phone": "+1 (415) 555-0198",
+          "email": "hello@novagoods.shop",
+          "address": "221 Valencia Street, San Francisco, CA"
+        },
+        "description": "Nova Goods is an independent lifestyle & home goods shop - small-batch makers, thoughtfully curated.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": true,
+            "openTime": null,
+            "closeTime": null
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      },
+      "published": {
+        "restaurantId": "site_novagoods",
+        "restaurantName": "Nova Goods",
+        "tagline": "Thoughtfully made, delivered.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "sapphire",
+        "primaryFont": "DM Sans",
+        "headingFont": "Montserrat",
+        "fontWeight": "medium",
+        "buttonStyle": "square",
+        "borderRadius": "sm",
+        "navPosition": "center",
+        "socialLinks": {
+          "instagram": ""
+        },
+        "contact": {
+          "phone": "+1 (415) 555-0198",
+          "email": "hello@novagoods.shop",
+          "address": "221 Valencia Street, San Francisco, CA"
+        },
+        "description": "Nova Goods is an independent lifestyle & home goods shop - small-batch makers, thoughtfully curated.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": true,
+            "openTime": null,
+            "closeTime": null
+          }
+        ],
+        "createdAt": "2026-09-26T07:31:37.106Z",
+        "updatedAt": "2026-09-26T07:31:37.106Z"
+      }
+    }
+  },
+  "website": {
+    "rest_lumiere": {
+      "restaurantId": "rest_lumiere",
+      "publishStatus": "published",
+      "publishedAt": "2026-09-26T07:31:37.106Z",
+      "seoTitle": "Lumière | Fine Dining Mayfair",
+      "seoDescription": "Modern French fine dining in Mayfair, London.",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    "rest_lumiere_nh": {
+      "restaurantId": "rest_lumiere_nh",
+      "publishStatus": "draft",
+      "publishedAt": null,
+      "seoTitle": "Lumière – Notting Hill",
+      "seoDescription": "Modern French fine dining in Notting Hill, London.",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    "site_pulsefit": {
+      "restaurantId": "site_pulsefit",
+      "publishStatus": "published",
+      "publishedAt": "2026-09-26T07:31:37.106Z",
+      "seoTitle": "PulseFit Studios | Strength & Conditioning",
+      "seoDescription": "Small-group strength & conditioning gym in Chicago, IL.",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    "site_novagoods": {
+      "restaurantId": "site_novagoods",
+      "publishStatus": "published",
+      "publishedAt": "2026-09-26T07:31:37.106Z",
+      "seoTitle": "Nova Goods | Lifestyle & Home Goods",
+      "seoDescription": "Independent lifestyle & home goods shop in San Francisco, CA.",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  },
+  "homepage": {
+    "rest_lumiere": {
+      "draft": {
+        "restaurantId": "rest_lumiere",
+        "status": "draft",
+        "sections": [
+          {
+            "id": "section_hero",
+            "restaurantId": "rest_lumiere",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Mayfair, London",
+              "heading": "Lumière",
+              "description": "Experience invisible excellence at our flagship dining room in Mayfair.",
+              "buttonText": "Reserve a Table",
+              "buttonLink": "/reservations",
+              "secondaryButtonText": "View Menu",
+              "secondaryButtonLink": "/menu",
+              "backgroundMediaId": "media_hero_bg",
+              "overlayOpacity": 50
+            }
+          },
+          {
+            "id": "section_about",
+            "restaurantId": "rest_lumiere",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "The Philosophy",
+              "heading": "A sanctuary of light and culinary precision.",
+              "description": "At Lumière, we believe the finest dining experiences are those where the service is felt but not seen. Every dish is a dialogue between tradition and innovation, meticulously crafted to showcase the purest essence of seasonal ingredients.",
+              "imageMediaId": "media_about",
+              "quote": "The intersection of high-end hospitality and technical precision.",
+              "chefName": "Chef Marcelle Vignon",
+              "chefQuote": "Culinary art is not found in complexity, but in the radical simplification of a flavor until its soul is revealed. At Lumière, we strip away the noise to let the ingredient speak.",
+              "chefBio": "With three Michelin stars and a career spanning the finest kitchens of Lyon and Paris, Chef Vignon brings a technical rigor to Mayfair that is unmatched. Her vision for Lumière was to create a space where diners could lose track of time, anchored only by the rhythm of the season.",
+              "chefImageMediaId": "media_chef"
+            }
+          },
+          {
+            "id": "section_featured_menu",
+            "restaurantId": "rest_lumiere",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Chef Selection",
+              "heading": "Featured Dishes",
+              "description": "A curated selection from our kitchen, chosen by Chef Vignon.",
+              "selectedItemIds": []
+            }
+          },
+          {
+            "id": "section_gallery",
+            "restaurantId": "rest_lumiere",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Visual Atmosphere",
+              "heading": "The Lumière Gallery",
+              "description": "Captured moments of invisible excellence",
+              "images": [
+                {
+                  "mediaId": "media_gallery_1",
+                  "caption": "Private dining vault featuring mahogany table and hand-blown amber chandelier.",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_gallery_2",
+                  "caption": "Vintage premier grand cru classé poured into thin-stemmed crystal.",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_gallery_3",
+                  "caption": "Deconstructed chocolate sphere with gold leaf on dark slate plate.",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_gallery_4",
+                  "caption": "Precision garnish placement in our surgical kitchen environment.",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_gallery_5",
+                  "caption": "Panoramic golden hour lighting across soaring ceilings and crisp linens.",
+                  "order": 4
+                }
+              ]
+            }
+          },
+          {
+            "id": "section_offers",
+            "restaurantId": "rest_lumiere",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Special Offers",
+              "description": "Seasonal promotions from the kitchen and cellar.",
+              "selectedOfferIds": [
+                "offer_burger_special"
+              ]
+            }
+          },
+          {
+            "id": "section_testimonials",
+            "restaurantId": "rest_lumiere",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Guest Experiences",
+              "heading": "What Our Guests Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_1",
+                  "customerName": "Eleanor Cross",
+                  "quote": "The most refined dining experience in Mayfair - every detail considered.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_2",
+                  "customerName": "James Whitmore",
+                  "quote": "Chef Vignon’s tasting menu is a masterclass in restraint and flavor.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_3",
+                  "customerName": "Priya Anand",
+                  "quote": "Impeccable service and a wine list to match. Our go-to for anniversaries.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "id": "section_location",
+            "restaurantId": "rest_lumiere",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "heading": "Find Us",
+              "showHoursTable": true
+            }
+          }
+        ]
+      },
+      "published": {
+        "restaurantId": "rest_lumiere",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_hero",
+            "restaurantId": "rest_lumiere",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Mayfair, London",
+              "heading": "Lumière",
+              "description": "Experience invisible excellence at our flagship dining room in Mayfair.",
+              "buttonText": "Reserve a Table",
+              "buttonLink": "/reservations",
+              "secondaryButtonText": "View Menu",
+              "secondaryButtonLink": "/menu",
+              "backgroundMediaId": "media_hero_bg",
+              "overlayOpacity": 50
+            }
+          },
+          {
+            "id": "section_about",
+            "restaurantId": "rest_lumiere",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "The Philosophy",
+              "heading": "A sanctuary of light and culinary precision.",
+              "description": "At Lumière, we believe the finest dining experiences are those where the service is felt but not seen. Every dish is a dialogue between tradition and innovation, meticulously crafted to showcase the purest essence of seasonal ingredients.",
+              "imageMediaId": "media_about",
+              "quote": "The intersection of high-end hospitality and technical precision.",
+              "chefName": "Chef Marcelle Vignon",
+              "chefQuote": "Culinary art is not found in complexity, but in the radical simplification of a flavor until its soul is revealed. At Lumière, we strip away the noise to let the ingredient speak.",
+              "chefBio": "With three Michelin stars and a career spanning the finest kitchens of Lyon and Paris, Chef Vignon brings a technical rigor to Mayfair that is unmatched. Her vision for Lumière was to create a space where diners could lose track of time, anchored only by the rhythm of the season.",
+              "chefImageMediaId": "media_chef"
+            }
+          },
+          {
+            "id": "section_featured_menu",
+            "restaurantId": "rest_lumiere",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Chef Selection",
+              "heading": "Featured Dishes",
+              "description": "A curated selection from our kitchen, chosen by Chef Vignon.",
+              "selectedItemIds": []
+            }
+          },
+          {
+            "id": "section_gallery",
+            "restaurantId": "rest_lumiere",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Visual Atmosphere",
+              "heading": "The Lumière Gallery",
+              "description": "Captured moments of invisible excellence",
+              "images": [
+                {
+                  "mediaId": "media_gallery_1",
+                  "caption": "Private dining vault featuring mahogany table and hand-blown amber chandelier.",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_gallery_2",
+                  "caption": "Vintage premier grand cru classé poured into thin-stemmed crystal.",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_gallery_3",
+                  "caption": "Deconstructed chocolate sphere with gold leaf on dark slate plate.",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_gallery_4",
+                  "caption": "Precision garnish placement in our surgical kitchen environment.",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_gallery_5",
+                  "caption": "Panoramic golden hour lighting across soaring ceilings and crisp linens.",
+                  "order": 4
+                }
+              ]
+            }
+          },
+          {
+            "id": "section_offers",
+            "restaurantId": "rest_lumiere",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Special Offers",
+              "description": "Seasonal promotions from the kitchen and cellar.",
+              "selectedOfferIds": [
+                "offer_burger_special"
+              ]
+            }
+          },
+          {
+            "id": "section_testimonials",
+            "restaurantId": "rest_lumiere",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Guest Experiences",
+              "heading": "What Our Guests Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_1",
+                  "customerName": "Eleanor Cross",
+                  "quote": "The most refined dining experience in Mayfair - every detail considered.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_2",
+                  "customerName": "James Whitmore",
+                  "quote": "Chef Vignon’s tasting menu is a masterclass in restraint and flavor.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_3",
+                  "customerName": "Priya Anand",
+                  "quote": "Impeccable service and a wine list to match. Our go-to for anniversaries.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "id": "section_location",
+            "restaurantId": "rest_lumiere",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "heading": "Find Us",
+              "showHoursTable": true
+            }
+          }
+        ]
+      }
+    },
+    "rest_lumiere_nh": {
+      "draft": {
+        "restaurantId": "rest_lumiere_nh",
+        "status": "published",
+        "sections": [
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_hero",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "content": {
+              "heading": "Lumière – Notting Hill",
+              "description": "Modern French dining, now in Notting Hill.",
+              "buttonText": "Reserve a Table",
+              "buttonLink": "/reservations",
+              "secondaryButtonText": "View Menu",
+              "secondaryButtonLink": "/menu",
+              "backgroundMediaId": null,
+              "overlayOpacity": 50
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "The Lumière table, in West London.",
+              "description": "The same seasonal cooking and quiet hospitality as our Mayfair flagship, in a relaxed neighbourhood dining room.",
+              "imageMediaId": null
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": false,
+            "content": {
+              "heading": "Featured Dishes",
+              "selectedItemIds": []
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": false,
+            "content": {
+              "heading": "Gallery",
+              "images": []
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": false,
+            "content": {
+              "heading": "Special Offers",
+              "selectedOfferIds": []
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "heading": "What Our Guests Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_rest_lumiere_nh_0",
+                  "customerName": "Hannah Lee",
+                  "quote": "A neighbourhood gem with flagship-level cooking.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_rest_lumiere_nh_1",
+                  "customerName": "Tom Ashby",
+                  "quote": "Warm service and a beautiful tasting menu.",
+                  "rating": 5,
+                  "order": 1
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Find Us",
+              "showHoursTable": true
+            }
+          }
+        ]
+      },
+      "published": {
+        "restaurantId": "rest_lumiere_nh",
+        "status": "published",
+        "sections": [
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_hero",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "content": {
+              "heading": "Lumière – Notting Hill",
+              "description": "Modern French dining, now in Notting Hill.",
+              "buttonText": "Reserve a Table",
+              "buttonLink": "/reservations",
+              "secondaryButtonText": "View Menu",
+              "secondaryButtonLink": "/menu",
+              "backgroundMediaId": null,
+              "overlayOpacity": 50
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "The Lumière table, in West London.",
+              "description": "The same seasonal cooking and quiet hospitality as our Mayfair flagship, in a relaxed neighbourhood dining room.",
+              "imageMediaId": null
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": false,
+            "content": {
+              "heading": "Featured Dishes",
+              "selectedItemIds": []
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": false,
+            "content": {
+              "heading": "Gallery",
+              "images": []
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": false,
+            "content": {
+              "heading": "Special Offers",
+              "selectedOfferIds": []
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "heading": "What Our Guests Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_rest_lumiere_nh_0",
+                  "customerName": "Hannah Lee",
+                  "quote": "A neighbourhood gem with flagship-level cooking.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_rest_lumiere_nh_1",
+                  "customerName": "Tom Ashby",
+                  "quote": "Warm service and a beautiful tasting menu.",
+                  "rating": 5,
+                  "order": 1
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "rest_lumiere_nh",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_rest_lumiere_nh_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Find Us",
+              "showHoursTable": true
+            }
+          }
+        ]
+      }
+    },
+    "site_pulsefit": {
+      "draft": {
+        "restaurantId": "site_pulsefit",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_pulsefit_hero",
+            "restaurantId": "site_pulsefit",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Chicago, IL",
+              "heading": "PulseFit Studios",
+              "description": "Small-group strength & conditioning - real coaching, real community.",
+              "buttonText": "Book a Class",
+              "buttonLink": "#/reservations",
+              "secondaryButtonText": "View Programs",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_pf_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Approach",
+              "heading": "Coaching first. Community always.",
+              "description": "Small-group strength & conditioning led by certified coaches. Every session is programmed, scaled to you, and built to keep you coming back stronger.",
+              "imageMediaId": "media_pf_about",
+              "quote": "Strong is a skill - and skills are coached.",
+              "chefName": "Coach Marcus Bell",
+              "chefQuote": "Nobody gets strong alone. We build the plan, you bring the effort, and the room carries you through the hard reps.",
+              "chefBio": "A former collegiate athlete and certified strength coach with 12 years on the gym floor, Marcus founded PulseFit to make real coaching the default - not a premium extra.",
+              "chefImageMediaId": "media_pf_coach"
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Booked",
+              "heading": "Featured Programs",
+              "description": "The sessions our members keep coming back for.",
+              "selectedItemIds": [
+                "pf_barbell",
+                "pf_ropes",
+                "pf_pilates",
+                "pf_pt"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "The Studio",
+              "heading": "Inside PulseFit",
+              "description": "Real members, real sessions, every day of the week.",
+              "images": [
+                {
+                  "mediaId": "media_pf_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_pf_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_pf_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_pf_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_pf_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_pf_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Member Offers",
+              "description": "Start strong with our current deals.",
+              "selectedOfferIds": [
+                "offer_pf_newmember",
+                "offer_pf_friend"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Member Stories",
+              "heading": "What Our Members Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_pf_1",
+                  "customerName": "Dana K.",
+                  "quote": "Strongest I have ever been, and I actually look forward to training.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_pf_2",
+                  "customerName": "Luis M.",
+                  "quote": "The coaches know everyone by name. It feels like a team, not a gym.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_pf_3",
+                  "customerName": "Priya S.",
+                  "quote": "Finally a gym where nobody is intimidating - just encouraging.",
+                  "rating": 5,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Find the Studio",
+              "showHoursTable": true
+            }
+          }
+        ]
+      },
+      "published": {
+        "restaurantId": "site_pulsefit",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_pulsefit_hero",
+            "restaurantId": "site_pulsefit",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "Chicago, IL",
+              "heading": "PulseFit Studios",
+              "description": "Small-group strength & conditioning - real coaching, real community.",
+              "buttonText": "Book a Class",
+              "buttonLink": "#/reservations",
+              "secondaryButtonText": "View Programs",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_pf_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Approach",
+              "heading": "Coaching first. Community always.",
+              "description": "Small-group strength & conditioning led by certified coaches. Every session is programmed, scaled to you, and built to keep you coming back stronger.",
+              "imageMediaId": "media_pf_about",
+              "quote": "Strong is a skill - and skills are coached.",
+              "chefName": "Coach Marcus Bell",
+              "chefQuote": "Nobody gets strong alone. We build the plan, you bring the effort, and the room carries you through the hard reps.",
+              "chefBio": "A former collegiate athlete and certified strength coach with 12 years on the gym floor, Marcus founded PulseFit to make real coaching the default - not a premium extra.",
+              "chefImageMediaId": "media_pf_coach"
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Booked",
+              "heading": "Featured Programs",
+              "description": "The sessions our members keep coming back for.",
+              "selectedItemIds": [
+                "pf_barbell",
+                "pf_ropes",
+                "pf_pilates",
+                "pf_pt"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "The Studio",
+              "heading": "Inside PulseFit",
+              "description": "Real members, real sessions, every day of the week.",
+              "images": [
+                {
+                  "mediaId": "media_pf_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_pf_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_pf_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_pf_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_pf_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_pf_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Member Offers",
+              "description": "Start strong with our current deals.",
+              "selectedOfferIds": [
+                "offer_pf_newmember",
+                "offer_pf_friend"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Member Stories",
+              "heading": "What Our Members Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_pf_1",
+                  "customerName": "Dana K.",
+                  "quote": "Strongest I have ever been, and I actually look forward to training.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_pf_2",
+                  "customerName": "Luis M.",
+                  "quote": "The coaches know everyone by name. It feels like a team, not a gym.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_pf_3",
+                  "customerName": "Priya S.",
+                  "quote": "Finally a gym where nobody is intimidating - just encouraging.",
+                  "rating": 5,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_pulsefit",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_pulsefit_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Find the Studio",
+              "showHoursTable": true
+            }
+          }
+        ]
+      }
+    },
+    "site_novagoods": {
+      "draft": {
+        "restaurantId": "site_novagoods",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_novagoods_hero",
+            "restaurantId": "site_novagoods",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "San Francisco, CA",
+              "heading": "Nova Goods",
+              "description": "Independent lifestyle & home goods - small-batch makers, thoughtfully curated.",
+              "buttonText": "Shop Now",
+              "buttonLink": "#/menu",
+              "secondaryButtonText": "View Collection",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_ng_hero",
+              "overlayOpacity": 35
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Made by small makers, chosen with care.",
+              "description": "Every piece in the shop comes from an independent maker we know by name - ceramics, textiles and everyday objects built to last, not to trend.",
+              "imageMediaId": "media_ng_about",
+              "quote": "Buy fewer things. Choose them well.",
+              "chefName": "Priya Nair, Founder",
+              "chefQuote": "I started Nova Goods to give brilliant small studios a shop window - and to make it easier to live with fewer, better things.",
+              "chefBio": "After a decade buying for big-box retailers, Priya opened Nova Goods on Valencia Street in 2019. She still visits every maker before their work goes on the shelf.",
+              "chefImageMediaId": "media_ng_founder"
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Just In",
+              "heading": "New Arrivals",
+              "description": "Fresh from our makers this month.",
+              "selectedItemIds": [
+                "ng_dinner",
+                "ng_mugs",
+                "ng_chair",
+                "ng_tee"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "Lookbook",
+              "heading": "Styled at Home",
+              "description": "How our customers live with their Nova Goods.",
+              "images": [
+                {
+                  "mediaId": "media_ng_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_ng_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_ng_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_ng_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_ng_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_ng_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "This Month",
+              "heading": "Current Offers",
+              "description": "Small savings on pieces made to last.",
+              "selectedOfferIds": [
+                "offer_ng_ceramics",
+                "offer_ng_welcome"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Customer Notes",
+              "heading": "What Our Customers Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_ng_1",
+                  "customerName": "Maya R.",
+                  "quote": "Every order feels like a gift - beautifully packed and thoughtfully made.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_ng_2",
+                  "customerName": "Chris D.",
+                  "quote": "My go-to shop for presents. It has never once disappointed.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_ng_3",
+                  "customerName": "Ana L.",
+                  "quote": "The dinner set is even nicer in person. We use it every single day.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Visit the Shop",
+              "showHoursTable": true
+            }
+          }
+        ]
+      },
+      "published": {
+        "restaurantId": "site_novagoods",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_novagoods_hero",
+            "restaurantId": "site_novagoods",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "content": {
+              "eyebrow": "San Francisco, CA",
+              "heading": "Nova Goods",
+              "description": "Independent lifestyle & home goods - small-batch makers, thoughtfully curated.",
+              "buttonText": "Shop Now",
+              "buttonLink": "#/menu",
+              "secondaryButtonText": "View Collection",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_ng_hero",
+              "overlayOpacity": 35
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Made by small makers, chosen with care.",
+              "description": "Every piece in the shop comes from an independent maker we know by name - ceramics, textiles and everyday objects built to last, not to trend.",
+              "imageMediaId": "media_ng_about",
+              "quote": "Buy fewer things. Choose them well.",
+              "chefName": "Priya Nair, Founder",
+              "chefQuote": "I started Nova Goods to give brilliant small studios a shop window - and to make it easier to live with fewer, better things.",
+              "chefBio": "After a decade buying for big-box retailers, Priya opened Nova Goods on Valencia Street in 2019. She still visits every maker before their work goes on the shelf.",
+              "chefImageMediaId": "media_ng_founder"
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Just In",
+              "heading": "New Arrivals",
+              "description": "Fresh from our makers this month.",
+              "selectedItemIds": [
+                "ng_dinner",
+                "ng_mugs",
+                "ng_chair",
+                "ng_tee"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "Lookbook",
+              "heading": "Styled at Home",
+              "description": "How our customers live with their Nova Goods.",
+              "images": [
+                {
+                  "mediaId": "media_ng_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_ng_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_ng_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_ng_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_ng_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_ng_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "This Month",
+              "heading": "Current Offers",
+              "description": "Small savings on pieces made to last.",
+              "selectedOfferIds": [
+                "offer_ng_ceramics",
+                "offer_ng_welcome"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Customer Notes",
+              "heading": "What Our Customers Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_ng_1",
+                  "customerName": "Maya R.",
+                  "quote": "Every order feels like a gift - beautifully packed and thoughtfully made.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_ng_2",
+                  "customerName": "Chris D.",
+                  "quote": "My go-to shop for presents. It has never once disappointed.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_ng_3",
+                  "customerName": "Ana L.",
+                  "quote": "The dinner set is even nicer in person. We use it every single day.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_novagoods",
+            "updatedAt": "2026-09-26T07:31:37.106Z",
+            "id": "section_site_novagoods_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Visit the Shop",
+              "showHoursTable": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "media": [
+    {
+      "id": "media_hero_bg",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuDQbyYUDRt6Ie5sV8x34REUiRO9cxq65xZQidv0ToYVkQhSkqTUhN1V8UhO9WW-PoCz9WNOvazyBRZlgnJLmMdHLbj2VxmxZziIK3bdJCegH6dRc5gFthM3376iukAp0V3CPTrFLp4PbBE6UIQsBPk1Jq8AnESBdDkdA3s4A3s_1Y-m_26zcDI8e8-6dEEqoYx04LEWExavtkPbdqNXt_PmuZgrTFNrE1_skeUTqCvub7xleE072eCSUTlWRgEwBKCwPzo23h2zGEk",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "hero-background.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Lumière dining room at golden hour",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_about",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAjxo7PTqnkb2ByquvTN4PSJF_aFOMai0e-66m_kY5OcMK4ScTwg9t57oCRYst1rzEc1Neh9Iga_77h8NhDXn967goGSOUgpMHysAY2CIrRlRJ3U6e1itvOO5qradubZrmmoH9PUKg-z1gvg7UrufKkcT9zCRHLBegT0IB6itGigaCDbCHmaqBzpvqf6up6BUoExydS2eQJt_XytyC1J_x5w_EPJit9xmrrqWS2zQa0ONiQUD9kIS7kzrbIZinwkH3ap4F35onxV2Y",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "sea-bass-tartare.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Sea Bass Tartare with Citrus Gel",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_chef",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCERWltkKVtse3b_wW36xjpnZH9THUDFygROWcQspdLRJ5HTiu6Q4NBDuP8s0kk_E5oXJtloZBVvgdvk9BSW6eZHPM0JIm2MWQi0JMbTSKmUFPHN4RR69klsdUG0fJLlQmNJl_wd_GzrcIxSvK19U9fBER_3KQL7fA0zIGK-dHc3w62l7nXnZm1R38Mognk_2XXCPih-BC_JYziLjhqu3dAC5c7svqIrWt6KOHKHronMZSMIgEaSepyrh4D-yb3FfW83BWYd5-39AA",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "chef-marcelle-vignon.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Chef Marcelle Vignon",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_gallery_1",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuB8ahzV-qIr22Is_b8mUE8ZmFoYSg6UIiCOEuDGEcKRIjnUPd0mPnpt4ygBsi_JGlLMaQkItlCuNo6k36T1YYd4uaU1zoVRM3qrereIuSuADm5MQUgTpS600hMNOiLD9E6waygSgdOF2hRatW5Hh48IzFShpVgUp5ABu79zo68vOQWKv1Wy949N0PUp9CAsUJg9hiAPXAjWLbS1vB6pUebHkwNWFh_Y0BJP4kaMxcSGr1xeu1AsmF41ttCSrPao62HFMy6ihibr3Vg",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-vault-room.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The Vault Room",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_gallery_2",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJ2SwfE-L4ENpw0vIUBXHTsJ5WtR_WchM-HleBOHJAKcVE2EBoTYxscGxwzwDphMvAL9Pm3bTQC8jItpGg-PcEX1N9MSqhU2utK5AyJayd_q0O_cOC9f6IAl0iRpUqomC_fV9pMHcOmnPnX0Sou3nleMjzMJkmyjHFb6knQH015fgsy3GnbPME85GyiNwRQCGkXjkwlICjSCGB3pd2zxXB7PMtsokmlyiVv3KycxRD8J9mx0S1RZFZd-YIMe1fwVXt9dw_1vBgTKw",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "sommelier-pouring.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Sommelier Pouring",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_gallery_3",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAqIb_Uo23kTJpPcIMURUZmNrGyhHrLA_AkoSspLoXESUeC2-QgV1mYlBTlKppD6cilp8R3RB8mMxOlfndzPvfhL7xITN5VCYtU4icw39sQMq5p_re4-y6CvplHpd7U_bLH6AjvF_5pZvgdYCleJD2VLWxbX5KPeDhLZfgMDH3IkQEynd-x99MRLYQ26FI1narcNVF049Tj7tSmABL55PD8_mGdAhJKp7Bej6eAaI1hLCiWlXN50imkpkwNu1W9aTVnGekbswD9zQY",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "artisanal-dessert.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Artisanal Dessert",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_gallery_4",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuCKPss8TPGgMf-Y8MWpZq7aApZrknob0u2vlymDMLhcYuMdNgwZXhjclHHA6gkgzQufxVduxJearT4yt3PYcPW6_kCoMg0q7Xadloi5XfMwIWLeuDMtGFvIs6hX8GkP3c0chRqFDlhm8yG_KEJzVuunyyLbzxvSI0hXAkImaPxly_M4lTDgM253D1Eo_MELJl8o7Nj0GsJZ9IxdvzVSfvVXJEAaMoUvfYR0yU_-XkvTK57-T2OdVgwsdYI7iC0mFynmdmjkuKj37EE",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "kitchen-craftsmanship.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Kitchen Craftsmanship",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_gallery_5",
+      "restaurantId": "rest_lumiere",
+      "fileUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAAwGaZwXFPwj_bW2Q-244iR4HQv3BBrLRimTlG7Zx5PXvy5wVqznhfUlSVoHqhSyDjw3sgTWooyhxQlzHVkoZPXjNdHNYUz9LW5-j7EmaI-loqCuwCt0TDoFqDvdCdYKB33SIzOS5pC-4ioszmueKo3kQ6kJS7D9865nk_NxyboX_xzvl7K0jI8beUHKgkl2cUpl7fp-h1E-KgvyBznyQiMOD9UA367j8BAHJgmODDWVVestXclKfTMumQuIOpXgt0-KHRc3JAFfM",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "main-dining-room.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Main Dining Room",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_hero",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-pulsefit-training-floor.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The PulseFit training floor",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_about",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "inside-the-pulsefit-studio.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Inside the PulseFit studio",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_coach",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "head-coach-marcus-bell.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Head Coach Marcus Bell",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_offer",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "new-member-strength-session.jpg",
+      "fileSizeBytes": 0,
+      "altText": "New member strength session",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_g1",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "barbell-foundations.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Barbell Foundations",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_g2",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "mat-pilates-flow.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Mat Pilates Flow",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_g3",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "battle-rope-hiit.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Battle Rope HIIT",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_g4",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "olympic-lifting-clinic.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Olympic Lifting Clinic",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_g5",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "core-crusher.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Core Crusher",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_pf_g6",
+      "restaurantId": "site_pulsefit",
+      "fileUrl": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "1-1-coaching.jpg",
+      "fileSizeBytes": 0,
+      "altText": "1:1 Coaching",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_hero",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-nova-goods-shop-floor.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The Nova Goods shop floor",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_about",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "a-living-room-styled-with-nova-goods.jpg",
+      "fileSizeBytes": 0,
+      "altText": "A living room styled with Nova Goods",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_founder",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "hand-thrown-floor-vase.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Hand-thrown floor vase",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_offer",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "stoneware-dinner-set.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Stoneware dinner set",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_g1",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "speckled-mug-trio.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Speckled mug trio",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_g2",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "mustard-accent-chair.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Mustard accent chair",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_g3",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "matte-bud-vases.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Matte bud vases",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_g4",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "organic-cotton-tees.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Organic cotton tees",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_g5",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "terracotta-lounge-cushion.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Terracotta lounge cushion",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_ng_g6",
+      "restaurantId": "site_novagoods",
+      "fileUrl": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "velvet-loveseat.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Velvet loveseat",
+      "folder": "images",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat_burgers",
+      "restaurantId": "rest_lumiere",
+      "name": "Burgers",
+      "displayOrder": 0,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_pizza",
+      "restaurantId": "rest_lumiere",
+      "name": "Pizza",
+      "displayOrder": 1,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_starters",
+      "restaurantId": "rest_lumiere",
+      "name": "Starters",
+      "displayOrder": 2,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_pasta",
+      "restaurantId": "rest_lumiere",
+      "name": "Pasta",
+      "displayOrder": 3,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_steaks",
+      "restaurantId": "rest_lumiere",
+      "name": "Steaks",
+      "displayOrder": 4,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_desserts",
+      "restaurantId": "rest_lumiere",
+      "name": "Desserts",
+      "displayOrder": 5,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_beverages",
+      "restaurantId": "rest_lumiere",
+      "name": "Beverages",
+      "displayOrder": 6,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_pf_strength",
+      "restaurantId": "site_pulsefit",
+      "name": "Strength",
+      "displayOrder": 0,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_pf_conditioning",
+      "restaurantId": "site_pulsefit",
+      "name": "Conditioning",
+      "displayOrder": 1,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_pf_mobility_core",
+      "restaurantId": "site_pulsefit",
+      "name": "Mobility & Core",
+      "displayOrder": 2,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_pf_personal_training",
+      "restaurantId": "site_pulsefit",
+      "name": "Personal Training",
+      "displayOrder": 3,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_ng_ceramics",
+      "restaurantId": "site_novagoods",
+      "name": "Ceramics",
+      "displayOrder": 0,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_ng_home_living",
+      "restaurantId": "site_novagoods",
+      "name": "Home & Living",
+      "displayOrder": 1,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_ng_apparel",
+      "restaurantId": "site_novagoods",
+      "name": "Apparel",
+      "displayOrder": 2,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "items": [
+    {
+      "id": "1",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_burgers",
+      "name": "Classic Lumière Burger",
+      "description": "Wagyu beef patty, triple-cream brie, caramelized shallots, and black truffle aioli on a gilded brioche bun.",
+      "price": 24,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuDPnMW5dTzCZOu7a6PpSjOSlCybHhDHqPeFSGTMzcjnJUv6rBGE21VIhFyzDKEvu-NBMg05nyksq-Lwkw0ossPDtrDTkqTN04smGY-4x3sKpcRpyUE8PrsMcLbrCIjXOpp6V1RwY6ZU5pDEaXNjeWCcBIuvx7PnpR0JM49W-TRK9SoAU_ZaCO_ypjMtuDH3Xf74s8govIaiFKYwFqrhV7YZS2cjgTcc0kGc8goiHp9sWbD-vQoIgo8mIqtFmvkNZUdko_I4t2P0Qbc",
+      "foodType": "non_veg",
+      "tags": [
+        "Chef Special"
+      ],
+      "prepTimeMinutes": 15,
+      "rating": 4.9,
+      "reviewCount": 120,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 0,
+      "variants": [],
+      "addonIds": [
+        "addon-truffle-fries",
+        "addon-extra-wagyu",
+        "addon-gold-leaf"
+      ],
+      "activeOfferId": "offer_burger_special",
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "2",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_pizza",
+      "name": "Artisanal Pepperoni Pizza",
+      "description": "Double-fermented sourdough, spicy calabrese, hot honey, and house-made buffalo mozzarella.",
+      "price": 21,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuDkCy0cRdoW0XthbpMq-yFA-zzuU-bFP9jHg2NTv8sGh3EohO-9aYfK7Dl5-I96z6f5kVU08oYYUTuQ5DMNyTeMikuOiPCQhM8gwpUJlG_K-45ftQPkeaBpFchmd-L9eZiWkvUz6VnF4KaJunClruzOJfkpV1gQugcoan1L0cP-BUMK1NLAkC-kH78J4zOIx-RSoJhW2WfCO42O_-CCtqspXCaTOFiIrzdNbVTW7ZO-t5eMPzEMxowDQFvBi5mSgVoZDUadMLBWbuM",
+      "foodType": "non_veg",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 12,
+      "rating": 4.8,
+      "reviewCount": 340,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 1,
+      "variants": [],
+      "addonIds": [
+        "addon-truffle-fries"
+      ],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "3",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_burgers",
+      "name": "Bourbon BBQ Smoke Burger",
+      "description": "Double beef patty, maple-cured bacon, crispy tobacco onions, and house bourbon glaze.",
+      "price": 26,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuB07yMQwR76dh5D0-v3MBWBnL3ssfCTKGyCeBFg6jCV6apKSWuJ7r4QgeWROPdFGBcTEzEMFHYZ5UuXxp7elteDC3l8djSmj-okvh33bDz6Z4pUr-ZyPp-WcmhBQc_VghB9iwogm47jb1eYg71auUezC4tyTwRaFVijmT_pdPMcEO8uGZ_j4CZFfLeo85Wn4F-zjBt4ReFBT5L5nYXZHX8Lt8gU48YRbDZcCZqRWkOJC1sSSSVhq4n3PdpMR7hDae52qOnReftxOEg",
+      "foodType": "non_veg",
+      "tags": [],
+      "prepTimeMinutes": 18,
+      "rating": 4.7,
+      "reviewCount": 85,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 2,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "4",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_starters",
+      "name": "Spicy Buffalo Wings",
+      "description": "Sous-vide then double-fried wings tossed in aged cayenne sauce. Served with roquefort dip.",
+      "price": 18,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuBbNGfsC8gCsW8lFrJs3yS08HEqpI3QxOqmPTqDuXYiIArhpoLfT2JoIEFFqFD0PD5ANgfPbDlmuQwtg1CGoIy9uEkguffKTxkD00xaEnHp7BMIRKzxABKSsZgWTTQs-UzTYMdpp01BSBCMxUzKhq8lAKrBY6PtVxVp9Vg38jaFFY0VvlSSPvtBi8Dm2BNd2oFg92Swe-F2EIWpCL8LXByIRzzrxTHfJdHN9NvNJsf6gROQQrDf6pMibfjTWtMvwQLXAtTCz2CU9GA",
+      "foodType": "non_veg",
+      "tags": [],
+      "prepTimeMinutes": 10,
+      "rating": 4.6,
+      "reviewCount": 1100,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 3,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "5",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_starters",
+      "name": "Sea Bass Tartare & Citrus",
+      "description": "Wild sea bass, edible gold leaf, micro-herbs, and ruby grapefruit reduction.",
+      "price": 34,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAjxo7PTqnkb2ByquvTN4PSJF_aFOMai0e-66m_kY5OcMK4ScTwg9t57oCRYst1rzEc1Neh9Iga_77h8NhDXn967goGSOUgpMHysAY2CIrRlRJ3U6e1itvOO5qradubZrmmoH9PUKg-z1gvg7UrufKkcT9zCRHLBegT0IB6itGigaCDbCHmaqBzpvqf6up6BUoExydS2eQJt_XytyC1J_x5w_EPJit9xmrrqWS2zQa0ONiQUD9kIS7kzrbIZinwkH3ap4F35onxV2Y",
+      "foodType": "non_veg",
+      "tags": [
+        "Signature"
+      ],
+      "prepTimeMinutes": 12,
+      "rating": 4.9,
+      "reviewCount": 420,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 4,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "6",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_pasta",
+      "name": "Truffle & Wild Mushroom Pasta",
+      "description": "Handcrafted tagliatelle, black summer truffle, chanterelles, and 36-month Parmigiano Reggiano.",
+      "price": 29,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAqIb_Uo23kTJpPcIMURUZmNrGyhHrLA_AkoSspLoXESUeC2-QgV1mYlBTlKppD6cilp8R3RB8mMxOlfndzPvfhL7xITN5VCYtU4icw39sQMq5p_re4-y6CvplHpd7U_bLH6AjvF_5pZvgdYCleJD2VLWxbX5KPeDhLZfgMDH3IkQEynd-x99MRLYQ26FI1narcNVF049Tj7tSmABL55PD8_mGdAhJKp7Bej6eAaI1hLCiWlXN50imkpkwNu1W9aTVnGekbswD9zQY",
+      "foodType": "veg",
+      "tags": [],
+      "prepTimeMinutes": 15,
+      "rating": 4.9,
+      "reviewCount": 510,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 5,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "7",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_steaks",
+      "name": "Wagyu Ribeye Steak (300g)",
+      "description": "A5 Japanese Wagyu steak, bone marrow butter, roasted garlic head, and smoked sea salt flakes.",
+      "price": 65,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuB8ahzV-qIr22Is_b8mUE8ZmFoYSg6UIiCOEuDGEcKRIjnUPd0mPnpt4ygBsi_JGlLMaQkItlCuNo6k36T1YYd4uaU1zoVRM3qrereIuSuADm5MQUgTpS600hMNOiLD9E6waygSgdOF2hRatW5Hh48IzFShpVgUp5ABu79zo68vOQWKv1Wy949N0PUp9CAsUJg9hiAPXAjWLbS1vB6pUebHkwNWFh_Y0BJP4kaMxcSGr1xeu1AsmF41ttCSrPao62HFMy6ihibr3Vg",
+      "foodType": "non_veg",
+      "tags": [
+        "Luxury"
+      ],
+      "prepTimeMinutes": 20,
+      "rating": 5,
+      "reviewCount": 290,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 6,
+      "variants": [],
+      "addonIds": [
+        "addon-foie-gras",
+        "addon-gold-leaf"
+      ],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "8",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_desserts",
+      "name": "Deconstructed Chocolate Sphere",
+      "description": "Valrhona 70% dark chocolate, gold leaf finish, warm hazelnut praline pour over vanilla bean gelato.",
+      "price": 28,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAqIb_Uo23kTJpPcIMURUZmNrGyhHrLA_AkoSspLoXESUeC2-QgV1mYlBTlKppD6cilp8R3RB8mMxOlfndzPvfhL7xITN5VCYtU4icw39sQMq5p_re4-y6CvplHpd7U_bLH6AjvF_5pZvgdYCleJD2VLWxbX5KPeDhLZfgMDH3IkQEynd-x99MRLYQ26FI1narcNVF049Tj7tSmABL55PD8_mGdAhJKp7Bej6eAaI1hLCiWlXN50imkpkwNu1W9aTVnGekbswD9zQY",
+      "foodType": "veg",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 10,
+      "rating": 4.9,
+      "reviewCount": 640,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 7,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "9",
+      "restaurantId": "rest_lumiere",
+      "categoryId": "cat_beverages",
+      "name": "Château Margaux 2015 Premier Cru",
+      "description": "Sommelier selected premier grand cru classé, decanted and temperature-controlled.",
+      "price": 185,
+      "imageMediaId": null,
+      "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAJ2SwfE-L4ENpw0vIUBXHTsJ5WtR_WchM-HleBOHJAKcVE2EBoTYxscGxwzwDphMvAL9Pm3bTQC8jItpGg-PcEX1N9MSqhU2utK5AyJayd_q0O_cOC9f6IAl0iRpUqomC_fV9pMHcOmnPnX0Sou3nleMjzMJkmyjHFb6knQH015fgsy3GnbPME85GyiNwRQCGkXjkwlICjSCGB3pd2zxXB7PMtsokmlyiVv3KycxRD8J9mx0S1RZFZd-YIMe1fwVXt9dw_1vBgTKw",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 5,
+      "rating": 5,
+      "reviewCount": 180,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 8,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_barbell",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_strength",
+      "name": "Barbell Foundations",
+      "description": "Learn the squat, bench and deadlift with coached technique and smart progressions.",
+      "price": 25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 60,
+      "rating": 4.9,
+      "reviewCount": 312,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 0,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_power",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_strength",
+      "name": "Power Hour",
+      "description": "Heavy compound lifts and accessory work for experienced lifters chasing new PRs.",
+      "price": 25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 60,
+      "rating": 4.8,
+      "reviewCount": 198,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 1,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_oly",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_strength",
+      "name": "Olympic Lifting Clinic",
+      "description": "Snatch and clean & jerk drills in small groups with a certified weightlifting coach.",
+      "price": 30,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "New"
+      ],
+      "prepTimeMinutes": 75,
+      "rating": 4.9,
+      "reviewCount": 87,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 2,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_upper",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_strength",
+      "name": "Upper Body Sculpt",
+      "description": "Dumbbell and cable supersets for stronger shoulders, back and arms.",
+      "price": 22,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 45,
+      "rating": 4.7,
+      "reviewCount": 143,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 3,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_ropes",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_conditioning",
+      "name": "Battle Rope HIIT",
+      "description": "Fast intervals with ropes, sleds and kettlebells - maximum sweat in minimum time.",
+      "price": 20,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 45,
+      "rating": 4.8,
+      "reviewCount": 256,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 4,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_spin",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_conditioning",
+      "name": "Spin & Sprint",
+      "description": "Bike intervals set to a big playlist, finished with a short sprint ladder.",
+      "price": 20,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 45,
+      "rating": 4.7,
+      "reviewCount": 221,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 5,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_core",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_mobility_core",
+      "name": "Core Crusher",
+      "description": "Thirty focused minutes of anti-rotation, bracing and ab work.",
+      "price": 18,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 30,
+      "rating": 4.6,
+      "reviewCount": 174,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 6,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_pilates",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_mobility_core",
+      "name": "Mat Pilates Flow",
+      "description": "Controlled, low-impact strength and flexibility for every level.",
+      "price": 20,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 50,
+      "rating": 4.9,
+      "reviewCount": 289,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 7,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_mobility",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_mobility_core",
+      "name": "Mobility Reset",
+      "description": "Guided stretching and joint prep to recover faster and move better.",
+      "price": 18,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 40,
+      "rating": 4.8,
+      "reviewCount": 132,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 8,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_pt",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_personal_training",
+      "name": "1:1 Coaching Session",
+      "description": "A private session built around your goals, with a written plan to take home.",
+      "price": 75,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Premium"
+      ],
+      "prepTimeMinutes": 60,
+      "rating": 5,
+      "reviewCount": 96,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 9,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pf_pt5",
+      "restaurantId": "site_pulsefit",
+      "categoryId": "cat_pf_personal_training",
+      "name": "Coaching 5-Pack",
+      "description": "Five private sessions at a better rate - ideal for a focused training block.",
+      "price": 340,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 60,
+      "rating": 5,
+      "reviewCount": 41,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 10,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_dinner",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_ceramics",
+      "name": "Stoneware Dinner Set",
+      "description": "Four plates and four bowls in a soft blue glaze, fired by a two-person studio in Oakland.",
+      "price": 128,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Bestseller"
+      ],
+      "rating": 4.9,
+      "reviewCount": 214,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 0,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_mugs",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_ceramics",
+      "name": "Speckled Mug Trio",
+      "description": "Three hand-thrown mugs with a raw-clay foot - no two are exactly alike.",
+      "price": 42,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "New"
+      ],
+      "rating": 4.8,
+      "reviewCount": 97,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 1,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_budvases",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_ceramics",
+      "name": "Matte Bud Vases",
+      "description": "A set of three slim vases in chalk-white matte glaze, sized for single stems.",
+      "price": 36,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 63,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 2,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_floorvase",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_ceramics",
+      "name": "Hand-thrown Floor Vase",
+      "description": "A statement piece in natural stoneware, big enough for branches and dried grasses.",
+      "price": 95,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.9,
+      "reviewCount": 38,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 3,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_cushion",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_home_living",
+      "name": "Terracotta Lounge Cushion",
+      "description": "Washed-linen cover in burnt terracotta with a feather-blend insert.",
+      "price": 58,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 121,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 4,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_chair",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_home_living",
+      "name": "Mustard Accent Chair",
+      "description": "Solid oak frame, wool-blend upholstery - made to order by a Portland workshop.",
+      "price": 420,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Limited"
+      ],
+      "rating": 4.9,
+      "reviewCount": 44,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 5,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_loveseat",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_home_living",
+      "name": "Velvet Loveseat",
+      "description": "Deep forest-green velvet on tapered walnut legs, delivered fully assembled.",
+      "price": 1190,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 29,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 6,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_throw",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_home_living",
+      "name": "Linen Throw Set",
+      "description": "Two stonewashed linen throws for the sofa or the end of the bed.",
+      "price": 74,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 88,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 7,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_tee",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_apparel",
+      "name": "Organic Cotton Tee",
+      "description": "Heavyweight GOTS-certified cotton, garment-dyed in small batches.",
+      "price": 38,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Bestseller"
+      ],
+      "rating": 4.8,
+      "reviewCount": 342,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 8,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "ng_capsule",
+      "restaurantId": "site_novagoods",
+      "categoryId": "cat_ng_apparel",
+      "name": "Weekend Capsule Set",
+      "description": "Chinos, a boxy tee and canvas sneakers - a ready-made weekend outfit.",
+      "price": 165,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1602028915047-37269d1a73f7?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.6,
+      "reviewCount": 52,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 9,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "addons": [
+    {
+      "id": "addon-sparkling-water",
+      "restaurantId": "rest_lumiere",
+      "name": "San Pellegrino (750ml)",
+      "price": 6,
+      "description": "Chilled sparkling mineral water",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "Beverages",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-house-lemonade",
+      "restaurantId": "rest_lumiere",
+      "name": "Yuzu House Lemonade",
+      "price": 8,
+      "description": "Fresh yuzu, mint, and sparkling soda",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "Beverages",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-espresso-martini",
+      "restaurantId": "rest_lumiere",
+      "name": "Espresso Martini",
+      "price": 16,
+      "description": "Vodka, coffee liqueur, fresh espresso",
+      "isAvailable": true,
+      "group": "Beverages",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-champagne-flute",
+      "restaurantId": "rest_lumiere",
+      "name": "Champagne Flute",
+      "price": 22,
+      "description": "Glass of house champagne",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "Beverages",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-truffle-fries",
+      "restaurantId": "rest_lumiere",
+      "name": "Truffle Parmesan Fries",
+      "price": 9,
+      "description": "Hand-cut fries, shaved truffle, aged parmesan",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "Add-on Items",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-foie-gras",
+      "restaurantId": "rest_lumiere",
+      "name": "Seared Foie Gras",
+      "price": 28,
+      "description": "Pan-seared with cherry gastrique",
+      "isAvailable": true,
+      "group": "Add-on Items",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-extra-wagyu",
+      "restaurantId": "rest_lumiere",
+      "name": "Extra Wagyu Patty",
+      "price": 14,
+      "description": "Additional A5 wagyu beef patty",
+      "isAvailable": true,
+      "group": "Add-on Items",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-gold-leaf",
+      "restaurantId": "rest_lumiere",
+      "name": "Edible Gold Leaf Finish",
+      "price": 12,
+      "description": "Chef signature gold leaf garnish",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "Add-on Items",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-side-salad",
+      "restaurantId": "rest_lumiere",
+      "name": "Heritage Leaf Salad",
+      "price": 8,
+      "description": "Seasonal greens, citrus vinaigrette",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "Add-on Items",
+      "groupSelection": "multiple",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-combo-soup",
+      "restaurantId": "rest_lumiere",
+      "name": "Amuse-Bouche Soup Shot",
+      "price": 7,
+      "description": "Seasonal bisque tasting pour",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "In Combination With",
+      "groupSelection": "single",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-combo-dessert",
+      "restaurantId": "rest_lumiere",
+      "name": "Petit Four Duo",
+      "price": 11,
+      "description": "Two chef choice bite-sized desserts",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "In Combination With",
+      "groupSelection": "single",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "addon-combo-cheese",
+      "restaurantId": "rest_lumiere",
+      "name": "Artisan Cheese Nibble",
+      "price": 13,
+      "description": "Selection of three aged cheeses",
+      "isVeg": true,
+      "isAvailable": true,
+      "group": "In Combination With",
+      "groupSelection": "single",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "offers": [
+    {
+      "id": "offer_burger_special",
+      "restaurantId": "rest_lumiere",
+      "name": "Weekday Burger Special",
+      "type": "percentage",
+      "discountValue": 20,
+      "startDate": "2026-09-26T07:31:37.106Z",
+      "endDate": "2026-11-25T07:31:37.112Z",
+      "isActive": true,
+      "appliesToItemIds": [
+        "1"
+      ],
+      "appliesToCategoryIds": [],
+      "cta": "Order Now",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "offer_pf_newmember",
+      "restaurantId": "site_pulsefit",
+      "name": "New Member Week",
+      "type": "percentage",
+      "discountValue": 50,
+      "startDate": "2026-09-26T07:31:37.106Z",
+      "endDate": "2026-11-10T07:31:37.114Z",
+      "isActive": true,
+      "appliesToItemIds": [
+        "pf_barbell"
+      ],
+      "appliesToCategoryIds": [],
+      "cta": "Claim Offer",
+      "imageMediaId": "media_pf_offer",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "offer_pf_friend",
+      "restaurantId": "site_pulsefit",
+      "name": "Bring a Friend Fridays",
+      "type": "bogo",
+      "startDate": "2026-09-26T07:31:37.106Z",
+      "endDate": "2026-11-25T07:31:37.114Z",
+      "isActive": true,
+      "appliesToItemIds": [
+        "pf_ropes",
+        "pf_spin"
+      ],
+      "appliesToCategoryIds": [],
+      "cta": "Book Together",
+      "imageMediaId": "media_pf_g3",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "offer_ng_ceramics",
+      "restaurantId": "site_novagoods",
+      "name": "Ceramics Week",
+      "type": "percentage",
+      "discountValue": 15,
+      "startDate": "2026-09-26T07:31:37.106Z",
+      "endDate": "2026-10-26T07:31:37.114Z",
+      "isActive": true,
+      "appliesToItemIds": [],
+      "appliesToCategoryIds": [
+        "cat_ng_ceramics"
+      ],
+      "cta": "Shop Ceramics",
+      "imageMediaId": "media_ng_offer",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "offer_ng_welcome",
+      "restaurantId": "site_novagoods",
+      "name": "Welcome Gift",
+      "type": "fixed",
+      "discountValue": 10,
+      "startDate": "2026-09-26T07:31:37.106Z",
+      "endDate": "2026-12-25T07:31:37.114Z",
+      "isActive": true,
+      "appliesToItemIds": [],
+      "appliesToCategoryIds": [],
+      "cta": "Start Shopping",
+      "imageMediaId": "media_ng_g1",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order_1",
+      "restaurantId": "rest_lumiere",
+      "orderNumber": "1042",
+      "status": "pending",
+      "service": "pickup",
+      "paymentMethod": "card",
+      "customerName": "Sarah Chen",
+      "customerPhone": "+44 7700 900001",
+      "customerEmail": "sarah.chen@example.com",
+      "items": [
+        {
+          "itemId": "1",
+          "name": "Classic Lumière Burger",
+          "quantity": 2,
+          "unitPrice": 24,
+          "lineTotal": 48,
+          "addons": []
+        },
+        {
+          "itemId": "3",
+          "name": "Bourbon BBQ Smoke Burger",
+          "quantity": 1,
+          "unitPrice": 26,
+          "lineTotal": 26,
+          "addons": []
+        }
+      ],
+      "subtotal": 74,
+      "taxes": 6.29,
+      "deliveryFee": 0,
+      "total": 80.29,
+      "placedAt": "2026-09-26T07:28:37.112Z",
+      "statusUpdatedAt": "2026-09-26T07:28:37.112Z",
+      "createdAt": "2026-09-26T07:28:37.112Z",
+      "updatedAt": "2026-09-26T07:28:37.112Z"
+    },
+    {
+      "id": "order_2",
+      "restaurantId": "rest_lumiere",
+      "orderNumber": "1041",
+      "status": "confirmed",
+      "service": "delivery",
+      "paymentMethod": "card",
+      "customerName": "Marcus Reid",
+      "customerPhone": "+44 7700 900002",
+      "customerEmail": "marcus.reid@example.com",
+      "address": "22 Berkeley Square, Mayfair, London",
+      "items": [
+        {
+          "itemId": "2",
+          "name": "Artisanal Pepperoni Pizza",
+          "quantity": 1,
+          "unitPrice": 27,
+          "lineTotal": 27,
+          "addons": [
+            {
+              "id": "addon-sparkling-water",
+              "name": "San Pellegrino (750ml)",
+              "price": 6
+            }
+          ]
+        }
+      ],
+      "subtotal": 27,
+      "taxes": 2.3,
+      "deliveryFee": 15,
+      "total": 44.3,
+      "placedAt": "2026-09-26T07:22:37.112Z",
+      "statusUpdatedAt": "2026-09-26T07:25:37.112Z",
+      "createdAt": "2026-09-26T07:22:37.112Z",
+      "updatedAt": "2026-09-26T07:25:37.112Z"
+    },
+    {
+      "id": "order_3",
+      "restaurantId": "rest_lumiere",
+      "orderNumber": "1040",
+      "status": "preparing",
+      "service": "pickup",
+      "paymentMethod": "card",
+      "customerName": "Aiko Tanaka",
+      "customerPhone": "+44 7700 900003",
+      "customerEmail": "aiko.t@example.com",
+      "items": [
+        {
+          "itemId": "4",
+          "name": "Spicy Buffalo Wings",
+          "quantity": 1,
+          "unitPrice": 18,
+          "lineTotal": 18,
+          "addons": []
+        },
+        {
+          "itemId": "1",
+          "name": "Classic Lumière Burger",
+          "quantity": 1,
+          "unitPrice": 24,
+          "lineTotal": 24,
+          "addons": []
+        }
+      ],
+      "subtotal": 42,
+      "taxes": 3.57,
+      "deliveryFee": 0,
+      "total": 45.57,
+      "placedAt": "2026-09-26T07:13:37.112Z",
+      "statusUpdatedAt": "2026-09-26T07:21:37.112Z",
+      "createdAt": "2026-09-26T07:13:37.112Z",
+      "updatedAt": "2026-09-26T07:21:37.112Z"
+    },
+    {
+      "id": "order_4",
+      "restaurantId": "rest_lumiere",
+      "orderNumber": "1039",
+      "status": "preparing",
+      "service": "delivery",
+      "paymentMethod": "card",
+      "customerName": "Oliver Bennett",
+      "customerPhone": "+44 7700 900004",
+      "customerEmail": "oliver.b@example.com",
+      "address": "5 Curzon Street, Mayfair, London",
+      "items": [
+        {
+          "itemId": "3",
+          "name": "Bourbon BBQ Smoke Burger",
+          "quantity": 2,
+          "unitPrice": 26,
+          "lineTotal": 52,
+          "addons": []
+        }
+      ],
+      "subtotal": 52,
+      "taxes": 4.42,
+      "deliveryFee": 15,
+      "total": 71.42,
+      "placedAt": "2026-09-26T07:07:37.112Z",
+      "statusUpdatedAt": "2026-09-26T07:11:37.112Z",
+      "createdAt": "2026-09-26T07:07:37.112Z",
+      "updatedAt": "2026-09-26T07:11:37.112Z"
+    },
+    {
+      "id": "order_5",
+      "restaurantId": "rest_lumiere",
+      "orderNumber": "1038",
+      "status": "ready",
+      "service": "pickup",
+      "paymentMethod": "card",
+      "customerName": "Priya Anand",
+      "customerPhone": "+44 7700 900005",
+      "customerEmail": "priya.a@example.com",
+      "items": [
+        {
+          "itemId": "2",
+          "name": "Artisanal Pepperoni Pizza",
+          "quantity": 1,
+          "unitPrice": 21,
+          "lineTotal": 21,
+          "addons": []
+        }
+      ],
+      "subtotal": 21,
+      "taxes": 1.79,
+      "deliveryFee": 0,
+      "total": 22.79,
+      "placedAt": "2026-09-26T07:15:37.112Z",
+      "statusUpdatedAt": "2026-09-26T07:27:37.112Z",
+      "createdAt": "2026-09-26T07:15:37.112Z",
+      "updatedAt": "2026-09-26T07:27:37.112Z"
+    },
+    {
+      "id": "order_6",
+      "restaurantId": "rest_lumiere",
+      "orderNumber": "1037",
+      "status": "completed",
+      "service": "pickup",
+      "paymentMethod": "card",
+      "customerName": "James Whitmore",
+      "customerPhone": "+44 7700 900006",
+      "customerEmail": "james.w@example.com",
+      "items": [
+        {
+          "itemId": "1",
+          "name": "Classic Lumière Burger",
+          "quantity": 3,
+          "unitPrice": 24,
+          "lineTotal": 72,
+          "addons": []
+        }
+      ],
+      "subtotal": 72,
+      "taxes": 6.12,
+      "deliveryFee": 0,
+      "total": 78.12,
+      "placedAt": "2026-09-26T06:26:37.112Z",
+      "statusUpdatedAt": "2026-09-26T06:51:37.112Z",
+      "createdAt": "2026-09-26T06:26:37.112Z",
+      "updatedAt": "2026-09-26T06:51:37.112Z"
+    },
+    {
+      "id": "order_7",
+      "restaurantId": "rest_lumiere",
+      "orderNumber": "1036",
+      "status": "cancelled",
+      "service": "delivery",
+      "paymentMethod": "card",
+      "customerName": "Eleanor Cross",
+      "customerPhone": "+44 7700 900007",
+      "customerEmail": "eleanor.c@example.com",
+      "address": "10 Grosvenor Square, Mayfair, London",
+      "items": [
+        {
+          "itemId": "4",
+          "name": "Spicy Buffalo Wings",
+          "quantity": 1,
+          "unitPrice": 18,
+          "lineTotal": 18,
+          "addons": []
+        }
+      ],
+      "subtotal": 18,
+      "taxes": 1.53,
+      "deliveryFee": 15,
+      "total": 34.53,
+      "placedAt": "2026-09-26T06:01:37.112Z",
+      "statusUpdatedAt": "2026-09-26T06:06:37.112Z",
+      "createdAt": "2026-09-26T06:01:37.112Z",
+      "updatedAt": "2026-09-26T06:06:37.112Z"
+    }
+  ],
+  "reservations": [
+    {
+      "id": "reservation_1",
+      "restaurantId": "rest_lumiere",
+      "confirmationCode": "LUM-82910",
+      "status": "confirmed",
+      "date": "2026-09-28",
+      "timeSlot": "19:00",
+      "partySize": 2,
+      "seatingPreference": "Window",
+      "guestName": "Sarah Chen",
+      "guestEmail": "sarah.chen@example.com",
+      "guestPhone": "+44 7700 900001",
+      "newsletterOptIn": true,
+      "placedAt": "2026-09-26T06:51:37.112Z",
+      "createdAt": "2026-09-26T06:51:37.112Z",
+      "updatedAt": "2026-09-26T06:51:37.112Z"
+    },
+    {
+      "id": "reservation_2",
+      "restaurantId": "rest_lumiere",
+      "confirmationCode": "LUM-82911",
+      "status": "confirmed",
+      "date": "2026-09-26",
+      "timeSlot": "20:15",
+      "partySize": 4,
+      "seatingPreference": "Booth",
+      "guestName": "Marcus Reid",
+      "guestEmail": "marcus.reid@example.com",
+      "guestPhone": "+44 7700 900002",
+      "specialRequests": "Anniversary dinner, quiet table if possible.",
+      "newsletterOptIn": false,
+      "placedAt": "2026-09-26T05:31:37.112Z",
+      "createdAt": "2026-09-26T05:31:37.112Z",
+      "updatedAt": "2026-09-26T05:31:37.112Z"
+    },
+    {
+      "id": "reservation_3",
+      "restaurantId": "rest_lumiere",
+      "confirmationCode": "LUM-82912",
+      "status": "seated",
+      "date": "2026-09-26",
+      "timeSlot": "13:30",
+      "partySize": 2,
+      "seatingPreference": "Bar",
+      "guestName": "Aiko Tanaka",
+      "guestEmail": "aiko.t@example.com",
+      "guestPhone": "+44 7700 900003",
+      "newsletterOptIn": false,
+      "placedAt": "2026-09-26T06:01:37.112Z",
+      "createdAt": "2026-09-26T06:01:37.112Z",
+      "updatedAt": "2026-09-26T06:01:37.112Z"
+    },
+    {
+      "id": "reservation_4",
+      "restaurantId": "rest_lumiere",
+      "confirmationCode": "LUM-82913",
+      "status": "completed",
+      "date": "2026-09-25",
+      "timeSlot": "18:30",
+      "partySize": 6,
+      "seatingPreference": "Large Group (8+)",
+      "guestName": "Oliver Bennett",
+      "guestEmail": "oliver.b@example.com",
+      "guestPhone": "+44 7700 900004",
+      "newsletterOptIn": false,
+      "placedAt": "2026-09-25T04:51:37.112Z",
+      "createdAt": "2026-09-25T04:51:37.112Z",
+      "updatedAt": "2026-09-25T04:51:37.112Z"
+    },
+    {
+      "id": "reservation_5",
+      "restaurantId": "rest_lumiere",
+      "confirmationCode": "LUM-82914",
+      "status": "cancelled",
+      "date": "2026-09-24",
+      "timeSlot": "21:00",
+      "partySize": 2,
+      "seatingPreference": "Window",
+      "guestName": "Priya Anand",
+      "guestEmail": "priya.a@example.com",
+      "guestPhone": "+44 7700 900005",
+      "newsletterOptIn": false,
+      "placedAt": "2026-09-24T07:11:37.112Z",
+      "createdAt": "2026-09-24T07:11:37.112Z",
+      "updatedAt": "2026-09-24T07:11:37.112Z"
+    },
+    {
+      "id": "reservation_6",
+      "restaurantId": "rest_lumiere",
+      "confirmationCode": "LUM-82915",
+      "status": "no_show",
+      "date": "2026-09-23",
+      "timeSlot": "19:45",
+      "partySize": 3,
+      "seatingPreference": "Booth",
+      "guestName": "James Whitmore",
+      "guestEmail": "james.w@example.com",
+      "guestPhone": "+44 7700 900006",
+      "newsletterOptIn": false,
+      "placedAt": "2026-09-23T09:31:37.112Z",
+      "createdAt": "2026-09-23T09:31:37.112Z",
+      "updatedAt": "2026-09-23T09:31:37.112Z"
+    },
+    {
+      "id": "reservation_7",
+      "restaurantId": "rest_lumiere",
+      "confirmationCode": "LUM-82916",
+      "status": "confirmed",
+      "date": "2026-10-01",
+      "timeSlot": "12:00",
+      "partySize": 2,
+      "seatingPreference": "Window",
+      "guestName": "Eleanor Cross",
+      "guestEmail": "eleanor.c@example.com",
+      "guestPhone": "+44 7700 900007",
+      "newsletterOptIn": false,
+      "placedAt": "2026-09-26T07:01:37.112Z",
+      "createdAt": "2026-09-26T07:01:37.112Z",
+      "updatedAt": "2026-09-26T07:01:37.112Z"
+    }
+  ],
+  "reservationAvailability": {
+    "rest_lumiere": {
+      "restaurantId": "rest_lumiere",
+      "days": [
+        {
+          "day": "mon",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "tue",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "wed",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "thu",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "fri",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "sat",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "sun",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        }
+      ],
+      "blockedDates": []
+    },
+    "rest_lumiere_nh": {
+      "restaurantId": "rest_lumiere_nh",
+      "days": [
+        {
+          "day": "mon",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "tue",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "wed",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "thu",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "fri",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "sat",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        },
+        {
+          "day": "sun",
+          "isClosed": false,
+          "openTime": "12:00",
+          "closeTime": "23:00",
+          "slotDurationMins": 90,
+          "maxPerSlot": 4,
+          "slots": [
+            {
+              "time": "12:00",
+              "isOpen": true
+            },
+            {
+              "time": "13:30",
+              "isOpen": true
+            },
+            {
+              "time": "14:45",
+              "isOpen": true
+            },
+            {
+              "time": "15:30",
+              "isOpen": true
+            },
+            {
+              "time": "18:30",
+              "isOpen": true
+            },
+            {
+              "time": "19:00",
+              "isOpen": true
+            },
+            {
+              "time": "20:15",
+              "isOpen": true
+            },
+            {
+              "time": "21:00",
+              "isOpen": true
+            },
+            {
+              "time": "21:45",
+              "isOpen": true
+            },
+            {
+              "time": "22:30",
+              "isOpen": true
+            }
+          ]
+        }
+      ],
+      "blockedDates": []
+    },
+    "site_pulsefit": {
+      "restaurantId": "site_pulsefit",
+      "days": [
+        {
+          "day": "mon",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "21:00",
+          "slotDurationMins": 60,
+          "maxPerSlot": 12,
+          "slots": []
+        },
+        {
+          "day": "tue",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "21:00",
+          "slotDurationMins": 60,
+          "maxPerSlot": 12,
+          "slots": []
+        },
+        {
+          "day": "wed",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "21:00",
+          "slotDurationMins": 60,
+          "maxPerSlot": 12,
+          "slots": []
+        },
+        {
+          "day": "thu",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "21:00",
+          "slotDurationMins": 60,
+          "maxPerSlot": 12,
+          "slots": []
+        },
+        {
+          "day": "fri",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "21:00",
+          "slotDurationMins": 60,
+          "maxPerSlot": 12,
+          "slots": []
+        },
+        {
+          "day": "sat",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "21:00",
+          "slotDurationMins": 60,
+          "maxPerSlot": 12,
+          "slots": []
+        },
+        {
+          "day": "sun",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "21:00",
+          "slotDurationMins": 60,
+          "maxPerSlot": 12,
+          "slots": []
+        }
+      ],
+      "blockedDates": []
+    },
+    "site_novagoods": {
+      "restaurantId": "site_novagoods",
+      "days": [
+        {
+          "day": "mon",
+          "isClosed": false,
+          "openTime": "10:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 1,
+          "slots": []
+        },
+        {
+          "day": "tue",
+          "isClosed": false,
+          "openTime": "10:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 1,
+          "slots": []
+        },
+        {
+          "day": "wed",
+          "isClosed": false,
+          "openTime": "10:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 1,
+          "slots": []
+        },
+        {
+          "day": "thu",
+          "isClosed": false,
+          "openTime": "10:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 1,
+          "slots": []
+        },
+        {
+          "day": "fri",
+          "isClosed": false,
+          "openTime": "10:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 1,
+          "slots": []
+        },
+        {
+          "day": "sat",
+          "isClosed": false,
+          "openTime": "10:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 1,
+          "slots": []
+        },
+        {
+          "day": "sun",
+          "isClosed": true,
+          "openTime": "10:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 1,
+          "slots": []
+        }
+      ],
+      "blockedDates": []
+    }
+  },
+  "pageConfigs": [
+    {
+      "id": "pageconfig_rest_lumiere_items",
+      "restaurantId": "rest_lumiere",
+      "module": "items",
+      "enabled": true,
+      "navLabel": "Menu",
+      "order": 0,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_rest_lumiere_catalog",
+      "restaurantId": "rest_lumiere",
+      "module": "catalog",
+      "enabled": true,
+      "navLabel": "Online Order",
+      "order": 1,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_rest_lumiere_booking",
+      "restaurantId": "rest_lumiere",
+      "module": "booking",
+      "enabled": true,
+      "navLabel": "Reservations",
+      "order": 2,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_rest_lumiere_membership",
+      "restaurantId": "rest_lumiere",
+      "module": "membership",
+      "enabled": true,
+      "navLabel": "Membership",
+      "order": 3,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_rest_lumiere_nh_items",
+      "restaurantId": "rest_lumiere_nh",
+      "module": "items",
+      "enabled": true,
+      "navLabel": "Menu",
+      "order": 0,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_rest_lumiere_nh_catalog",
+      "restaurantId": "rest_lumiere_nh",
+      "module": "catalog",
+      "enabled": true,
+      "navLabel": "Online Order",
+      "order": 1,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_rest_lumiere_nh_booking",
+      "restaurantId": "rest_lumiere_nh",
+      "module": "booking",
+      "enabled": true,
+      "navLabel": "Reservations",
+      "order": 2,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_rest_lumiere_nh_membership",
+      "restaurantId": "rest_lumiere_nh",
+      "module": "membership",
+      "enabled": false,
+      "navLabel": "Membership",
+      "order": 3,
+      "templateVariant": "a",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_pulsefit_items",
+      "restaurantId": "site_pulsefit",
+      "module": "items",
+      "enabled": true,
+      "navLabel": "Programs",
+      "order": 0,
+      "templateVariant": "b",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_pulsefit_catalog",
+      "restaurantId": "site_pulsefit",
+      "module": "catalog",
+      "enabled": false,
+      "navLabel": "Shop",
+      "order": 1,
+      "templateVariant": "b",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_pulsefit_booking",
+      "restaurantId": "site_pulsefit",
+      "module": "booking",
+      "enabled": true,
+      "navLabel": "Classes",
+      "order": 2,
+      "templateVariant": "b",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_pulsefit_membership",
+      "restaurantId": "site_pulsefit",
+      "module": "membership",
+      "enabled": true,
+      "navLabel": "Membership",
+      "order": 3,
+      "templateVariant": "b",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_novagoods_items",
+      "restaurantId": "site_novagoods",
+      "module": "items",
+      "enabled": true,
+      "navLabel": "Products",
+      "order": 0,
+      "templateVariant": "c",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_novagoods_catalog",
+      "restaurantId": "site_novagoods",
+      "module": "catalog",
+      "enabled": true,
+      "navLabel": "Online Order",
+      "order": 1,
+      "templateVariant": "c",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_novagoods_booking",
+      "restaurantId": "site_novagoods",
+      "module": "booking",
+      "enabled": false,
+      "navLabel": "Appointments",
+      "order": 2,
+      "templateVariant": "c",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_novagoods_membership",
+      "restaurantId": "site_novagoods",
+      "module": "membership",
+      "enabled": true,
+      "navLabel": "Loyalty",
+      "order": 3,
+      "templateVariant": "c",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "membershipPlans": [
+    {
+      "id": "plan_gold",
+      "restaurantId": "rest_lumiere",
+      "name": "Gold Table Club",
+      "description": "Priority reservations, a complimentary aperitif, and a dedicated concierge line.",
+      "priceCents": 4900,
+      "billingInterval": "monthly",
+      "benefits": [
+        "Priority reservations",
+        "Complimentary aperitif each visit",
+        "Dedicated concierge line"
+      ],
+      "isActive": true,
+      "order": 0,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_annual",
+      "restaurantId": "rest_lumiere",
+      "name": "Annual Connoisseur",
+      "description": "A full year of Lumière's chef's table experiences, billed once.",
+      "priceCents": 45000,
+      "billingInterval": "yearly",
+      "benefits": [
+        "Two chef's table seatings per quarter",
+        "10% off private dining",
+        "Birthday month bottle of house Champagne"
+      ],
+      "isActive": true,
+      "order": 1,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_taster",
+      "restaurantId": "rest_lumiere",
+      "name": "Taster Pass",
+      "description": "A single-visit introduction to the Lumière tasting menu at a members-only rate.",
+      "priceCents": 1500,
+      "billingInterval": "one_time",
+      "benefits": [
+        "One-time tasting menu discount"
+      ],
+      "isActive": false,
+      "order": 2,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_pulsefit_monthly",
+      "restaurantId": "site_pulsefit",
+      "name": "Monthly Unlimited",
+      "description": "Unlimited classes, every month.",
+      "priceCents": 8900,
+      "billingInterval": "monthly",
+      "benefits": [
+        "Unlimited classes",
+        "Guest passes (2/mo)",
+        "App booking"
+      ],
+      "isActive": true,
+      "order": 0,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_pulsefit_annual",
+      "restaurantId": "site_pulsefit",
+      "name": "Annual",
+      "description": "Best value - one payment, all year.",
+      "priceCents": 85000,
+      "billingInterval": "yearly",
+      "benefits": [
+        "Everything in Monthly",
+        "2 months free",
+        "Priority booking"
+      ],
+      "isActive": true,
+      "order": 1,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_pulsefit_classpack",
+      "restaurantId": "site_pulsefit",
+      "name": "10-Class Pack",
+      "description": "Pay as you train.",
+      "priceCents": 15000,
+      "billingInterval": "one_time",
+      "benefits": [
+        "10 class credits",
+        "No expiry"
+      ],
+      "isActive": true,
+      "order": 2,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_novagoods_free",
+      "restaurantId": "site_novagoods",
+      "name": "Loyalty",
+      "description": "Free to join - earn points on every order.",
+      "priceCents": 0,
+      "billingInterval": "one_time",
+      "benefits": [
+        "Points on every order",
+        "Birthday reward"
+      ],
+      "isActive": true,
+      "order": 0,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_novagoods_vip",
+      "restaurantId": "site_novagoods",
+      "name": "VIP",
+      "description": "For our most loyal shoppers.",
+      "priceCents": 4000,
+      "billingInterval": "yearly",
+      "benefits": [
+        "Free shipping",
+        "Early access to drops",
+        "Exclusive discounts"
+      ],
+      "isActive": true,
+      "order": 1,
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "members": [
+    {
+      "id": "member_1",
+      "restaurantId": "rest_lumiere",
+      "planId": "plan_gold",
+      "customerName": "Eleanor Cross",
+      "customerEmail": "eleanor.c@example.com",
+      "customerPhone": "+44 7700 900007",
+      "status": "active",
+      "startDate": "2026-08-17",
+      "nextBillingDate": "2026-10-26",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "member_2",
+      "restaurantId": "rest_lumiere",
+      "planId": "plan_annual",
+      "customerName": "James Whitmore",
+      "customerEmail": "james.w@example.com",
+      "customerPhone": "+44 7700 900006",
+      "status": "active",
+      "startDate": "2026-05-29",
+      "nextBillingDate": "2027-05-29",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "member_3",
+      "restaurantId": "rest_lumiere",
+      "planId": "plan_gold",
+      "customerName": "Priya Anand",
+      "customerEmail": "priya.a@example.com",
+      "customerPhone": "+44 7700 900005",
+      "status": "paused",
+      "startDate": "2026-03-10",
+      "nextBillingDate": null,
+      "notes": "Paused while traveling - resumes next month.",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "memberCheckIns": [
+    {
+      "id": "checkin_1",
+      "restaurantId": "rest_lumiere",
+      "memberId": "member_1",
+      "checkedInAt": "2026-09-26T05:31:37.113Z"
+    },
+    {
+      "id": "checkin_2",
+      "restaurantId": "rest_lumiere",
+      "memberId": "member_1",
+      "checkedInAt": "2026-09-14T07:31:37.113Z"
+    },
+    {
+      "id": "checkin_3",
+      "restaurantId": "rest_lumiere",
+      "memberId": "member_2",
+      "checkedInAt": "2026-09-21T07:31:37.113Z"
+    }
+  ],
+  "domainMappings": [
+    {
+      "id": "domain_rest_lumiere_platform",
+      "restaurantId": "rest_lumiere",
+      "type": "platform_subdomain",
+      "hostname": "lumiere-mayfair.ourplatform.com",
+      "recordType": "CNAME",
+      "recordName": "@",
+      "recordValue": "lumiere-mayfair.ourplatform.com",
+      "verificationStatus": "verified",
+      "sslStatus": "issued",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "domain_rest_lumiere_nh_platform",
+      "restaurantId": "rest_lumiere_nh",
+      "type": "platform_subdomain",
+      "hostname": "lumiere-notting-hill.ourplatform.com",
+      "recordType": "CNAME",
+      "recordName": "@",
+      "recordValue": "lumiere-notting-hill.ourplatform.com",
+      "verificationStatus": "verified",
+      "sslStatus": "issued",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "domain_site_pulsefit_platform",
+      "restaurantId": "site_pulsefit",
+      "type": "platform_subdomain",
+      "hostname": "pulsefit-downtown.ourplatform.com",
+      "recordType": "CNAME",
+      "recordName": "@",
+      "recordValue": "pulsefit-downtown.ourplatform.com",
+      "verificationStatus": "verified",
+      "sslStatus": "issued",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "domain_site_novagoods_platform",
+      "restaurantId": "site_novagoods",
+      "type": "platform_subdomain",
+      "hostname": "nova-goods.ourplatform.com",
+      "recordType": "CNAME",
+      "recordName": "@",
+      "recordValue": "nova-goods.ourplatform.com",
+      "verificationStatus": "verified",
+      "sslStatus": "issued",
+      "createdAt": "2026-09-26T07:31:37.106Z",
+      "updatedAt": "2026-09-26T07:31:37.106Z"
+    }
+  ],
+  "pageContent": {
+    "rest_lumiere": {
+      "draft": {},
+      "published": {}
+    },
+    "rest_lumiere_nh": {
+      "draft": {},
+      "published": {}
+    },
+    "site_pulsefit": {
+      "draft": {},
+      "published": {}
+    },
+    "site_novagoods": {
+      "draft": {},
+      "published": {}
+    }
+  }
+}

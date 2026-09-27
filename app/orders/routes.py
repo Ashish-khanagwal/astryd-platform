@@ -57,7 +57,7 @@ def checkout():
 @bp.get("/restaurant/<restaurant_id>")
 @jwt_required()
 def list_orders(restaurant_id):
-    _, failure = require_restaurant(restaurant_id)
+    _, failure = require_restaurant(restaurant_id, permission='booking')
     if failure:
         return failure
     orders = mongo.db.orders.find({"business_id": restaurant_id}).sort("created_at", -1).limit(500)
@@ -67,7 +67,7 @@ def list_orders(restaurant_id):
 @bp.patch("/restaurant/<restaurant_id>/<order_id>/status")
 @jwt_required()
 def update_status(restaurant_id, order_id):
-    _, failure = require_restaurant(restaurant_id)
+    _, failure = require_restaurant(restaurant_id, permission='booking')
     if failure:
         return failure
     try:

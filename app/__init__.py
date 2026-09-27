@@ -5,7 +5,9 @@ import os
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_jwt_extended.exceptions import JWTExtendedException
-from pymongo.errors import PyMongoError
+from pymongo.errors import PyMongoError, DuplicateKeyError
+from bson.errors import InvalidId
+from werkzeug.exceptions import HTTPException
 
 from app.celery_app import create_celery
 from app.common.tenant import register_tenant_error_handler
@@ -42,6 +44,27 @@ def create_app(config_name=None):
     _register_error_handlers(app)
     _register_blueprints(app)
     app.extensions["celery"] = create_celery(app)
+
+    @app.before_request
+    def tenant_lifecycle():
+        from flask import request
+        from bson import ObjectId
+        args=request.view_args or {}
+        if request.is_json and request.method in {'POST','PUT','PATCH'} and not isinstance(request.get_json(silent=True), dict):
+            return jsonify(error='validation_error',message='JSON body must be an object'),400
+        sid=next((args[k] for k in ('rid','sid','restaurant_id','business_id') if args.get(k)),None)
+        if not sid and request.endpoint in {'orders.checkout','reservations.create','reservations.checkout'}:
+            sid=(request.get_json(silent=True) or {}).get('business_id')
+        if not sid or request.method=='OPTIONS':return None
+        site=mongo.db.restaurants.find_one({'restaurantId':sid})
+        if site and site.get('status')=='suspended':
+            # Owners can restore/archive Sites through the organization API.
+            if request.endpoint in {'platform.site_update','platform.site_archive'}:return None
+            return jsonify(error='not_found',message='Site is unavailable'),404
+        if site and site.get('organizationId'):
+            try:org=mongo.db.organizations.find_one({'_id':ObjectId(site['organizationId'])})
+            except (ValueError,TypeError):org=None
+            if org and org.get('status')=='suspended':return jsonify(error='not_found',message='Site is unavailable'),404
 
     os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
@@ -97,6 +120,8 @@ def _register_blueprints(app):
     from app.orders.routes import bp as orders_bp
     from app.payments.routes import bp as payments_bp
     from app.reservations.routes import bp as reservations_bp
+    from app.platform.routes import bp as platform_bp
+    from app.platform.membership import bp as membership_bp
 
     for blueprint in (
         auth_bp,
@@ -108,6 +133,8 @@ def _register_blueprints(app):
         payments_bp,
         notifications_bp,
         admin_bp,
+        platform_bp,
+        membership_bp,
     ):
         app.register_blueprint(blueprint, url_prefix=f"/api/v1{blueprint.url_prefix}")
 
@@ -127,6 +154,18 @@ def _register_jwt_handlers():
 
 
 def _register_error_handlers(app):
+    @app.errorhandler(DuplicateKeyError)
+    def duplicate_record(_error):
+        return jsonify(error='conflict', message='A record with these values already exists'),409
+
+    @app.errorhandler(InvalidId)
+    def invalid_id(_error):
+        return jsonify(error='validation_error',message='Invalid record identifier'),400
+
+    @app.errorhandler(HTTPException)
+    def http_error(error):
+        return jsonify(error=error.name.lower().replace(' ','_'),message=error.description),error.code
+
     @app.errorhandler(JWTExtendedException)
     def handle_jwt_error(error):
         return jsonify(error="authentication_error", message=str(error)), 401

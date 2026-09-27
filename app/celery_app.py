@@ -20,5 +20,6 @@ def create_celery(app):
                 return self.run(*args, **kwargs)
 
     celery.Task = FlaskTask
+    celery.set_default()
     celery.autodiscover_tasks(["app.notifications"])
     return celery

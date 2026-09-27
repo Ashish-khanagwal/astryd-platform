@@ -13,7 +13,7 @@ from app.availability.service import (
     get_availability_config,
     update_availability_config,
 )
-from app.common.api import log_audit_event, require_restaurant, serialize_doc
+from app.common.api import current_identity, log_audit_event, require_restaurant, serialize_doc
 from werkzeug.security import generate_password_hash
 
 bp = Blueprint("admin", __name__, url_prefix="")
@@ -54,8 +54,13 @@ def reservation_availability_put():
 
 
 def _authenticated_business_id():
-    identity = get_jwt_identity()
-    return identity["restaurantId"] if isinstance(identity, dict) else identity
+    from werkzeug.exceptions import Forbidden
+    identity = current_identity()
+    site_id = request.args.get('siteId') or identity.get('restaurantId')
+    _, failure = require_restaurant(site_id, permission='booking')
+    if failure:
+        raise Forbidden('Site access denied')
+    return site_id
 
 
 def _validate_availability_payload(payload):
@@ -166,30 +171,66 @@ def update_reservation_status(reservation_id):
         return jsonify(error="not_found", message="Reservation not found"), 404
     return jsonify(reservation=serialize_doc(reservation))
 
-def _owner(rid): return require_restaurant(rid,{"owner","super_admin"})
-def _audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,i["restaurantId"],i["userId"],i["name"],a,t,e,s,d)
+def _owner(rid):
+ i,f=require_restaurant(rid,{"owner","admin","super_admin"},permission='users')
+ if not f and i.get('role')=='super_admin':
+  site=mongo.db.restaurants.find_one({'restaurantId':rid})
+  i={**i,'organizationId':site.get('organizationId'),'restaurantId':rid}
+ return i,f
+def _audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,(request.view_args or {}).get('rid',i["restaurantId"]),i["userId"],i["name"],a,t,e,s,d)
 @bp.get("/restaurants/<rid>/users")
 @jwt_required()
 def users(rid):
- _,f=_owner(rid)
+ i,f=_owner(rid)
  if f:return f
- return jsonify(serialize_doc(list(mongo.db.restaurant_users.find({"restaurantId":rid}))))
+ q={'organizationId':i['organizationId']} if i.get('organizationId') else {'restaurantId':rid}
+ return jsonify(serialize_doc(list(mongo.db.restaurant_users.find(q))))
 @bp.post("/restaurants/<rid>/users")
 @jwt_required()
 def user_create(rid):
  i,f=_owner(rid)
  if f:return f
  b=request.get_json(silent=True) or {}
- if not all(b.get(k) for k in ("email","name","password")):return jsonify(error="validation_error",message="email, name and password are required"),400
- now=datetime.utcnow();d={"restaurantId":rid,"email":b["email"],"name":b["name"],"passwordHash":generate_password_hash(b["password"]),"role":b.get("role","staff"),"permissions":b.get("permissions",{}),"avatarUrl":b.get("avatarUrl"),"isActive":True,"createdAt":now,"updatedAt":now};r=mongo.db.restaurant_users.insert_one(d);d["_id"]=r.inserted_id;_audit(i,"create","restaurant_user",r.inserted_id,"Created user");return jsonify(serialize_doc(d)),201
+ from flask import current_app
+ from app.platform.service import email,text,password,PERMISSIONS
+ from app.platform.accounts import issue_link
+ import secrets
+ if b.get('role','staff')!='staff':return jsonify(error='forbidden',message='Owners may only invite staff'),403
+ try:
+  address=email(b.get('email'));name=text(b.get('name'),'name');access=b.get('siteAccess',[rid])
+  if not isinstance(access,list) or not access or any(not isinstance(s,str) for s in access):raise ValueError('Select at least one Site')
+  for sid in access:
+   _,failure=require_restaurant(sid)
+   site=mongo.db.restaurants.find_one({'restaurantId':sid})
+   if failure or not site or site.get('organizationId')!=i.get('organizationId'):raise ValueError('Invalid Site access')
+  permissions=b.get('permissions',{'menu':True,'booking':True})
+  if not isinstance(permissions,dict) or set(permissions)-set(PERMISSIONS) or any(not isinstance(v,bool) for v in permissions.values()):raise ValueError('Invalid permissions')
+  secret=password(b['password']) if b.get('password') else secrets.token_urlsafe(32)
+ except (ValueError,TypeError) as exc:return jsonify(error='validation_error',message=str(exc)),400
+ if not b.get('password') and not current_app.config.get('SMTP_HOST'):return jsonify(error='email_unavailable',message='Configure account email delivery before inviting staff'),503
+ now=datetime.utcnow();d={'restaurantId':rid,'organizationId':i.get('organizationId'),'siteAccess':access,'email':address,'normalizedEmail':address,'name':name,'passwordHash':generate_password_hash(secret),'role':'staff','permissions':permissions,'isActive':True,'emailVerified':False,'createdAt':now,'updatedAt':now};r=mongo.db.restaurant_users.insert_one(d);d['_id']=r.inserted_id
+ if not b.get('password'):issue_link(d,'invite')
+ _audit(i,'create','restaurant_user',r.inserted_id,'Invited staff');return jsonify(serialize_doc(d)),201
 @bp.put("/restaurants/<rid>/users/<uid>")
 @jwt_required()
 def user_put(rid,uid):
  i,f=_owner(rid)
  if f:return f
- b=request.get_json(silent=True) or {};b.pop("restaurantId",None);b.pop("passwordHash",None)
- if "password" in b:b["passwordHash"]=generate_password_hash(b.pop("password"))
- b["updatedAt"]=datetime.utcnow();d=mongo.db.restaurant_users.find_one_and_update({"_id":ObjectId(uid),"restaurantId":rid},{"$set":b},return_document=True)
+ b=request.get_json(silent=True) or {}
+ if set(b)-{'name','siteAccess','permissions','isActive','role'} or b.get('role','staff')!='staff':return jsonify(error='forbidden',message='Only staff access can be changed'),403
+ if 'siteAccess' in b:
+  if not isinstance(b['siteAccess'],list) or not b['siteAccess']:return jsonify(error='validation_error'),400
+  for sid in b['siteAccess']:
+   _,failure=require_restaurant(sid)
+   if failure:return failure
+   site=mongo.db.restaurants.find_one({'restaurantId':sid})
+   if not site or site.get('organizationId')!=i.get('organizationId'):return jsonify(error='validation_error',message='Invalid Site access'),400
+ if 'permissions' in b:
+  from app.platform.service import PERMISSIONS
+  if not isinstance(b['permissions'],dict) or set(b['permissions'])-set(PERMISSIONS) or any(not isinstance(v,bool) for v in b['permissions'].values()):return jsonify(error='validation_error'),400
+ if 'isActive' in b and not isinstance(b['isActive'],bool):return jsonify(error='validation_error'),400
+ q={'organizationId':i['organizationId']} if i.get('organizationId') else {'restaurantId':rid}
+ b['updatedAt']=datetime.utcnow();d=mongo.db.restaurant_users.find_one_and_update({'_id':ObjectId(uid),'role':'staff',**q},{'$set':b},return_document=True)
  if not d:return jsonify(error="not_found",message="User not found"),404
  _audit(i,"update","restaurant_user",uid,"Updated user",b);return jsonify(serialize_doc(d))
 @bp.delete("/restaurants/<rid>/users/<uid>")
@@ -198,7 +239,8 @@ def user_delete(rid,uid):
  i,f=_owner(rid)
  if f:return f
  if uid==i["userId"]:return jsonify(error="invalid_state",message="Cannot deactivate yourself"),400
- r=mongo.db.restaurant_users.update_one({"_id":ObjectId(uid),"restaurantId":rid},{"$set":{"isActive":False,"updatedAt":datetime.utcnow()}})
+ q={'organizationId':i['organizationId']} if i.get('organizationId') else {'restaurantId':rid}
+ r=mongo.db.restaurant_users.update_one({'_id':ObjectId(uid),'role':'staff',**q},{'$set':{'isActive':False,'updatedAt':datetime.utcnow()}})
  if not r.matched_count:return jsonify(error="not_found",message="User not found"),404
  _audit(i,"deactivate","restaurant_user",uid,"Deactivated user");return jsonify(message="User deactivated")
 @bp.get("/restaurants/<rid>/audit-logs")

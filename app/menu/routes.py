@@ -12,12 +12,21 @@ ITEM_FIELDS={"categoryId","name","description","price","imageMediaId","imageUrl"
 def oid(v):
     try:return ObjectId(v)
     except Exception:return None
-def access(rid):return require_restaurant(rid)
-def audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,i["restaurantId"],i["userId"],i["name"],a,t,e,s,d)
+def access(rid):return require_restaurant(rid,permission='offers' if 'offer' in request.endpoint else 'addons' if 'addon' in request.endpoint else 'menu')
+def audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,request.view_args['rid'],i["userId"],i["name"],a,t,e,s,d)
 def body(fields=None):
     data=request.get_json(silent=True) or {}
-    return {k:v for k,v in data.items() if fields is None or k in fields}
+    return {k:v for k,v in data.items() if k not in {'_id','id','restaurantId','organizationId','business_id','createdAt'} and not k.startswith('$') and '.' not in k and (fields is None or k in fields)}
 def notfound(name):return jsonify(error="not_found",message=f"{name} not found"),404
+
+def references_valid(rid,data):
+    for field,collection in [('imageMediaId','media_assets'),('activeOfferId','offers')]:
+        if data.get(field) and not mongo.db[collection].find_one({'_id':oid(data[field]),'restaurantId':rid,'deletedAt':None}):return False
+    if 'addonIds' in data:
+        if not isinstance(data['addonIds'],list):return False
+        for value in data['addonIds']:
+            if not isinstance(value,str) or not mongo.db.addons.find_one({'_id':oid(value),'restaurantId':rid}):return False
+    return True
 
 @bp.get("/restaurants/<rid>/menu")
 def menu(rid):
@@ -63,12 +72,17 @@ def item_create(rid):
     i,f=access(rid)
     if f:return f
     d=body(ITEM_FIELDS)
+    if not references_valid(rid,d):return jsonify(error='validation_error',message='References must belong to this Site'),400
+    if not mongo.db.menu_categories.find_one({'_id':oid(d.get('categoryId')),'restaurantId':rid,'deletedAt':None}):return jsonify(error='validation_error',message='Category must belong to this Site'),400
     if not d.get("name") or not d.get("categoryId"):return jsonify(error="validation_error",message="name and categoryId are required"),400
     last=list(mongo.db.menu_items.find({"restaurantId":rid,"deletedAt":None}).sort("displayOrder",-1).limit(1));now=datetime.utcnow();d.update(restaurantId=rid,displayOrder=(last[0].get("displayOrder",-1)+1 if last else 0),deletedAt=None,createdAt=now,updatedAt=now);r=mongo.db.menu_items.insert_one(d);d["_id"]=r.inserted_id;audit(i,"create","menu_item",r.inserted_id,"Created item",d);return jsonify(serialize_doc(d)),201
 def item_update(rid,item_id,availability=False,delete=False):
     i,f=access(rid)
     if f:return f
-    x=oid(item_id);now=datetime.utcnow();u={"deletedAt":now,"updatedAt":now} if delete else {**body({"isAvailable"} if availability else ITEM_FIELDS),"updatedAt":now};d=mongo.db.menu_items.find_one_and_update({"_id":x,"restaurantId":rid,"deletedAt":None},{"$set":u},return_document=True)
+    x=oid(item_id);now=datetime.utcnow();u={"deletedAt":now,"updatedAt":now} if delete else {**body({"isAvailable"} if availability else ITEM_FIELDS),"updatedAt":now}
+    if not references_valid(rid,u):return jsonify(error='validation_error',message='References must belong to this Site'),400
+    if 'categoryId' in u and not mongo.db.menu_categories.find_one({'_id':oid(u['categoryId']),'restaurantId':rid,'deletedAt':None}):return jsonify(error='validation_error',message='Category must belong to this Site'),400
+    d=mongo.db.menu_items.find_one_and_update({"_id":x,"restaurantId":rid,"deletedAt":None},{"$set":u},return_document=True)
     if not d:return notfound("Item")
     audit(i,"delete" if delete else "update","menu_item",x,"Deleted item" if delete else "Updated item",u);return jsonify(message="Item deleted") if delete else jsonify(serialize_doc(d))
 @bp.put("/restaurants/<rid>/menu/items/<item_id>")

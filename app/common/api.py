@@ -4,7 +4,7 @@ from datetime import datetime
 
 from bson import ObjectId
 from flask import jsonify
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, get_jwt
 
 
 def camel_case(value):
@@ -19,7 +19,7 @@ def serialize_doc(value):
     if isinstance(value, dict):
         result = {}
         for key, item in value.items():
-            if key == "passwordHash":
+            if key in {"passwordHash", "tokenHash", "secret", "normalizedEmail"}:
                 continue
             result["id" if key == "_id" else camel_case(key)] = serialize_doc(item)
         return result
@@ -32,15 +32,40 @@ def serialize_doc(value):
 
 def current_identity():
     identity = get_jwt_identity()
-    return identity if isinstance(identity, dict) else {}
+    if not isinstance(identity, dict):
+        return {}
+    from app.extensions import mongo
+    try:
+        user = mongo.db.restaurant_users.find_one({"_id": ObjectId(identity.get("userId"))})
+    except (TypeError, ValueError):
+        return {}
+    if not user or not user.get("isActive", True):
+        return {}
+    if identity.get('authVersion',0) != user.get('authVersion',0):
+        return {}
+    return {**user, "userId": str(user["_id"])}
 
 
-def require_restaurant(restaurant_id, roles=None):
+def require_restaurant(restaurant_id, roles=None, permission=None):
     """Return identity or a tenant/role failure response for a route parameter."""
     identity = current_identity()
-    if identity.get("restaurantId") != restaurant_id:
+    from app.extensions import mongo
+    site = mongo.db.restaurants.find_one({"restaurantId": restaurant_id})
+    allowed = identity.get("restaurantId") == restaurant_id
+    if site and identity.get("organizationId"):
+        try:
+            org = mongo.db.organizations.find_one({'_id': ObjectId(identity['organizationId']), 'status':'active'})
+        except (ValueError,TypeError):
+            org = None
+        access = identity.get("siteAccess", [])
+        allowed = bool(org) and site.get("organizationId") == identity["organizationId"] and (access == "all" or isinstance(access,list) and restaurant_id in access)
+    if identity.get("role") == "super_admin":
+        allowed = bool(site)
+    if not allowed or (site and site.get("status", "active") == "suspended"):
         return None, (jsonify(error="forbidden", message="Restaurant access denied"), 403)
     if roles and identity.get("role") not in roles:
+        return None, (jsonify(error="forbidden", message="Insufficient permissions"), 403)
+    if permission and identity.get("role") != "super_admin" and not identity.get("permissions", {}).get(permission, identity.get("role") in {"owner", "admin"}):
         return None, (jsonify(error="forbidden", message="Insufficient permissions"), 403)
     return identity, None
 
