@@ -60,7 +60,7 @@ def section_put(rid,typ):
  d=mongo.db.homepage_sections.find_one_and_update({"restaurantId":rid,"type":typ},{"$set":u},return_document=True)
  if not d:return jsonify(error="not_found",message="Section not found"),404
  audit(i,"update","homepage_section",d["_id"],"Updated homepage section",u);return jsonify(section(d,"draft"))
-def defaults():return {"restaurantName":"Lumière","tagline":"","logoMediaId":None,"faviconMediaId":None,"themePresetId":"gold","customPrimaryColor":"#C9A24D","primaryFont":"Inter","headingFont":"Playfair Display","fontWeight":"400","buttonStyle":"rounded","borderRadius":"8px","socialLinks":{},"contact":{},"description":"","cuisineType":"","businessHours":[]}
+def defaults():return {"restaurantName":"Lumière","tagline":"","logoMediaId":None,"faviconMediaId":None,"themePresetId":"gold","customPrimaryColor":"#C9A24D","primaryFont":"Inter","headingFont":"Playfair Display","fontWeight":"400","buttonStyle":"rounded","borderRadius":"8px","socialLinks":{},"contact":{},"description":"","cuisineType":"","businessHours":[],"showCart":True}
 @bp.get("/restaurants/<rid>/brand")
 # @jwt_required()
 def brand_get(rid):
