@@ -61,7 +61,7 @@ def verify(app, mongo):
                 with patch.object(mongo, 'db', TransactionDatabase(db, session)):
                     client = app.test_client()
                     previous_headers = None
-                    for vertical in ('restaurant', 'gym', 'retail'):
+                    for vertical in ('restaurant', 'gym', 'retail', 'salon', 'coffee'):
                         slug = 'parity-probe-' + secrets.token_hex(6)
                         slugs.append(slug)
                         body = dict(vertical=vertical, slug=slug, siteName='Parity probe',

@@ -7,7 +7,7 @@ from bson import ObjectId
 
 
 def migrate(db, apply=False):
-    from app.platform.service import DEFAULTS, MODULES, PERMISSIONS, now
+    from app.platform.service import DEFAULTS, MODULES, PERMISSIONS, TEMPLATE_VARIANTS, now
     sites = list(db.restaurants.find({}))
     site_ids=set()
     for site in sites:
@@ -55,7 +55,7 @@ def migrate(db, apply=False):
                 # Legacy restaurant navigation exposed every module before page configs existed.
                 # Keep that behavior during migration; new-account defaults stay unchanged.
                 if vertical == 'restaurant': enabled = True
-                default = {'module': module, 'navLabel': label, 'enabled': enabled, 'order': order, 'templateVariant': {'restaurant':'a','gym':'b','retail':'c'}[vertical]}
+                default = {'module': module, 'navLabel': label, 'enabled': enabled, 'order': order, 'templateVariant': TEMPLATE_VARIANTS[vertical][order]}
                 db.page_configs.update_one({'restaurantId': sid, 'module': module}, {'$setOnInsert': {'restaurantId': sid, **default, 'published': default}}, upsert=True)
                 existing_page=db.page_configs.find_one({'restaurantId':sid,'module':module})
                 if 'published' not in existing_page:

@@ -170,6 +170,28 @@ class TenantTests(unittest.TestCase):
             r=self.client.post('/api/v1/auth/signup',json={**body,'slug':'another'})
         self.assertEqual(r.status_code,400);self.assertEqual(before,self.raw.organizations.count_documents({}))
 
+    def test_salon_signup_uses_per_module_layouts(self):
+        body={'organizationName':'Glow Salon','siteName':'Glow Salon','vertical':'salon','slug':'glow-salon','ownerName':'Owner','ownerEmail':'glow@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123','branding':{'themePresetId':'rosewood'}}
+        with patch('app.auth.routes.issue_link'):
+            r=self.client.post('/api/v1/auth/signup',json=body)
+        self.assertEqual(r.status_code,201,r.json)
+        sid=r.json['user']['restaurantId']
+        pages={p['module']:p for p in self.raw.page_configs.find({'restaurantId':sid})}
+        self.assertEqual({m:(p['navLabel'],p['enabled'],p['templateVariant']) for m,p in pages.items()},
+                         {'items':('Services',True,'a'),'catalog':('Shop',False,'a'),'booking':('Book Now',True,'c'),'membership':('Memberships',True,'c')})
+        self.assertEqual(self.raw.brand_settings.find_one({'restaurantId':sid})['draft']['themePresetId'],'rosewood')
+
+    def test_coffee_signup_uses_per_module_layouts(self):
+        body={'organizationName':'Daily Grind','siteName':'Daily Grind','vertical':'coffee','slug':'daily-grind','ownerName':'Owner','ownerEmail':'grind@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123','branding':{'themePresetId':'espresso'}}
+        with patch('app.auth.routes.issue_link'):
+            r=self.client.post('/api/v1/auth/signup',json=body)
+        self.assertEqual(r.status_code,201,r.json)
+        sid=r.json['user']['restaurantId']
+        pages={p['module']:p for p in self.raw.page_configs.find({'restaurantId':sid})}
+        self.assertEqual({m:(p['navLabel'],p['enabled'],p['templateVariant']) for m,p in pages.items()},
+                         {'items':('Menu',True,'a'),'catalog':('Order Ahead',True,'a'),'booking':('Reserve a Table',False,'a'),'membership':('Rewards',True,'a')})
+        self.assertEqual(self.raw.brand_settings.find_one({'restaurantId':sid})['draft']['themePresetId'],'espresso')
+
     def test_deferred_verification_publishes_without_faking_verification(self):
         body={'organizationName':'Deferred Gym','siteName':'Deferred Gym','vertical':'gym','slug':'deferred-gym','ownerName':'Owner','ownerEmail':'deferred@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123'}
         with patch.dict(self.app.config,REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH=False), patch('app.auth.routes.issue_link') as link:
@@ -196,7 +218,7 @@ class TenantTests(unittest.TestCase):
         self.raw.page_configs.delete_many({'restaurantId':'lumiere-mayfair'})
         migrate(self.raw,True);migrate(self.raw,True)
         self.assertEqual(self.raw.payments.find_one({'_id':payment['_id']}),payment)
-        self.assertEqual(self.raw.organizations.count_documents({}),4)
+        self.assertEqual(self.raw.organizations.count_documents({}),6)
         self.assertEqual(self.raw.restaurants.find_one({'_id':site['_id']})['restaurantId'],'lumiere-mayfair')
         self.assertEqual(self.raw.page_configs.count_documents({'restaurantId':'lumiere-mayfair','enabled':True,'published.enabled':True}),4)
 

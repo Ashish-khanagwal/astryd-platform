@@ -20,6 +20,20 @@
       "name": "Nova Goods",
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "org_sloaneco",
+      "code": "SLOANECO",
+      "name": "Sloane & Co. Salon",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "org_fernwood",
+      "code": "FERNWOOD",
+      "name": "Fernwood Coffee Co.",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "users": [
@@ -84,6 +98,30 @@
       "isActive": true,
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "user_sloaneco_owner",
+      "organizationId": "org_sloaneco",
+      "email": "owner@sloaneandco.com",
+      "name": "Sloane Mitchell",
+      "role": "owner",
+      "restaurantId": "site_sloaneco",
+      "siteAccess": "all",
+      "isActive": true,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "user_fernwood_owner",
+      "organizationId": "org_fernwood",
+      "email": "owner@fernwoodcoffee.com",
+      "name": "Owen Castillo",
+      "role": "owner",
+      "restaurantId": "site_fernwood",
+      "siteAccess": "all",
+      "isActive": true,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "restaurants": [
@@ -134,6 +172,30 @@
       "brandingBadgeEnabled": true,
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "site_sloaneco",
+      "organizationId": "org_sloaneco",
+      "slug": "sloane-and-co",
+      "name": "Sloane & Co. Salon",
+      "ownerUserId": "user_sloaneco_owner",
+      "status": "active",
+      "vertical": "salon",
+      "brandingBadgeEnabled": true,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "site_fernwood",
+      "organizationId": "org_fernwood",
+      "slug": "fernwood-coffee",
+      "name": "Fernwood Coffee Co.",
+      "ownerUserId": "user_fernwood_owner",
+      "status": "active",
+      "vertical": "coffee",
+      "brandingBadgeEnabled": true,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "brand": {
@@ -714,6 +776,294 @@
         "createdAt": "2026-09-26T07:31:37.106Z",
         "updatedAt": "2026-09-26T07:31:37.106Z"
       }
+    },
+    "site_sloaneco": {
+      "draft": {
+        "restaurantId": "site_sloaneco",
+        "restaurantName": "Sloane & Co. Salon",
+        "tagline": "Hair, nails & skin - beautifully done.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "rosewood",
+        "primaryFont": "Lato",
+        "headingFont": "Playfair Display",
+        "fontWeight": "regular",
+        "buttonStyle": "pill",
+        "borderRadius": "lg",
+        "navPosition": "center",
+        "socialLinks": {
+          "instagram": "https://instagram.com/sloaneandco",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (512) 555-0176",
+          "email": "hello@sloaneandco.com",
+          "address": "2201 S Lamar Blvd, Austin, TX 78704"
+        },
+        "description": "Sloane & Co. is a full-service Austin salon - expert cuts, color, nails and skin care, with easy online booking.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": true,
+            "openTime": null,
+            "closeTime": null
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "16:00"
+          }
+        ],
+        "createdAt": "2026-09-27T12:27:57.917Z",
+        "updatedAt": "2026-09-27T12:27:57.917Z"
+      },
+      "published": {
+        "restaurantId": "site_sloaneco",
+        "restaurantName": "Sloane & Co. Salon",
+        "tagline": "Hair, nails & skin - beautifully done.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "rosewood",
+        "primaryFont": "Lato",
+        "headingFont": "Playfair Display",
+        "fontWeight": "regular",
+        "buttonStyle": "pill",
+        "borderRadius": "lg",
+        "navPosition": "center",
+        "socialLinks": {
+          "instagram": "https://instagram.com/sloaneandco",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (512) 555-0176",
+          "email": "hello@sloaneandco.com",
+          "address": "2201 S Lamar Blvd, Austin, TX 78704"
+        },
+        "description": "Sloane & Co. is a full-service Austin salon - expert cuts, color, nails and skin care, with easy online booking.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": true,
+            "openTime": null,
+            "closeTime": null
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "10:00",
+            "closeTime": "16:00"
+          }
+        ],
+        "createdAt": "2026-09-27T12:27:57.917Z",
+        "updatedAt": "2026-09-27T12:27:57.917Z"
+      }
+    },
+    "site_fernwood": {
+      "draft": {
+        "restaurantId": "site_fernwood",
+        "restaurantName": "Fernwood Coffee Co.",
+        "tagline": "Small-batch roasted. Big enough to linger.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "espresso",
+        "primaryFont": "Roboto",
+        "headingFont": "DM Sans",
+        "fontWeight": "medium",
+        "buttonStyle": "rounded",
+        "borderRadius": "md",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "https://instagram.com/fernwoodcoffeeco",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (206) 555-0139",
+          "email": "hello@fernwoodcoffee.com",
+          "address": "3512 Fremont Ave N, Seattle, WA 98103"
+        },
+        "description": "Fernwood Coffee Co. is a small-batch roaster and neighborhood cafe in Fremont, Seattle - order ahead, or stay a while.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "17:00"
+          }
+        ],
+        "createdAt": "2026-09-28T04:53:24.573Z",
+        "updatedAt": "2026-09-28T04:53:24.573Z"
+      },
+      "published": {
+        "restaurantId": "site_fernwood",
+        "restaurantName": "Fernwood Coffee Co.",
+        "tagline": "Small-batch roasted. Big enough to linger.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "espresso",
+        "primaryFont": "Roboto",
+        "headingFont": "DM Sans",
+        "fontWeight": "medium",
+        "buttonStyle": "rounded",
+        "borderRadius": "md",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "https://instagram.com/fernwoodcoffeeco",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (206) 555-0139",
+          "email": "hello@fernwoodcoffee.com",
+          "address": "3512 Fremont Ave N, Seattle, WA 98103"
+        },
+        "description": "Fernwood Coffee Co. is a small-batch roaster and neighborhood cafe in Fremont, Seattle - order ahead, or stay a while.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "06:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "19:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "17:00"
+          }
+        ],
+        "createdAt": "2026-09-28T04:53:24.573Z",
+        "updatedAt": "2026-09-28T04:53:24.573Z"
+      }
     }
   },
   "website": {
@@ -752,6 +1102,24 @@
       "seoDescription": "Independent lifestyle & home goods shop in San Francisco, CA.",
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    "site_sloaneco": {
+      "restaurantId": "site_sloaneco",
+      "publishStatus": "published",
+      "publishedAt": "2026-09-27T12:27:57.917Z",
+      "seoTitle": "Sloane & Co. Salon | Hair, Nails & Skin in Austin, TX",
+      "seoDescription": "Full-service hair salon on South Lamar in Austin, TX - cuts, balayage, blowouts, nails and facials. Book online.",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    "site_fernwood": {
+      "restaurantId": "site_fernwood",
+      "publishStatus": "published",
+      "publishedAt": "2026-09-28T04:53:24.573Z",
+      "seoTitle": "Fernwood Coffee Co. | Coffee Shop in Fremont, Seattle",
+      "seoDescription": "Small-batch roasted coffee, pastries and order-ahead pickup in Fremont, Seattle, WA.",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   },
   "homepage": {
@@ -1974,6 +2342,674 @@
           }
         ]
       }
+    },
+    "site_sloaneco": {
+      "draft": {
+        "restaurantId": "site_sloaneco",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_sloaneco_hero",
+            "restaurantId": "site_sloaneco",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "content": {
+              "eyebrow": "South Lamar · Austin, TX",
+              "heading": "Sloane & Co. Salon",
+              "description": "Expert cuts, lived-in color, flawless nails and glowing skin - book your stylist online in under a minute.",
+              "buttonText": "Book an Appointment",
+              "buttonLink": "#/reservations",
+              "secondaryButtonText": "View Services",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_sc_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Great hair, zero attitude.",
+              "description": "Sloane & Co. is a full-service salon on South Lamar - hair, color, nails and skin under one roof. Every visit starts with a real consultation, so you leave with a look that fits your life, not just your feed.",
+              "imageMediaId": "media_sc_about",
+              "quote": "You should feel like the best version of you when you walk out our door.",
+              "chefName": "Sloane Mitchell, Founder",
+              "chefQuote": "I opened Sloane & Co. to build the salon I always wanted to work in - warm, inclusive and obsessed with the details.",
+              "chefBio": "A licensed cosmetologist with 15 years behind the chair in Dallas and Los Angeles, Sloane opened her Austin studio in 2018. Today her team of 12 stylists, nail artists and estheticians looks after more than 4,000 guests a year.",
+              "chefImageMediaId": "media_sc_founder"
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Booked",
+              "heading": "Signature Services",
+              "description": "The appointments our guests book again and again.",
+              "selectedItemIds": [
+                "sc_balayage",
+                "sc_blowout",
+                "sc_womens_cut",
+                "sc_gel_mani"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "The Lookbook",
+              "heading": "Fresh From the Chair",
+              "description": "Real guests, real results - follow along @sloaneandco.",
+              "images": [
+                {
+                  "mediaId": "media_sc_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_sc_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_sc_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_sc_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_sc_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_sc_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Salon Specials",
+              "description": "A little extra for new and returning guests.",
+              "selectedOfferIds": [
+                "offer_sc_newclient",
+                "offer_sc_blowout"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "5-Star Reviews",
+              "heading": "What Our Guests Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_sc_1",
+                  "customerName": "Madison T.",
+                  "quote": "Best balayage I have ever had - soft, natural and it grew out beautifully. I drive in from Round Rock for it.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_sc_2",
+                  "customerName": "Jasmine W.",
+                  "quote": "Finally a salon that really knows curly hair. My curl cut was life-changing.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_sc_3",
+                  "customerName": "Ashley R.",
+                  "quote": "Booked online in two minutes, got a mimosa and the cutest gel mani. Obsessed.",
+                  "rating": 5,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Visit the Salon",
+              "showHoursTable": true
+            }
+          }
+        ]
+      },
+      "published": {
+        "restaurantId": "site_sloaneco",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_sloaneco_hero",
+            "restaurantId": "site_sloaneco",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "content": {
+              "eyebrow": "South Lamar · Austin, TX",
+              "heading": "Sloane & Co. Salon",
+              "description": "Expert cuts, lived-in color, flawless nails and glowing skin - book your stylist online in under a minute.",
+              "buttonText": "Book an Appointment",
+              "buttonLink": "#/reservations",
+              "secondaryButtonText": "View Services",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_sc_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Great hair, zero attitude.",
+              "description": "Sloane & Co. is a full-service salon on South Lamar - hair, color, nails and skin under one roof. Every visit starts with a real consultation, so you leave with a look that fits your life, not just your feed.",
+              "imageMediaId": "media_sc_about",
+              "quote": "You should feel like the best version of you when you walk out our door.",
+              "chefName": "Sloane Mitchell, Founder",
+              "chefQuote": "I opened Sloane & Co. to build the salon I always wanted to work in - warm, inclusive and obsessed with the details.",
+              "chefBio": "A licensed cosmetologist with 15 years behind the chair in Dallas and Los Angeles, Sloane opened her Austin studio in 2018. Today her team of 12 stylists, nail artists and estheticians looks after more than 4,000 guests a year.",
+              "chefImageMediaId": "media_sc_founder"
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Booked",
+              "heading": "Signature Services",
+              "description": "The appointments our guests book again and again.",
+              "selectedItemIds": [
+                "sc_balayage",
+                "sc_blowout",
+                "sc_womens_cut",
+                "sc_gel_mani"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "The Lookbook",
+              "heading": "Fresh From the Chair",
+              "description": "Real guests, real results - follow along @sloaneandco.",
+              "images": [
+                {
+                  "mediaId": "media_sc_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_sc_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_sc_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_sc_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_sc_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_sc_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Salon Specials",
+              "description": "A little extra for new and returning guests.",
+              "selectedOfferIds": [
+                "offer_sc_newclient",
+                "offer_sc_blowout"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "5-Star Reviews",
+              "heading": "What Our Guests Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_sc_1",
+                  "customerName": "Madison T.",
+                  "quote": "Best balayage I have ever had - soft, natural and it grew out beautifully. I drive in from Round Rock for it.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_sc_2",
+                  "customerName": "Jasmine W.",
+                  "quote": "Finally a salon that really knows curly hair. My curl cut was life-changing.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_sc_3",
+                  "customerName": "Ashley R.",
+                  "quote": "Booked online in two minutes, got a mimosa and the cutest gel mani. Obsessed.",
+                  "rating": 5,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_sloaneco",
+            "updatedAt": "2026-09-27T12:27:57.917Z",
+            "id": "section_site_sloaneco_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Visit the Salon",
+              "showHoursTable": true
+            }
+          }
+        ]
+      }
+    },
+    "site_fernwood": {
+      "draft": {
+        "restaurantId": "site_fernwood",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_fernwood_hero",
+            "restaurantId": "site_fernwood",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "content": {
+              "eyebrow": "Fremont · Seattle, WA",
+              "heading": "Fernwood Coffee Co.",
+              "description": "Small-batch roasted coffee, fresh-baked pastries and a room built for staying a while - order ahead for pickup.",
+              "buttonText": "Order Ahead",
+              "buttonLink": "#/menu",
+              "secondaryButtonText": "View Menu",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_fw_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Good coffee, made for staying a while.",
+              "description": "Fernwood Coffee Co. roasts small batches every week and pours them in a room built for lingering - laptops, book clubs and long catch-ups all welcome.",
+              "imageMediaId": "media_fw_about",
+              "quote": "A great cup starts with the beans, but a great cafe is built on the room around it.",
+              "chefName": "Owen Castillo, Founder",
+              "chefQuote": "I wanted a shop where the barista remembers your order and nobody rushes you out the door.",
+              "chefBio": "A former line cook turned coffee obsessive, Owen opened Fernwood in Fremont in 2017 after two years of pulling shots on weekends to learn the craft. The shop now roasts its own house blend on-site every week.",
+              "chefImageMediaId": "media_fw_founder"
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Ordered",
+              "heading": "Customer Favorites",
+              "description": "What our regulars order on repeat.",
+              "selectedItemIds": [
+                "fw_latte",
+                "fw_iced_latte",
+                "fw_pourover",
+                "fw_cinnamon_roll"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "The Shop",
+              "heading": "Life at Fernwood",
+              "description": "Regulars, laptops, and a lot of coffee - every day of the week.",
+              "images": [
+                {
+                  "mediaId": "media_fw_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_fw_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_fw_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_fw_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_fw_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_fw_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "This Week",
+              "heading": "Current Offers",
+              "description": "A little something extra for new and regular faces.",
+              "selectedOfferIds": [
+                "offer_fw_newcustomer",
+                "offer_fw_pastry"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Regulars Say",
+              "heading": "What Our Customers Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_fw_1",
+                  "customerName": "Grace L.",
+                  "quote": "My order is ready by the time I get to the counter. Best mobile ordering of any shop in the neighborhood.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_fw_2",
+                  "customerName": "Marcus T.",
+                  "quote": "The pour-over program is legit - always a different, well-explained single-origin on the board.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_fw_3",
+                  "customerName": "Ines P.",
+                  "quote": "I work from here twice a week. Good wifi, better cinnamon rolls, and nobody ever rushes you out.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Find the Shop",
+              "showHoursTable": true
+            }
+          }
+        ]
+      },
+      "published": {
+        "restaurantId": "site_fernwood",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_fernwood_hero",
+            "restaurantId": "site_fernwood",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "content": {
+              "eyebrow": "Fremont · Seattle, WA",
+              "heading": "Fernwood Coffee Co.",
+              "description": "Small-batch roasted coffee, fresh-baked pastries and a room built for staying a while - order ahead for pickup.",
+              "buttonText": "Order Ahead",
+              "buttonLink": "#/menu",
+              "secondaryButtonText": "View Menu",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_fw_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Good coffee, made for staying a while.",
+              "description": "Fernwood Coffee Co. roasts small batches every week and pours them in a room built for lingering - laptops, book clubs and long catch-ups all welcome.",
+              "imageMediaId": "media_fw_about",
+              "quote": "A great cup starts with the beans, but a great cafe is built on the room around it.",
+              "chefName": "Owen Castillo, Founder",
+              "chefQuote": "I wanted a shop where the barista remembers your order and nobody rushes you out the door.",
+              "chefBio": "A former line cook turned coffee obsessive, Owen opened Fernwood in Fremont in 2017 after two years of pulling shots on weekends to learn the craft. The shop now roasts its own house blend on-site every week.",
+              "chefImageMediaId": "media_fw_founder"
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Ordered",
+              "heading": "Customer Favorites",
+              "description": "What our regulars order on repeat.",
+              "selectedItemIds": [
+                "fw_latte",
+                "fw_iced_latte",
+                "fw_pourover",
+                "fw_cinnamon_roll"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "The Shop",
+              "heading": "Life at Fernwood",
+              "description": "Regulars, laptops, and a lot of coffee - every day of the week.",
+              "images": [
+                {
+                  "mediaId": "media_fw_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_fw_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_fw_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_fw_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_fw_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_fw_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "This Week",
+              "heading": "Current Offers",
+              "description": "A little something extra for new and regular faces.",
+              "selectedOfferIds": [
+                "offer_fw_newcustomer",
+                "offer_fw_pastry"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Regulars Say",
+              "heading": "What Our Customers Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_fw_1",
+                  "customerName": "Grace L.",
+                  "quote": "My order is ready by the time I get to the counter. Best mobile ordering of any shop in the neighborhood.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_fw_2",
+                  "customerName": "Marcus T.",
+                  "quote": "The pour-over program is legit - always a different, well-explained single-origin on the board.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_fw_3",
+                  "customerName": "Ines P.",
+                  "quote": "I work from here twice a week. Good wifi, better cinnamon rolls, and nobody ever rushes you out.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_fernwood",
+            "updatedAt": "2026-09-28T04:53:24.573Z",
+            "id": "section_site_fernwood_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Find the Shop",
+              "showHoursTable": true
+            }
+          }
+        ]
+      }
     }
   },
   "media": [
@@ -2340,6 +3376,292 @@
       "folder": "images",
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "media_sc_hero",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=1800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-sloane-co-salon-floor.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The Sloane & Co. salon floor",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_about",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1626383137804-ff908d2753a2?w=1600&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "inside-sloane-co-on-south-lamar.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Inside Sloane & Co. on South Lamar",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_founder",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "founder-sloane-mitchell.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Founder Sloane Mitchell",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_offer",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "a-signature-blowout.jpg",
+      "fileSizeBytes": 0,
+      "altText": "A signature blowout",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_offer2",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-sloane-co-stylists.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The Sloane & Co. stylists",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_g1",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "sun-kissed-balayage.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Sun-kissed balayage",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_g2",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1617391654484-2894196c2cc9?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "foil-highlights-in-progress.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Foil highlights in progress",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_g3",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "tortoiseshell-gel-nails.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Tortoiseshell gel nails",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_g4",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "bridal-updo.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Bridal updo",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_g5",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "lavender-vivid-color.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Lavender vivid color",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_sc_g6",
+      "restaurantId": "site_sloaneco",
+      "fileUrl": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "signature-facial.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Signature facial",
+      "folder": "images",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "media_fw_hero",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-fernwood-coffee-co-counter-and-dining-room.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The Fernwood Coffee Co. counter and dining room",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_about",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1600&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "inside-fernwood-coffee-co-.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Inside Fernwood Coffee Co.",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_founder",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "founder-owen-castillo.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Founder Owen Castillo",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_offer",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "friends-sharing-a-round-of-lattes.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Friends sharing a round of lattes",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_offer2",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "fresh-baked-cinnamon-rolls.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Fresh-baked cinnamon rolls",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_g1",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "regulars-working-from-the-community-table.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Regulars working from the community table",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_g2",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "steamed-milk-poured-into-a-latte.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Steamed milk poured into a latte",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_g3",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-window-reading-nook.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The window reading nook",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_g4",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-plant-filled-dining-room.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The plant-filled dining room",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_g5",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "regulars-catching-up-over-coffee.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Regulars catching up over coffee",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_fw_g6",
+      "restaurantId": "site_fernwood",
+      "fileUrl": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "a-single-origin-pour-over-in-progress.jpg",
+      "fileSizeBytes": 0,
+      "altText": "A single-origin pour-over in progress",
+      "folder": "images",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "categories": [
@@ -2482,6 +3804,116 @@
       "deletedAt": null,
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "cat_sc_cut_style",
+      "restaurantId": "site_sloaneco",
+      "name": "Cut & Style",
+      "displayOrder": 0,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "cat_sc_color",
+      "restaurantId": "site_sloaneco",
+      "name": "Color",
+      "displayOrder": 1,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "cat_sc_treatments",
+      "restaurantId": "site_sloaneco",
+      "name": "Treatments",
+      "displayOrder": 2,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "cat_sc_nails",
+      "restaurantId": "site_sloaneco",
+      "name": "Nails",
+      "displayOrder": 3,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "cat_sc_skin_brows",
+      "restaurantId": "site_sloaneco",
+      "name": "Skin & Brows",
+      "displayOrder": 4,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "cat_fw_espresso_bar",
+      "restaurantId": "site_fernwood",
+      "name": "Espresso Bar",
+      "displayOrder": 0,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "cat_fw_drip_pour_over",
+      "restaurantId": "site_fernwood",
+      "name": "Drip & Pour-Over",
+      "displayOrder": 1,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "cat_fw_cold_iced",
+      "restaurantId": "site_fernwood",
+      "name": "Cold & Iced",
+      "displayOrder": 2,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "cat_fw_pastries_bakery",
+      "restaurantId": "site_fernwood",
+      "name": "Pastries & Bakery",
+      "displayOrder": 3,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "cat_fw_breakfast",
+      "restaurantId": "site_fernwood",
+      "name": "Breakfast",
+      "displayOrder": 4,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "cat_fw_beans_merch",
+      "restaurantId": "site_fernwood",
+      "name": "Beans & Merch",
+      "displayOrder": 5,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "items": [
@@ -3231,6 +4663,908 @@
       "deletedAt": null,
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "sc_womens_cut",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_cut_style",
+      "name": "Women's Cut & Style",
+      "description": "A consultation, relaxing shampoo, precision cut and a finished blowout tailored to your texture.",
+      "price": 85,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 60,
+      "rating": 4.9,
+      "reviewCount": 412,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 0,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_blowout",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_cut_style",
+      "name": "Signature Blowout",
+      "description": "Wash, scalp massage and a smooth, bouncy blowout that lasts for days. Straight, waves or volume - your call.",
+      "price": 55,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1562322140-8baeececf3df?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Bestseller"
+      ],
+      "prepTimeMinutes": 45,
+      "rating": 4.9,
+      "reviewCount": 538,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 1,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_mens_cut",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_cut_style",
+      "name": "Men's Cut",
+      "description": "Clipper or scissor cut with a hot-towel finish and styling advice for at home.",
+      "price": 45,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 30,
+      "rating": 4.8,
+      "reviewCount": 267,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 2,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_event_style",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_cut_style",
+      "name": "Bridal & Event Styling",
+      "description": "Updos, polished waves or a sleek pony for weddings, proms and big nights. Trials available.",
+      "price": 150,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Premium"
+      ],
+      "prepTimeMinutes": 90,
+      "rating": 5,
+      "reviewCount": 76,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 3,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_fade",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_cut_style",
+      "name": "Skin Fade & Beard Trim",
+      "description": "A crisp fade, sharp line-up and a sculpted beard - finished with a straight-razor edge.",
+      "price": 55,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 45,
+      "rating": 4.9,
+      "reviewCount": 189,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 4,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_curl_cut",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_cut_style",
+      "name": "Curl Cut & Define",
+      "description": "A dry, curl-by-curl cut for waves, curls and coils, finished with a hydrating define routine.",
+      "price": 110,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "New"
+      ],
+      "prepTimeMinutes": 75,
+      "rating": 5,
+      "reviewCount": 94,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 5,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_balayage",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_color",
+      "name": "Balayage",
+      "description": "Hand-painted, sun-kissed dimension with a toning gloss - soft grow-out, low maintenance.",
+      "price": 250,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 180,
+      "rating": 4.9,
+      "reviewCount": 321,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 6,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_highlights",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_color",
+      "name": "Full Highlights",
+      "description": "Foil highlights from root to ends for bright, even dimension, finished with a blowout.",
+      "price": 185,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1617391654484-2894196c2cc9?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 150,
+      "rating": 4.8,
+      "reviewCount": 204,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 7,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_vivid",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_color",
+      "name": "Vivid Fashion Color",
+      "description": "Lavender, rose gold, copper or teal - bold, custom color with bond protection built in.",
+      "price": 220,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 180,
+      "rating": 4.9,
+      "reviewCount": 58,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 8,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_gloss",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_color",
+      "name": "Root Touch-Up & Gloss",
+      "description": "Single-process color at the root plus a shine-boosting gloss to refresh your ends.",
+      "price": 95,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1560869713-7d0a29430803?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 90,
+      "rating": 4.8,
+      "reviewCount": 176,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 9,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_bond_repair",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_treatments",
+      "name": "Bond-Repair Treatment",
+      "description": "A deep-conditioning ritual that rebuilds strength in color-treated or heat-styled hair.",
+      "price": 45,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 30,
+      "rating": 4.7,
+      "reviewCount": 143,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 10,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_keratin",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_treatments",
+      "name": "Keratin Smoothing Treatment",
+      "description": "Cuts frizz and blow-dry time for up to 12 weeks - made for humid Texas summers.",
+      "price": 300,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 150,
+      "rating": 4.8,
+      "reviewCount": 112,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 11,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_gel_mani",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_nails",
+      "name": "Gel Manicure",
+      "description": "Shaping, cuticle care and a chip-resistant gel color that stays glossy for two weeks.",
+      "price": 50,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 45,
+      "rating": 4.9,
+      "reviewCount": 298,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 12,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_classic_mani",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_nails",
+      "name": "Classic Manicure",
+      "description": "Soak, shape, cuticle care, a hand massage and your choice of polish.",
+      "price": 35,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 30,
+      "rating": 4.7,
+      "reviewCount": 187,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 13,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_dip",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_nails",
+      "name": "Dip Powder Manicure",
+      "description": "Lightweight, long-wearing dip color in a natural finish - no UV lamp needed.",
+      "price": 55,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 50,
+      "rating": 4.8,
+      "reviewCount": 121,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 14,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_pedicure",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_nails",
+      "name": "Spa Pedicure",
+      "description": "A warm soak, sugar scrub, callus care, massage and polish - pure relaxation.",
+      "price": 65,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 60,
+      "rating": 4.9,
+      "reviewCount": 233,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 15,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_nail_art",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_nails",
+      "name": "Custom Nail Art",
+      "description": "Hand-painted designs, chrome, French tips or accents - add it to any manicure.",
+      "price": 20,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 20,
+      "rating": 4.8,
+      "reviewCount": 88,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 16,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_facial",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_skin_brows",
+      "name": "Signature Facial",
+      "description": "Cleanse, exfoliation, extractions and a custom mask, matched to your skin by a licensed esthetician.",
+      "price": 120,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "prepTimeMinutes": 60,
+      "rating": 4.9,
+      "reviewCount": 164,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 17,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_glow_facial",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_skin_brows",
+      "name": "Hydrating Glow Facial",
+      "description": "Deep hydration and a gentle peel for red-carpet radiance - zero downtime.",
+      "price": 165,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 75,
+      "rating": 5,
+      "reviewCount": 71,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 18,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_brows",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_skin_brows",
+      "name": "Brow Shape & Tint",
+      "description": "Custom mapping, wax and tweeze, then a tint to frame your face.",
+      "price": 40,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1552693673-1bf958298935?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 30,
+      "rating": 4.8,
+      "reviewCount": 209,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 19,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "sc_makeup",
+      "restaurantId": "site_sloaneco",
+      "categoryId": "cat_sc_skin_brows",
+      "name": "Event Makeup",
+      "description": "Soft glam or full glam for photos, parties and weddings, lashes included.",
+      "price": 95,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "prepTimeMinutes": 60,
+      "rating": 4.9,
+      "reviewCount": 97,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 20,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "fw_cappuccino",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_espresso_bar",
+      "name": "Cappuccino",
+      "description": "Double shot with steamed milk and a deep layer of microfoam.",
+      "price": 4.75,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "rating": 4.8,
+      "reviewCount": 312,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 0,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_latte",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_espresso_bar",
+      "name": "Cafe Latte",
+      "description": "Espresso with steamed milk, poured with a little latte art.",
+      "price": 5.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1497636577773-f1231844b336?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 289,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 1,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_oat_latte",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_espresso_bar",
+      "name": "Oat Milk Latte",
+      "description": "Our house latte made with creamy, barista-blend oat milk.",
+      "price": 5.75,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1495774856032-8b90bbb32b32?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "New"
+      ],
+      "rating": 4.9,
+      "reviewCount": 104,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 2,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_espresso",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_espresso_bar",
+      "name": "Espresso Shot",
+      "description": "A double shot of our house blend, pulled to order.",
+      "price": 3.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1506372023823-741c83b836fe?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 96,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 3,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_seasonal_latte",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_espresso_bar",
+      "name": "Seasonal Spice Latte",
+      "description": "A rotating seasonal syrup with espresso, steamed milk and a dusting of spice.",
+      "price": 6.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1518057111178-44a106bad636?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "New"
+      ],
+      "rating": 4.9,
+      "reviewCount": 61,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 4,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_drip",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_drip_pour_over",
+      "name": "House Drip Coffee",
+      "description": "Our house blend, brewed fresh throughout the day. Ask what is on.",
+      "price": 3.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1503481766315-7a586b20f66d?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.6,
+      "reviewCount": 218,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 5,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_pourover",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_drip_pour_over",
+      "name": "Single-Origin Pour-Over",
+      "description": "A rotating single-origin, brewed by hand, one cup at a time.",
+      "price": 5.5,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "rating": 4.9,
+      "reviewCount": 133,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 6,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_iced_coffee",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_cold_iced",
+      "name": "Iced Coffee",
+      "description": "Our house blend, brewed double-strength and served over ice.",
+      "price": 4.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 176,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 7,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_iced_latte",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_cold_iced",
+      "name": "Iced Latte",
+      "description": "Espresso and cold milk over ice, poured in layers.",
+      "price": 5.5,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Bestseller"
+      ],
+      "rating": 4.9,
+      "reviewCount": 244,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 8,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_croissant",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_pastries_bakery",
+      "name": "Butter Croissant",
+      "description": "Baked fresh each morning, all-butter and flaky.",
+      "price": 4.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "rating": 4.8,
+      "reviewCount": 157,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 9,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_cinnamon_roll",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_pastries_bakery",
+      "name": "Cinnamon Roll",
+      "description": "A warm, oversized roll with brown-butter icing.",
+      "price": 4.75,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Bestseller"
+      ],
+      "rating": 4.9,
+      "reviewCount": 201,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 10,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_cookie",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_pastries_bakery",
+      "name": "Chocolate Chip Cookie",
+      "description": "Thick, chewy and baked in small batches every day.",
+      "price": 3.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 142,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 11,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_chocolate_box",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_pastries_bakery",
+      "name": "Chocolate Truffle Box (6pc)",
+      "description": "A gift box of hand-rolled truffles from a Seattle chocolatier.",
+      "price": 14,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1481391319762-47dff72954d9?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 39,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 12,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_avocado_toast",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_breakfast",
+      "name": "Avocado Toast",
+      "description": "Sourdough, smashed avocado, a fried egg and chili flake.",
+      "price": 9.5,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "rating": 4.8,
+      "reviewCount": 118,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 13,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_beans_whole",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_beans_merch",
+      "name": "Whole Bean Coffee, 12oz Bag",
+      "description": "Our house blend, roasted weekly - take the shop home with you.",
+      "price": 16,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1524350876685-274059332603?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.9,
+      "reviewCount": 84,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 14,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "fw_beans_ground",
+      "restaurantId": "site_fernwood",
+      "categoryId": "cat_fw_beans_merch",
+      "name": "Ground Coffee, 12oz Bag",
+      "description": "Same house blend, ground for drip - ready to brew at home.",
+      "price": 16,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1509785307050-d4066910ec1e?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 52,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 15,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "addons": [
@@ -3475,6 +5809,79 @@
       "imageMediaId": "media_ng_g1",
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "offer_sc_newclient",
+      "restaurantId": "site_sloaneco",
+      "name": "New Client Welcome",
+      "type": "percentage",
+      "discountValue": 20,
+      "startDate": "2026-09-27T12:27:57.917Z",
+      "endDate": "2026-11-26T12:27:57.935Z",
+      "isActive": true,
+      "appliesToItemIds": [],
+      "appliesToCategoryIds": [
+        "cat_sc_cut_style",
+        "cat_sc_color"
+      ],
+      "cta": "Book Your First Visit",
+      "imageMediaId": "media_sc_offer2",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "offer_sc_blowout",
+      "restaurantId": "site_sloaneco",
+      "name": "Blowout Wednesdays",
+      "type": "fixed",
+      "discountValue": 10,
+      "startDate": "2026-09-27T12:27:57.917Z",
+      "endDate": "2026-11-11T12:27:57.937Z",
+      "isActive": true,
+      "appliesToItemIds": [
+        "sc_blowout"
+      ],
+      "appliesToCategoryIds": [],
+      "cta": "Book a Blowout",
+      "imageMediaId": "media_sc_offer",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "offer_fw_newcustomer",
+      "restaurantId": "site_fernwood",
+      "name": "New Customer Welcome",
+      "type": "percentage",
+      "discountValue": 15,
+      "startDate": "2026-09-28T04:53:24.573Z",
+      "endDate": "2026-11-27T04:53:24.581Z",
+      "isActive": true,
+      "appliesToItemIds": [],
+      "appliesToCategoryIds": [
+        "cat_fw_espresso_bar"
+      ],
+      "cta": "Order Now",
+      "imageMediaId": "media_fw_offer",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "offer_fw_pastry",
+      "restaurantId": "site_fernwood",
+      "name": "Pastry with Any Drink",
+      "type": "fixed",
+      "discountValue": 1,
+      "startDate": "2026-09-28T04:53:24.573Z",
+      "endDate": "2026-10-28T04:53:24.581Z",
+      "isActive": true,
+      "appliesToItemIds": [],
+      "appliesToCategoryIds": [
+        "cat_fw_pastries_bakery"
+      ],
+      "cta": "Grab a Pastry",
+      "imageMediaId": "media_fw_offer2",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "orders": [
@@ -4679,6 +7086,144 @@
         }
       ],
       "blockedDates": []
+    },
+    "site_sloaneco": {
+      "restaurantId": "site_sloaneco",
+      "days": [
+        {
+          "day": "mon",
+          "isClosed": true,
+          "openTime": "09:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 3,
+          "slots": []
+        },
+        {
+          "day": "tue",
+          "isClosed": false,
+          "openTime": "09:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 3,
+          "slots": []
+        },
+        {
+          "day": "wed",
+          "isClosed": false,
+          "openTime": "09:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 3,
+          "slots": []
+        },
+        {
+          "day": "thu",
+          "isClosed": false,
+          "openTime": "09:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 3,
+          "slots": []
+        },
+        {
+          "day": "fri",
+          "isClosed": false,
+          "openTime": "09:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 3,
+          "slots": []
+        },
+        {
+          "day": "sat",
+          "isClosed": false,
+          "openTime": "09:00",
+          "closeTime": "18:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 3,
+          "slots": []
+        },
+        {
+          "day": "sun",
+          "isClosed": false,
+          "openTime": "10:00",
+          "closeTime": "16:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 3,
+          "slots": []
+        }
+      ],
+      "blockedDates": []
+    },
+    "site_fernwood": {
+      "restaurantId": "site_fernwood",
+      "days": [
+        {
+          "day": "mon",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "18:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 6,
+          "slots": []
+        },
+        {
+          "day": "tue",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "18:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 6,
+          "slots": []
+        },
+        {
+          "day": "wed",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "18:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 6,
+          "slots": []
+        },
+        {
+          "day": "thu",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "18:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 6,
+          "slots": []
+        },
+        {
+          "day": "fri",
+          "isClosed": false,
+          "openTime": "06:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 6,
+          "slots": []
+        },
+        {
+          "day": "sat",
+          "isClosed": false,
+          "openTime": "07:00",
+          "closeTime": "19:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 6,
+          "slots": []
+        },
+        {
+          "day": "sun",
+          "isClosed": false,
+          "openTime": "07:00",
+          "closeTime": "17:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 6,
+          "slots": []
+        }
+      ],
+      "blockedDates": []
     }
   },
   "pageConfigs": [
@@ -4857,6 +7402,94 @@
       "templateVariant": "c",
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "pageconfig_site_sloaneco_items",
+      "restaurantId": "site_sloaneco",
+      "module": "items",
+      "enabled": true,
+      "navLabel": "Services",
+      "order": 0,
+      "templateVariant": "a",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "pageconfig_site_sloaneco_catalog",
+      "restaurantId": "site_sloaneco",
+      "module": "catalog",
+      "enabled": false,
+      "navLabel": "Shop",
+      "order": 1,
+      "templateVariant": "a",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "pageconfig_site_sloaneco_booking",
+      "restaurantId": "site_sloaneco",
+      "module": "booking",
+      "enabled": true,
+      "navLabel": "Book Now",
+      "order": 2,
+      "templateVariant": "c",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "pageconfig_site_sloaneco_membership",
+      "restaurantId": "site_sloaneco",
+      "module": "membership",
+      "enabled": true,
+      "navLabel": "Memberships",
+      "order": 3,
+      "templateVariant": "c",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "pageconfig_site_fernwood_items",
+      "restaurantId": "site_fernwood",
+      "module": "items",
+      "enabled": true,
+      "navLabel": "Menu",
+      "order": 0,
+      "templateVariant": "a",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "pageconfig_site_fernwood_catalog",
+      "restaurantId": "site_fernwood",
+      "module": "catalog",
+      "enabled": true,
+      "navLabel": "Order Ahead",
+      "order": 1,
+      "templateVariant": "a",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "pageconfig_site_fernwood_booking",
+      "restaurantId": "site_fernwood",
+      "module": "booking",
+      "enabled": false,
+      "navLabel": "Reserve a Table",
+      "order": 2,
+      "templateVariant": "a",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "pageconfig_site_fernwood_membership",
+      "restaurantId": "site_fernwood",
+      "module": "membership",
+      "enabled": true,
+      "navLabel": "Rewards",
+      "order": 3,
+      "templateVariant": "a",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "membershipPlans": [
@@ -4991,6 +7624,91 @@
       "order": 1,
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "plan_sloaneco_blowout",
+      "restaurantId": "site_sloaneco",
+      "name": "Blowout Club",
+      "description": "Salon-fresh hair, every single week.",
+      "priceCents": 16900,
+      "billingInterval": "monthly",
+      "benefits": [
+        "4 signature blowouts a month",
+        "Priority weekend booking",
+        "10% off take-home haircare"
+      ],
+      "isActive": true,
+      "order": 0,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "plan_sloaneco_glow",
+      "restaurantId": "site_sloaneco",
+      "name": "Glow Membership",
+      "description": "A monthly facial and a little extra for your skin.",
+      "priceCents": 11900,
+      "billingInterval": "monthly",
+      "benefits": [
+        "1 signature facial a month",
+        "Complimentary brow tidy",
+        "15% off add-on services"
+      ],
+      "isActive": true,
+      "order": 1,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "plan_sloaneco_vip",
+      "restaurantId": "site_sloaneco",
+      "name": "Sloane VIP",
+      "description": "Our best perks, all year long.",
+      "priceCents": 29900,
+      "billingInterval": "yearly",
+      "benefits": [
+        "$25 birthday credit",
+        "Early access to new stylists & services",
+        "Free bond-repair add-on with every color"
+      ],
+      "isActive": true,
+      "order": 2,
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "plan_fernwood_rewards",
+      "restaurantId": "site_fernwood",
+      "name": "Fernwood Rewards",
+      "description": "Free to join - earn a point on every order.",
+      "priceCents": 0,
+      "billingInterval": "one_time",
+      "benefits": [
+        "1 point per $1 spent",
+        "Free drink at 100 points",
+        "Birthday drink on us"
+      ],
+      "isActive": true,
+      "order": 0,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "plan_fernwood_subscriber",
+      "restaurantId": "site_fernwood",
+      "name": "Coffee Subscriber",
+      "description": "A bag of house-roast beans, delivered monthly, plus in-shop perks.",
+      "priceCents": 1800,
+      "billingInterval": "monthly",
+      "benefits": [
+        "12oz bag of beans every month",
+        "10% off in-shop orders",
+        "Early access to seasonal roasts"
+      ],
+      "isActive": true,
+      "order": 1,
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "members": [
@@ -5107,6 +7825,32 @@
       "sslStatus": "issued",
       "createdAt": "2026-09-26T07:31:37.106Z",
       "updatedAt": "2026-09-26T07:31:37.106Z"
+    },
+    {
+      "id": "domain_site_sloaneco_platform",
+      "restaurantId": "site_sloaneco",
+      "type": "platform_subdomain",
+      "hostname": "sloane-and-co.ourplatform.com",
+      "recordType": "CNAME",
+      "recordName": "@",
+      "recordValue": "sloane-and-co.ourplatform.com",
+      "verificationStatus": "verified",
+      "sslStatus": "issued",
+      "createdAt": "2026-09-27T12:27:57.917Z",
+      "updatedAt": "2026-09-27T12:27:57.917Z"
+    },
+    {
+      "id": "domain_site_fernwood_platform",
+      "restaurantId": "site_fernwood",
+      "type": "platform_subdomain",
+      "hostname": "fernwood-coffee.ourplatform.com",
+      "recordType": "CNAME",
+      "recordName": "@",
+      "recordValue": "fernwood-coffee.ourplatform.com",
+      "verificationStatus": "verified",
+      "sslStatus": "issued",
+      "createdAt": "2026-09-28T04:53:24.573Z",
+      "updatedAt": "2026-09-28T04:53:24.573Z"
     }
   ],
   "pageContent": {
@@ -5123,6 +7867,14 @@
       "published": {}
     },
     "site_novagoods": {
+      "draft": {},
+      "published": {}
+    },
+    "site_sloaneco": {
+      "draft": {},
+      "published": {}
+    },
+    "site_fernwood": {
       "draft": {},
       "published": {}
     }

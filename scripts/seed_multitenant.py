@@ -113,7 +113,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--apply',action='store_true');args=parser.parse_args()
     fixture=json.loads(Path(__file__).with_name('demo_data.json').read_text())
     if not args.apply:
-        print('DRY RUN: isolated staging only; four sites, four independent organizations; existing content is not overwritten. Use --apply to seed.')
+        print('DRY RUN: isolated staging only; six sites, six independent organizations; existing content is not overwritten. Use --apply to seed.')
     else:
         os.environ['ASTRYD_ENV']='staging'
         from wsgi import app

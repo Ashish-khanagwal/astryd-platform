@@ -12,7 +12,18 @@ DEFAULTS = {
     'restaurant': [('Menu', True), ('Online Order', True), ('Reservations', True), ('Membership', False)],
     'gym': [('Programs', True), ('Shop', False), ('Classes', True), ('Membership', True)],
     'retail': [('Products', True), ('Online Order', True), ('Appointments', False), ('Loyalty', True)],
+    'salon': [('Services', True), ('Shop', False), ('Book Now', True), ('Memberships', True)],
+    'coffee': [('Menu', True), ('Order Ahead', True), ('Reserve a Table', False), ('Rewards', True)],
 }
+# Starting layout per module (items, catalog, booking, membership); owners can switch any of them later.
+TEMPLATE_VARIANTS = {
+    'restaurant': ('a', 'a', 'a', 'a'),
+    'gym': ('b', 'b', 'b', 'b'),
+    'retail': ('c', 'c', 'c', 'c'),
+    'salon': ('a', 'a', 'c', 'c'),
+    'coffee': ('a', 'a', 'a', 'a'),
+}
+THEME_PRESETS = {'dusty-gold', 'emerald', 'burgundy', 'sapphire', 'rosewood', 'espresso'}
 PERMISSIONS = ('menu', 'branding', 'homepage', 'media', 'offers', 'addons', 'settings', 'users', 'booking', 'membership')
 
 
@@ -42,13 +53,13 @@ def password(value):
 def validate_site(body):
     vertical = body.get('vertical')
     if vertical not in DEFAULTS:
-        raise ValueError('vertical must be restaurant, gym or retail')
+        raise ValueError('vertical must be restaurant, gym, retail, salon or coffee')
     slug = text(body.get('slug'), 'slug', 63).lower()
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug) or slug in {'www', 'api', 'admin', 'app', 'login', 'signup'}:
         raise ValueError('Invalid or reserved subdomain')
     name = text(body.get('siteName', body.get('name')), 'siteName')
     branding = body.get('branding') or {}
-    if not isinstance(branding, dict) or branding.get('themePresetId', 'dusty-gold') not in {'dusty-gold', 'emerald', 'burgundy', 'sapphire'}:
+    if not isinstance(branding, dict) or branding.get('themePresetId', 'dusty-gold') not in THEME_PRESETS:
         raise ValueError('Invalid theme preset')
     modules = body.get('modules')
     if modules is not None:
@@ -73,9 +84,9 @@ def insert_site(db, organization_id, owner_id, body, session, platform_domain):
             'createdAt': timestamp, 'updatedAt': timestamp}
     db.restaurants.insert_one(site, session=session)
     modules = [{k:m[k] for k in ('module','navLabel','enabled')} for m in body['modules']] if body.get('modules') else [dict(module=m, navLabel=label, enabled=enabled) for m, (label, enabled) in zip(MODULES, DEFAULTS[vertical])]
-    variant = {'restaurant': 'a', 'gym': 'b', 'retail': 'c'}[vertical]
-    db.page_configs.insert_many([{'restaurantId': site_id, **m, 'order': n, 'templateVariant': variant,
-                                 'published': {**m, 'order': n, 'templateVariant': variant},
+    variants = dict(zip(MODULES, TEMPLATE_VARIANTS[vertical]))
+    db.page_configs.insert_many([{'restaurantId': site_id, **m, 'order': n, 'templateVariant': variants[m['module']],
+                                 'published': {**m, 'order': n, 'templateVariant': variants[m['module']]},
                                  'createdAt': timestamp, 'updatedAt': timestamp} for n, m in enumerate(modules)], session=session)
     branding = body.get('branding') or {}
     tagline = branding.get('tagline', '')
