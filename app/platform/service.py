@@ -13,6 +13,7 @@ DEFAULTS = {
     'gym': [('Programs', True), ('Shop', False), ('Classes', True), ('Membership', True)],
     'retail': [('Products', True), ('Online Order', True), ('Appointments', False), ('Loyalty', True)],
     'salon': [('Services', True), ('Shop', False), ('Book Now', True), ('Memberships', True)],
+    'coffee': [('Menu', True), ('Order Ahead', True), ('Reserve a Table', False), ('Rewards', True)],
 }
 # Starting layout per module (items, catalog, booking, membership); owners can switch any of them later.
 TEMPLATE_VARIANTS = {
@@ -20,8 +21,9 @@ TEMPLATE_VARIANTS = {
     'gym': ('b', 'b', 'b', 'b'),
     'retail': ('c', 'c', 'c', 'c'),
     'salon': ('a', 'a', 'c', 'c'),
+    'coffee': ('a', 'a', 'a', 'a'),
 }
-THEME_PRESETS = {'dusty-gold', 'emerald', 'burgundy', 'sapphire', 'rosewood'}
+THEME_PRESETS = {'dusty-gold', 'emerald', 'burgundy', 'sapphire', 'rosewood', 'espresso'}
 PERMISSIONS = ('menu', 'branding', 'homepage', 'media', 'offers', 'addons', 'settings', 'users', 'booking', 'membership')
 
 
@@ -51,7 +53,7 @@ def password(value):
 def validate_site(body):
     vertical = body.get('vertical')
     if vertical not in DEFAULTS:
-        raise ValueError('vertical must be restaurant, gym, retail or salon')
+        raise ValueError('vertical must be restaurant, gym, retail, salon or coffee')
     slug = text(body.get('slug'), 'slug', 63).lower()
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug) or slug in {'www', 'api', 'admin', 'app', 'login', 'signup'}:
         raise ValueError('Invalid or reserved subdomain')
