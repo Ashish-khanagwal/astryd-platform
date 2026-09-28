@@ -30,10 +30,11 @@ def tenant_boundary():
   if failure:return failure
 def ensure(r):
  if not mongo.db.homepage_sections.count_documents({"restaurantId":r}):
-  now=datetime.utcnow();mongo.db.homepage_sections.insert_many([{ "restaurantId":r,"type":t,"order":n,"visible":True,"draftContent":{},"publishedContent":{},"updatedAt":now} for n,t in enumerate(TYPES)])
+  now=datetime.utcnow();mongo.db.homepage_sections.insert_many([{ "restaurantId":r,"type":t,"order":n,"visible":True,"templateVariant":"a","publishedTemplateVariant":"a","draftContent":{},"publishedContent":{},"updatedAt":now} for n,t in enumerate(TYPES)])
 def section(d,v):
  x=serialize_doc(d);x["content"]=x.pop("draftContent" if v=="draft" else "publishedContent",{});x.pop("draftContent",None);x.pop("publishedContent",None)
- if v=='published':x['visible']=d.get('publishedVisible',d.get('visible',True));x['order']=d.get('publishedOrder',d.get('order',0))
+ if v=='published':x['visible']=d.get('publishedVisible',d.get('visible',True));x['order']=d.get('publishedOrder',d.get('order',0));x['templateVariant']=d.get('publishedTemplateVariant',d.get('templateVariant','a'))
+ else:x['templateVariant']=d.get('templateVariant','a')
  return x
 @bp.get("/restaurants/<rid>/homepage")
 # @jwt_required()
@@ -57,10 +58,13 @@ def section_put(rid,typ):
  ensure(rid);b=request.get_json(silent=True) or {};u={"updatedAt":datetime.utcnow()}
  if "visible" in b:u["visible"]=b["visible"]
  if "content" in b:u["draftContent"]=b["content"]
+ if "templateVariant" in b:
+  if b["templateVariant"] not in {"a","b","c"}:return jsonify(error="validation_error",message="templateVariant must be a, b or c"),400
+  u["templateVariant"]=b["templateVariant"]
  d=mongo.db.homepage_sections.find_one_and_update({"restaurantId":rid,"type":typ},{"$set":u},return_document=True)
  if not d:return jsonify(error="not_found",message="Section not found"),404
  audit(i,"update","homepage_section",d["_id"],"Updated homepage section",u);return jsonify(section(d,"draft"))
-def defaults():return {"restaurantName":"Lumière","tagline":"","logoMediaId":None,"faviconMediaId":None,"themePresetId":"gold","customPrimaryColor":"#C9A24D","primaryFont":"Inter","headingFont":"Playfair Display","fontWeight":"400","buttonStyle":"rounded","borderRadius":"8px","socialLinks":{},"contact":{},"description":"","cuisineType":"","businessHours":[],"showCart":True}
+def defaults():return {"restaurantName":"Lumière","tagline":"","logoMediaId":None,"faviconMediaId":None,"themePresetId":"gold","customPrimaryColor":"#C9A24D","primaryFont":"Inter","headingFont":"Playfair Display","fontWeight":"400","buttonStyle":"rounded","borderRadius":"8px","socialLinks":{},"contact":{},"description":"","cuisineType":"","businessHours":[],"showCart":True,"headerVariant":"a","footerVariant":"a"}
 @bp.get("/restaurants/<rid>/brand")
 # @jwt_required()
 def brand_get(rid):
@@ -88,7 +92,7 @@ def publish(rid):
  if current_app.config.get('REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH',True) and not i.get('emailVerified',False):return jsonify(error='email_verification_required',message='Verify your email before publishing'),403
  timestamp=datetime.utcnow()
  def commit(session):
-  for d in mongo.db.homepage_sections.find({'restaurantId':rid},session=session):mongo.db.homepage_sections.update_one({'_id':d['_id']},{'$set':{'publishedContent':d.get('draftContent',{}),'publishedVisible':d.get('visible',True),'publishedOrder':d.get('order',0),'updatedAt':timestamp}},session=session)
+  for d in mongo.db.homepage_sections.find({'restaurantId':rid},session=session):mongo.db.homepage_sections.update_one({'_id':d['_id']},{'$set':{'publishedContent':d.get('draftContent',{}),'publishedVisible':d.get('visible',True),'publishedOrder':d.get('order',0),'publishedTemplateVariant':d.get('templateVariant','a'),'updatedAt':timestamp}},session=session)
   for collection in ('brand_settings','page_content'):
    d=mongo.db[collection].find_one({'restaurantId':rid},session=session)
    if d:mongo.db[collection].update_one({'_id':d['_id']},{'$set':{'published':d.get('draft',{}),'updatedAt':timestamp}},session=session)

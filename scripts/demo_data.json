@@ -1145,7 +1145,8 @@
               "secondaryButtonLink": "/menu",
               "backgroundMediaId": "media_hero_bg",
               "overlayOpacity": 50
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_about",
@@ -1164,7 +1165,8 @@
               "chefQuote": "Culinary art is not found in complexity, but in the radical simplification of a flavor until its soul is revealed. At Lumière, we strip away the noise to let the ingredient speak.",
               "chefBio": "With three Michelin stars and a career spanning the finest kitchens of Lyon and Paris, Chef Vignon brings a technical rigor to Mayfair that is unmatched. Her vision for Lumière was to create a space where diners could lose track of time, anchored only by the rhythm of the season.",
               "chefImageMediaId": "media_chef"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_featured_menu",
@@ -1178,7 +1180,8 @@
               "heading": "Featured Dishes",
               "description": "A curated selection from our kitchen, chosen by Chef Vignon.",
               "selectedItemIds": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_gallery",
@@ -1218,7 +1221,8 @@
                   "order": 4
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_offers",
@@ -1234,7 +1238,8 @@
               "selectedOfferIds": [
                 "offer_burger_special"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_testimonials",
@@ -1269,7 +1274,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_location",
@@ -1281,7 +1287,8 @@
             "content": {
               "heading": "Find Us",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       },
@@ -1306,7 +1313,8 @@
               "secondaryButtonLink": "/menu",
               "backgroundMediaId": "media_hero_bg",
               "overlayOpacity": 50
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_about",
@@ -1325,7 +1333,8 @@
               "chefQuote": "Culinary art is not found in complexity, but in the radical simplification of a flavor until its soul is revealed. At Lumière, we strip away the noise to let the ingredient speak.",
               "chefBio": "With three Michelin stars and a career spanning the finest kitchens of Lyon and Paris, Chef Vignon brings a technical rigor to Mayfair that is unmatched. Her vision for Lumière was to create a space where diners could lose track of time, anchored only by the rhythm of the season.",
               "chefImageMediaId": "media_chef"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_featured_menu",
@@ -1339,7 +1348,8 @@
               "heading": "Featured Dishes",
               "description": "A curated selection from our kitchen, chosen by Chef Vignon.",
               "selectedItemIds": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_gallery",
@@ -1379,7 +1389,8 @@
                   "order": 4
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_offers",
@@ -1395,7 +1406,8 @@
               "selectedOfferIds": [
                 "offer_burger_special"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_testimonials",
@@ -1430,7 +1442,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "id": "section_location",
@@ -1442,7 +1455,8 @@
             "content": {
               "heading": "Find Us",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       }
@@ -1468,7 +1482,8 @@
               "secondaryButtonLink": "/menu",
               "backgroundMediaId": null,
               "overlayOpacity": 50
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1482,7 +1497,8 @@
               "heading": "The Lumière table, in West London.",
               "description": "The same seasonal cooking and quiet hospitality as our Mayfair flagship, in a relaxed neighbourhood dining room.",
               "imageMediaId": null
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1494,7 +1510,8 @@
             "content": {
               "heading": "Featured Dishes",
               "selectedItemIds": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1506,7 +1523,8 @@
             "content": {
               "heading": "Gallery",
               "images": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1518,7 +1536,8 @@
             "content": {
               "heading": "Special Offers",
               "selectedOfferIds": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1545,7 +1564,8 @@
                   "order": 1
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1557,7 +1577,8 @@
             "content": {
               "heading": "Find Us",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       },
@@ -1581,7 +1602,8 @@
               "secondaryButtonLink": "/menu",
               "backgroundMediaId": null,
               "overlayOpacity": 50
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1595,7 +1617,8 @@
               "heading": "The Lumière table, in West London.",
               "description": "The same seasonal cooking and quiet hospitality as our Mayfair flagship, in a relaxed neighbourhood dining room.",
               "imageMediaId": null
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1607,7 +1630,8 @@
             "content": {
               "heading": "Featured Dishes",
               "selectedItemIds": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1619,7 +1643,8 @@
             "content": {
               "heading": "Gallery",
               "images": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1631,7 +1656,8 @@
             "content": {
               "heading": "Special Offers",
               "selectedOfferIds": []
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1658,7 +1684,8 @@
                   "order": 1
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "rest_lumiere_nh",
@@ -1670,7 +1697,8 @@
             "content": {
               "heading": "Find Us",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       }
@@ -1697,7 +1725,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_pf_hero",
               "overlayOpacity": 45
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1716,7 +1745,8 @@
               "chefQuote": "Nobody gets strong alone. We build the plan, you bring the effort, and the room carries you through the hard reps.",
               "chefBio": "A former collegiate athlete and certified strength coach with 12 years on the gym floor, Marcus founded PulseFit to make real coaching the default - not a premium extra.",
               "chefImageMediaId": "media_pf_coach"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1735,7 +1765,8 @@
                 "pf_pilates",
                 "pf_pt"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1774,7 +1805,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1791,7 +1823,8 @@
                 "offer_pf_newmember",
                 "offer_pf_friend"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1826,7 +1859,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1838,7 +1872,8 @@
             "content": {
               "heading": "Find the Studio",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       },
@@ -1863,7 +1898,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_pf_hero",
               "overlayOpacity": 45
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1882,7 +1918,8 @@
               "chefQuote": "Nobody gets strong alone. We build the plan, you bring the effort, and the room carries you through the hard reps.",
               "chefBio": "A former collegiate athlete and certified strength coach with 12 years on the gym floor, Marcus founded PulseFit to make real coaching the default - not a premium extra.",
               "chefImageMediaId": "media_pf_coach"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1901,7 +1938,8 @@
                 "pf_pilates",
                 "pf_pt"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1940,7 +1978,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1957,7 +1996,8 @@
                 "offer_pf_newmember",
                 "offer_pf_friend"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -1992,7 +2032,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_pulsefit",
@@ -2004,7 +2045,8 @@
             "content": {
               "heading": "Find the Studio",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       }
@@ -2031,7 +2073,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_ng_hero",
               "overlayOpacity": 35
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2050,7 +2093,8 @@
               "chefQuote": "I started Nova Goods to give brilliant small studios a shop window - and to make it easier to live with fewer, better things.",
               "chefBio": "After a decade buying for big-box retailers, Priya opened Nova Goods on Valencia Street in 2019. She still visits every maker before their work goes on the shelf.",
               "chefImageMediaId": "media_ng_founder"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2069,7 +2113,8 @@
                 "ng_chair",
                 "ng_tee"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2108,7 +2153,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2125,7 +2171,8 @@
                 "offer_ng_ceramics",
                 "offer_ng_welcome"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2160,7 +2207,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2172,7 +2220,8 @@
             "content": {
               "heading": "Visit the Shop",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       },
@@ -2197,7 +2246,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_ng_hero",
               "overlayOpacity": 35
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2216,7 +2266,8 @@
               "chefQuote": "I started Nova Goods to give brilliant small studios a shop window - and to make it easier to live with fewer, better things.",
               "chefBio": "After a decade buying for big-box retailers, Priya opened Nova Goods on Valencia Street in 2019. She still visits every maker before their work goes on the shelf.",
               "chefImageMediaId": "media_ng_founder"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2235,7 +2286,8 @@
                 "ng_chair",
                 "ng_tee"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2274,7 +2326,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2291,7 +2344,8 @@
                 "offer_ng_ceramics",
                 "offer_ng_welcome"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2326,7 +2380,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_novagoods",
@@ -2338,7 +2393,8 @@
             "content": {
               "heading": "Visit the Shop",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       }
@@ -2365,7 +2421,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_sc_hero",
               "overlayOpacity": 45
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2384,7 +2441,8 @@
               "chefQuote": "I opened Sloane & Co. to build the salon I always wanted to work in - warm, inclusive and obsessed with the details.",
               "chefBio": "A licensed cosmetologist with 15 years behind the chair in Dallas and Los Angeles, Sloane opened her Austin studio in 2018. Today her team of 12 stylists, nail artists and estheticians looks after more than 4,000 guests a year.",
               "chefImageMediaId": "media_sc_founder"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2403,7 +2461,8 @@
                 "sc_womens_cut",
                 "sc_gel_mani"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2442,7 +2501,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2459,7 +2519,8 @@
                 "offer_sc_newclient",
                 "offer_sc_blowout"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2494,7 +2555,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2506,7 +2568,8 @@
             "content": {
               "heading": "Visit the Salon",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       },
@@ -2531,7 +2594,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_sc_hero",
               "overlayOpacity": 45
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2550,7 +2614,8 @@
               "chefQuote": "I opened Sloane & Co. to build the salon I always wanted to work in - warm, inclusive and obsessed with the details.",
               "chefBio": "A licensed cosmetologist with 15 years behind the chair in Dallas and Los Angeles, Sloane opened her Austin studio in 2018. Today her team of 12 stylists, nail artists and estheticians looks after more than 4,000 guests a year.",
               "chefImageMediaId": "media_sc_founder"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2569,7 +2634,8 @@
                 "sc_womens_cut",
                 "sc_gel_mani"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2608,7 +2674,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2625,7 +2692,8 @@
                 "offer_sc_newclient",
                 "offer_sc_blowout"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2660,7 +2728,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_sloaneco",
@@ -2672,7 +2741,8 @@
             "content": {
               "heading": "Visit the Salon",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       }
@@ -2699,7 +2769,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_fw_hero",
               "overlayOpacity": 45
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2718,7 +2789,8 @@
               "chefQuote": "I wanted a shop where the barista remembers your order and nobody rushes you out the door.",
               "chefBio": "A former line cook turned coffee obsessive, Owen opened Fernwood in Fremont in 2017 after two years of pulling shots on weekends to learn the craft. The shop now roasts its own house blend on-site every week.",
               "chefImageMediaId": "media_fw_founder"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2737,7 +2809,8 @@
                 "fw_pourover",
                 "fw_cinnamon_roll"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2776,7 +2849,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2793,7 +2867,8 @@
                 "offer_fw_newcustomer",
                 "offer_fw_pastry"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2828,7 +2903,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2840,7 +2916,8 @@
             "content": {
               "heading": "Find the Shop",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       },
@@ -2865,7 +2942,8 @@
               "secondaryButtonLink": "#/items",
               "backgroundMediaId": "media_fw_hero",
               "overlayOpacity": 45
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2884,7 +2962,8 @@
               "chefQuote": "I wanted a shop where the barista remembers your order and nobody rushes you out the door.",
               "chefBio": "A former line cook turned coffee obsessive, Owen opened Fernwood in Fremont in 2017 after two years of pulling shots on weekends to learn the craft. The shop now roasts its own house blend on-site every week.",
               "chefImageMediaId": "media_fw_founder"
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2903,7 +2982,8 @@
                 "fw_pourover",
                 "fw_cinnamon_roll"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2942,7 +3022,8 @@
                   "order": 5
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2959,7 +3040,8 @@
                 "offer_fw_newcustomer",
                 "offer_fw_pastry"
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -2994,7 +3076,8 @@
                   "order": 2
                 }
               ]
-            }
+            },
+            "templateVariant": "a"
           },
           {
             "restaurantId": "site_fernwood",
@@ -3006,7 +3089,8 @@
             "content": {
               "heading": "Find the Shop",
               "showHoursTable": true
-            }
+            },
+            "templateVariant": "a"
           }
         ]
       }
