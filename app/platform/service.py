@@ -97,13 +97,15 @@ def insert_site(db, organization_id, owner_id, body, session, platform_domain):
              'primaryFont': 'Inter', 'headingFont': 'Playfair Display', 'fontWeight': 'regular',
              'buttonStyle': 'rounded', 'borderRadius': 'md', 'socialLinks': {},
              'contact': {'phone': '', 'email': body.get('ownerEmail', ''), 'address': ''},
-             'description': tagline, 'cuisineType': '', 'businessHours': [], 'createdAt': timestamp, 'updatedAt': timestamp}
+             'description': tagline, 'cuisineType': '', 'businessHours': [], 'headerVariant': 'a', 'footerVariant': 'a',
+             'createdAt': timestamp, 'updatedAt': timestamp}
     db.brand_settings.insert_one({'restaurantId': site_id, 'draft': brand, 'published': brand}, session=session)
     sections = [('hero', {'heading': name, 'description': tagline or 'Welcome to our new site.', 'buttonText': 'Get Started', 'buttonLink': '#/items', 'backgroundMediaId': None, 'overlayOpacity': 40}),
                 ('about', {'heading': f'About {name}', 'description': tagline}), ('featured_menu', {}),
                 ('gallery', {}), ('testimonials', {}), ('offers', {}), ('location', {})]
     db.homepage_sections.insert_many([{'restaurantId': site_id, 'type': typ, 'order': n,
-                                      'visible': typ in {'hero', 'about', 'location'}, 'draftContent': content,
+                                      'visible': typ in {'hero', 'about', 'location'}, 'templateVariant': 'a',
+                                      'publishedTemplateVariant': 'a', 'draftContent': content,
                                       'publishedContent': content, 'updatedAt': timestamp} for n, (typ, content) in enumerate(sections)], session=session)
     db.page_content.insert_one({'restaurantId': site_id, 'draft': {}, 'published': {}, 'updatedAt': timestamp}, session=session)
     db.website_settings.insert_one({'restaurantId': site_id, 'publishStatus': 'draft', 'publishedAt': None,

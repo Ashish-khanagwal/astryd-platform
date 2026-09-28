@@ -192,6 +192,25 @@ class TenantTests(unittest.TestCase):
                          {'items':('Menu',True,'a'),'catalog':('Order Ahead',True,'a'),'booking':('Reserve a Table',False,'a'),'membership':('Rewards',True,'a')})
         self.assertEqual(self.raw.brand_settings.find_one({'restaurantId':sid})['draft']['themePresetId'],'espresso')
 
+    def test_new_site_defaults_to_layout_a_everywhere_and_can_switch(self):
+        body={'organizationName':'Layout Co','siteName':'Layout Co','vertical':'restaurant','slug':'layout-co','ownerName':'Owner','ownerEmail':'layout@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123'}
+        with patch('app.auth.routes.issue_link'):
+            r=self.client.post('/api/v1/auth/signup',json=body)
+        self.assertEqual(r.status_code,201,r.json)
+        sid=r.json['user']['restaurantId'];h={'Authorization':'Bearer '+r.json['token']}
+        brand=self.client.get('/api/v1/restaurants/'+sid+'/brand?version=draft',headers=h).json
+        self.assertEqual((brand['headerVariant'],brand['footerVariant']),('a','a'))
+        sections=self.client.get('/api/v1/restaurants/'+sid+'/homepage?version=draft',headers=h).json['sections']
+        self.assertTrue(sections);self.assertTrue(all(s['templateVariant']=='a' for s in sections))
+        r=self.client.put('/api/v1/restaurants/'+sid+'/homepage/sections/hero',headers=h,json={'templateVariant':'b'})
+        self.assertEqual(r.status_code,200,r.json);self.assertEqual(r.json['templateVariant'],'b')
+        self.assertEqual(self.client.get('/api/v1/restaurants/'+sid+'/homepage?version=published').json['sections'][0]['templateVariant'],'a')
+        with patch.dict(self.app.config,REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH=False):
+            self.assertEqual(self.client.post('/api/v1/restaurants/'+sid+'/publish',headers=h).status_code,200)
+        published=[s for s in self.client.get('/api/v1/restaurants/'+sid+'/homepage?version=published').json['sections'] if s['type']=='hero'][0]
+        self.assertEqual(published['templateVariant'],'b')
+        self.assertEqual(self.client.put('/api/v1/restaurants/'+sid+'/homepage/sections/hero',headers=h,json={'templateVariant':'z'}).status_code,400)
+
     def test_deferred_verification_publishes_without_faking_verification(self):
         body={'organizationName':'Deferred Gym','siteName':'Deferred Gym','vertical':'gym','slug':'deferred-gym','ownerName':'Owner','ownerEmail':'deferred@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123'}
         with patch.dict(self.app.config,REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH=False), patch('app.auth.routes.issue_link') as link:
