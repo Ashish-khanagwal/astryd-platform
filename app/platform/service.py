@@ -12,7 +12,20 @@ DEFAULTS = {
     'restaurant': [('Menu', True), ('Online Order', True), ('Reservations', True), ('Membership', False)],
     'gym': [('Programs', True), ('Shop', False), ('Classes', True), ('Membership', True)],
     'retail': [('Products', True), ('Online Order', True), ('Appointments', False), ('Loyalty', True)],
+    'salon': [('Services', True), ('Shop', False), ('Book Now', True), ('Memberships', True)],
+    'coffee': [('Menu', True), ('Order Ahead', True), ('Reserve a Table', False), ('Rewards', True)],
+    'laundry': [('Services', True), ('Order Online', True), ('Schedule Pickup', True), ('Laundry Plan', True)],
 }
+# Starting layout per module (items, catalog, booking, membership); owners can switch any of them later.
+TEMPLATE_VARIANTS = {
+    'restaurant': ('a', 'a', 'a', 'a'),
+    'gym': ('b', 'b', 'b', 'b'),
+    'retail': ('c', 'c', 'c', 'c'),
+    'salon': ('a', 'a', 'c', 'c'),
+    'coffee': ('a', 'a', 'a', 'a'),
+    'laundry': ('a', 'a', 'a', 'a'),
+}
+THEME_PRESETS = {'dusty-gold', 'emerald', 'burgundy', 'sapphire', 'rosewood', 'espresso', 'aqua'}
 PERMISSIONS = ('menu', 'branding', 'homepage', 'media', 'offers', 'addons', 'settings', 'users', 'booking', 'membership')
 
 
@@ -42,13 +55,13 @@ def password(value):
 def validate_site(body):
     vertical = body.get('vertical')
     if vertical not in DEFAULTS:
-        raise ValueError('vertical must be restaurant, gym or retail')
+        raise ValueError('vertical must be restaurant, gym, retail, salon, coffee or laundry')
     slug = text(body.get('slug'), 'slug', 63).lower()
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug) or slug in {'www', 'api', 'admin', 'app', 'login', 'signup'}:
         raise ValueError('Invalid or reserved subdomain')
     name = text(body.get('siteName', body.get('name')), 'siteName')
     branding = body.get('branding') or {}
-    if not isinstance(branding, dict) or branding.get('themePresetId', 'dusty-gold') not in {'dusty-gold', 'emerald', 'burgundy', 'sapphire'}:
+    if not isinstance(branding, dict) or branding.get('themePresetId', 'dusty-gold') not in THEME_PRESETS:
         raise ValueError('Invalid theme preset')
     modules = body.get('modules')
     if modules is not None:
@@ -58,6 +71,8 @@ def validate_site(body):
             text(entry.get('navLabel'), 'navLabel', 60)
             if not isinstance(entry.get('enabled'), bool):
                 raise ValueError('enabled must be a boolean')
+            if 'templateVariant' in entry and (not isinstance(entry['templateVariant'], str) or entry['templateVariant'] not in {'a', 'b', 'c'}):
+                raise ValueError('templateVariant must be a, b or c')
     return vertical, slug, name
 
 
@@ -72,11 +87,17 @@ def insert_site(db, organization_id, owner_id, body, session, platform_domain):
             'name': name, 'vertical': vertical, 'status': 'active', 'brandingBadgeEnabled': True,
             'createdAt': timestamp, 'updatedAt': timestamp}
     db.restaurants.insert_one(site, session=session)
-    modules = [{k:m[k] for k in ('module','navLabel','enabled')} for m in body['modules']] if body.get('modules') else [dict(module=m, navLabel=label, enabled=enabled) for m, (label, enabled) in zip(MODULES, DEFAULTS[vertical])]
-    variant = {'restaurant': 'a', 'gym': 'b', 'retail': 'c'}[vertical]
-    db.page_configs.insert_many([{'restaurantId': site_id, **m, 'order': n, 'templateVariant': variant,
-                                 'published': {**m, 'order': n, 'templateVariant': variant},
-                                 'createdAt': timestamp, 'updatedAt': timestamp} for n, m in enumerate(modules)], session=session)
+    modules = {m['module']: m for m in body['modules']} if body.get('modules') else {}
+    configs = []
+    for n, module in enumerate(MODULES):
+        supplied = modules.get(module, {})
+        label, enabled = DEFAULTS[vertical][n]
+        config = {'module': module, 'navLabel': supplied.get('navLabel', label),
+                  'enabled': supplied.get('enabled', enabled),
+                  'order': n, 'templateVariant': supplied.get('templateVariant', TEMPLATE_VARIANTS[vertical][n])}
+        configs.append({'restaurantId': site_id, **config, 'published': config.copy(),
+                        'createdAt': timestamp, 'updatedAt': timestamp})
+    db.page_configs.insert_many(configs, session=session)
     branding = body.get('branding') or {}
     tagline = branding.get('tagline', '')
     if not isinstance(tagline, str) or len(tagline) > 1000:
@@ -86,14 +107,18 @@ def insert_site(db, organization_id, owner_id, body, session, platform_domain):
              'primaryFont': 'Inter', 'headingFont': 'Playfair Display', 'fontWeight': 'regular',
              'buttonStyle': 'rounded', 'borderRadius': 'md', 'socialLinks': {},
              'contact': {'phone': '', 'email': body.get('ownerEmail', ''), 'address': ''},
-             'description': tagline, 'cuisineType': '', 'businessHours': [], 'createdAt': timestamp, 'updatedAt': timestamp}
+             'description': tagline, 'cuisineType': '', 'businessHours': [], 'showCart': True,
+             'headerVariant': 'a', 'footerVariant': 'a',
+             'createdAt': timestamp, 'updatedAt': timestamp}
     db.brand_settings.insert_one({'restaurantId': site_id, 'draft': brand, 'published': brand}, session=session)
     sections = [('hero', {'heading': name, 'description': tagline or 'Welcome to our new site.', 'buttonText': 'Get Started', 'buttonLink': '#/items', 'backgroundMediaId': None, 'overlayOpacity': 40}),
                 ('about', {'heading': f'About {name}', 'description': tagline}), ('featured_menu', {}),
                 ('gallery', {}), ('testimonials', {}), ('offers', {}), ('location', {})]
     db.homepage_sections.insert_many([{'restaurantId': site_id, 'type': typ, 'order': n,
                                       'visible': typ in {'hero', 'about', 'location'}, 'draftContent': content,
-                                      'publishedContent': content, 'updatedAt': timestamp} for n, (typ, content) in enumerate(sections)], session=session)
+                                      'publishedContent': content, 'templateVariant': 'a',
+                                      'publishedTemplateVariant': 'a', 'updatedAt': timestamp}
+                                     for n, (typ, content) in enumerate(sections)], session=session)
     db.page_content.insert_one({'restaurantId': site_id, 'draft': {}, 'published': {}, 'updatedAt': timestamp}, session=session)
     db.website_settings.insert_one({'restaurantId': site_id, 'publishStatus': 'draft', 'publishedAt': None,
                                    'seoTitle': name, 'seoDescription': tagline}, session=session)

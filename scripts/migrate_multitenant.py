@@ -7,7 +7,7 @@ from bson import ObjectId
 
 
 def migrate(db, apply=False):
-    from app.platform.service import DEFAULTS, MODULES, PERMISSIONS, now
+    from app.platform.service import DEFAULTS, MODULES, PERMISSIONS, TEMPLATE_VARIANTS, now
     sites = list(db.restaurants.find({}))
     site_ids=set()
     for site in sites:
@@ -55,14 +55,19 @@ def migrate(db, apply=False):
                 # Legacy restaurant navigation exposed every module before page configs existed.
                 # Keep that behavior during migration; new-account defaults stay unchanged.
                 if vertical == 'restaurant': enabled = True
-                default = {'module': module, 'navLabel': label, 'enabled': enabled, 'order': order, 'templateVariant': {'restaurant':'a','gym':'b','retail':'c'}[vertical]}
+                default = {'module': module, 'navLabel': label, 'enabled': enabled, 'order': order, 'templateVariant': TEMPLATE_VARIANTS[vertical][order]}
                 db.page_configs.update_one({'restaurantId': sid, 'module': module}, {'$setOnInsert': {'restaurantId': sid, **default, 'published': default}}, upsert=True)
                 existing_page=db.page_configs.find_one({'restaurantId':sid,'module':module})
                 if 'published' not in existing_page:
                     snapshot={k:existing_page.get(k,default[k]) for k in default}
                     db.page_configs.update_one({'_id':existing_page['_id']},{'$set':{'published':snapshot}})
             for section in db.homepage_sections.find({'restaurantId': sid}):
-                db.homepage_sections.update_one({'_id': section['_id']}, {'$set': {'publishedVisible':section.get('publishedVisible',section.get('visible',True)), 'publishedOrder':section.get('publishedOrder',section.get('order',0))}})
+                missing = {}
+                if 'publishedVisible' not in section:missing['publishedVisible'] = section.get('visible', True)
+                if 'publishedOrder' not in section:missing['publishedOrder'] = section.get('order', 0)
+                if 'templateVariant' not in section:missing['templateVariant'] = 'a'
+                if 'publishedTemplateVariant' not in section:missing['publishedTemplateVariant'] = 'a'
+                if missing:db.homepage_sections.update_one({'_id': section['_id']}, {'$set': missing})
             db.page_content.update_one({'restaurantId':sid},{'$setOnInsert':{'restaurantId':sid,'draft':{},'published':{},'updatedAt':now()}},upsert=True)
     if apply:
         # Replace only the global email constraint, after all users have been scoped.
