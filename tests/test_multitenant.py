@@ -192,6 +192,17 @@ class TenantTests(unittest.TestCase):
                          {'items':('Menu',True,'a'),'catalog':('Order Ahead',True,'a'),'booking':('Reserve a Table',False,'a'),'membership':('Rewards',True,'a')})
         self.assertEqual(self.raw.brand_settings.find_one({'restaurantId':sid})['draft']['themePresetId'],'espresso')
 
+    def test_laundry_signup_uses_per_module_layouts(self):
+        body={'organizationName':'Brightside Two','siteName':'Brightside Two','vertical':'laundry','slug':'brightside-two','ownerName':'Owner','ownerEmail':'brightside2@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123','branding':{'themePresetId':'aqua'}}
+        with patch('app.auth.routes.issue_link'):
+            r=self.client.post('/api/v1/auth/signup',json=body)
+        self.assertEqual(r.status_code,201,r.json)
+        sid=r.json['user']['restaurantId']
+        pages={p['module']:p for p in self.raw.page_configs.find({'restaurantId':sid})}
+        self.assertEqual({m:(p['navLabel'],p['enabled'],p['templateVariant']) for m,p in pages.items()},
+                         {'items':('Services',True,'a'),'catalog':('Order Online',True,'a'),'booking':('Schedule Pickup',True,'a'),'membership':('Laundry Plan',True,'a')})
+        self.assertEqual(self.raw.brand_settings.find_one({'restaurantId':sid})['draft']['themePresetId'],'aqua')
+
     def test_new_site_defaults_to_layout_a_everywhere_and_can_switch(self):
         body={'organizationName':'Layout Co','siteName':'Layout Co','vertical':'restaurant','slug':'layout-co','ownerName':'Owner','ownerEmail':'layout@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123'}
         with patch('app.auth.routes.issue_link'):
@@ -237,7 +248,7 @@ class TenantTests(unittest.TestCase):
         self.raw.page_configs.delete_many({'restaurantId':'lumiere-mayfair'})
         migrate(self.raw,True);migrate(self.raw,True)
         self.assertEqual(self.raw.payments.find_one({'_id':payment['_id']}),payment)
-        self.assertEqual(self.raw.organizations.count_documents({}),6)
+        self.assertEqual(self.raw.organizations.count_documents({}),7)
         self.assertEqual(self.raw.restaurants.find_one({'_id':site['_id']})['restaurantId'],'lumiere-mayfair')
         self.assertEqual(self.raw.page_configs.count_documents({'restaurantId':'lumiere-mayfair','enabled':True,'published.enabled':True}),4)
 
