@@ -62,7 +62,12 @@ def migrate(db, apply=False):
                     snapshot={k:existing_page.get(k,default[k]) for k in default}
                     db.page_configs.update_one({'_id':existing_page['_id']},{'$set':{'published':snapshot}})
             for section in db.homepage_sections.find({'restaurantId': sid}):
-                db.homepage_sections.update_one({'_id': section['_id']}, {'$set': {'publishedVisible':section.get('publishedVisible',section.get('visible',True)), 'publishedOrder':section.get('publishedOrder',section.get('order',0))}})
+                missing = {}
+                if 'publishedVisible' not in section:missing['publishedVisible'] = section.get('visible', True)
+                if 'publishedOrder' not in section:missing['publishedOrder'] = section.get('order', 0)
+                if 'templateVariant' not in section:missing['templateVariant'] = 'a'
+                if 'publishedTemplateVariant' not in section:missing['publishedTemplateVariant'] = 'a'
+                if missing:db.homepage_sections.update_one({'_id': section['_id']}, {'$set': missing})
             db.page_content.update_one({'restaurantId':sid},{'$setOnInsert':{'restaurantId':sid,'draft':{},'published':{},'updatedAt':now()}},upsert=True)
     if apply:
         # Replace only the global email constraint, after all users have been scoped.
