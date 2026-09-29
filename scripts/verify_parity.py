@@ -61,14 +61,17 @@ def verify(app, mongo):
                 with patch.object(mongo, 'db', TransactionDatabase(db, session)):
                     client = app.test_client()
                     previous_headers = None
-                    for vertical in ('restaurant', 'gym', 'retail', 'salon', 'coffee', 'laundry'):
+                    for index, vertical in enumerate(('restaurant', 'gym', 'retail', 'salon', 'coffee', 'laundry')):
                         slug = 'parity-probe-' + secrets.token_hex(6)
                         slugs.append(slug)
                         body = dict(vertical=vertical, slug=slug, siteName='Parity probe',
                                     organizationName=slug, ownerName='Probe owner',
                                     ownerEmail=slug+'@example.invalid', password='ParityProbe123',
                                     passwordConfirmation='ParityProbe123')
-                        response = client.post('/api/v1/auth/signup', json=body)
+                        # Signup is limited to five requests per IP. Give each
+                        # isolated probe its own simulated client address.
+                        response = client.post('/api/v1/auth/signup', json=body,
+                                               environ_overrides={'REMOTE_ADDR': f'127.0.0.{index + 10}'})
                         assert response.status_code == 201, (vertical, response.status_code)
                         assert response.json['emailVerificationRequiredForPublish'] is False
                         user = response.json['user']
@@ -84,7 +87,11 @@ def verify(app, mongo):
                         previous_headers = headers
                         assert client.get('/api/v1/public/sites/resolve?slug='+slug).status_code == 404
                         assert client.put(f'/api/v1/restaurants/{sid}/brand', headers=headers, json={'tagline':'Published probe'}).status_code == 200
+                        assert client.put(f'/api/v1/restaurants/{sid}/homepage/sections/hero', headers=headers, json={'templateVariant':'c'}).status_code == 200
+                        assert next(s for s in client.get(f'/api/v1/restaurants/{sid}/homepage?version=draft', headers=headers).json['sections'] if s['type']=='hero')['templateVariant'] == 'c'
+                        assert next(s for s in client.get(f'/api/v1/restaurants/{sid}/homepage').json['sections'] if s['type']=='hero')['templateVariant'] == 'a'
                         assert client.post(f'/api/v1/restaurants/{sid}/publish', headers=headers).status_code == 200
+                        assert next(s for s in client.get(f'/api/v1/restaurants/{sid}/homepage').json['sections'] if s['type']=='hero')['templateVariant'] == 'c'
                         settings = mongo.db.website_settings.find_one({'restaurantId':sid})
                         assert settings['publishStatus'] == 'published' and settings['publishedAt'] is not None
                         assert client.get('/api/v1/public/sites/resolve?slug='+slug).status_code == 200

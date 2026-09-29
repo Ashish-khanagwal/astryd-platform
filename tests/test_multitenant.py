@@ -170,6 +170,70 @@ class TenantTests(unittest.TestCase):
             r=self.client.post('/api/v1/auth/signup',json={**body,'slug':'another'})
         self.assertEqual(r.status_code,400);self.assertEqual(before,self.raw.organizations.count_documents({}))
 
+    def test_salon_and_coffee_signup_preserves_module_layouts_and_isolation(self):
+        from app.platform.service import DEFAULTS, TEMPLATE_VARIANTS, MODULES
+        previous = None
+        for vertical in ('salon', 'coffee'):
+            slug = 'new-' + vertical
+            modules = [dict(module=module, navLabel=DEFAULTS[vertical][n][0],
+                            enabled=DEFAULTS[vertical][n][1], templateVariant=TEMPLATE_VARIANTS[vertical][n])
+                       for n, module in enumerate(MODULES)]
+            if vertical == 'coffee':
+                modules[1]['templateVariant'] = 'b'
+            body = {'organizationName': slug, 'siteName': slug, 'vertical': vertical,
+                    'slug': slug, 'ownerName': 'Owner', 'ownerEmail': slug+'@example.com',
+                    'password': 'StrongPass123', 'passwordConfirmation': 'StrongPass123', 'modules': modules}
+            with patch.dict(self.app.config, REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH=False):
+                response = self.client.post('/api/v1/auth/signup', json=body)
+            self.assertEqual(response.status_code, 201, response.json)
+            sid = response.json['user']['restaurantId']
+            headers = {'Authorization': 'Bearer '+response.json['token']}
+            self.assertEqual(self.client.post('/api/v1/auth/login', json={
+                'orgId': response.json['orgCode'], 'email': body['ownerEmail'], 'password': body['password']}).status_code, 200)
+            pages = self.client.get(f'/api/v1/sites/{sid}/pages?version=draft', headers=headers).json
+            self.assertEqual([(p['module'], p['templateVariant']) for p in pages],
+                             [(m['module'], m['templateVariant']) for m in modules])
+            if previous:
+                self.assertEqual(self.client.get(f'/api/v1/restaurants/{previous}/brand?version=draft', headers=headers).status_code, 403)
+            previous = sid
+        bad = {**body, 'slug': 'bad-variant', 'modules': [{**m, 'templateVariant': 'z'} for m in modules]}
+        self.assertEqual(self.client.post('/api/v1/auth/signup', json=bad).status_code, 400)
+        bad['modules'][0]['templateVariant'] = {'invalid': True}
+        self.assertEqual(self.client.post('/api/v1/auth/signup', json=bad).status_code, 400)
+        defaults = {**body, 'slug': 'coffee-defaults', 'organizationName': 'Coffee defaults',
+                    'ownerEmail': 'coffee-defaults@example.com'}
+        defaults.pop('modules')
+        with patch.dict(self.app.config, REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH=False):
+            response = self.client.post('/api/v1/auth/signup', json=defaults)
+        self.assertEqual(response.status_code, 201, response.json)
+        sid = response.json['user']['restaurantId']
+        self.assertEqual([p['templateVariant'] for p in self.client.get(f'/api/v1/sites/{sid}/pages').json],
+                         list(TEMPLATE_VARIANTS['coffee']))
+        migrate(self.raw, True)
+        saved = list(self.raw.page_configs.find({'restaurantId': previous}).sort('order', 1))
+        self.assertEqual([p['templateVariant'] for p in saved], [m['templateVariant'] for m in modules])
+
+    def test_homepage_layout_draft_publish_and_invalid_variant(self):
+        headers, _ = self.login()
+        url = '/api/v1/restaurants/lumiere-mayfair/homepage'
+        before = next(s for s in self.client.get(url).json['sections'] if s['type'] == 'hero')
+        self.assertEqual(before['templateVariant'], 'a')
+        self.assertEqual(self.client.put(url+'/sections/hero', headers=headers, json={'templateVariant':'z'}).status_code, 400)
+        self.assertEqual(self.client.put(url+'/sections/hero', headers=headers, json={'templateVariant':{}}).status_code, 400)
+        self.assertEqual(self.client.put(url+'/sections/hero', headers=headers, json={'templateVariant':'c'}).status_code, 200)
+        brand_url = '/api/v1/restaurants/lumiere-mayfair/brand'
+        self.assertEqual(self.client.put(brand_url, headers=headers, json={'headerVariant':'b','footerVariant':'c','showCart':False}).status_code, 200)
+        self.assertNotEqual(self.client.get(brand_url).json.get('headerVariant'), 'b')
+        draft = next(s for s in self.client.get(url+'?version=draft', headers=headers).json['sections'] if s['type'] == 'hero')
+        live = next(s for s in self.client.get(url).json['sections'] if s['type'] == 'hero')
+        self.assertEqual(draft['templateVariant'], 'c')
+        self.assertEqual(live['templateVariant'], 'a')
+        self.assertEqual(self.client.post('/api/v1/restaurants/lumiere-mayfair/publish', headers=headers).status_code, 200)
+        live = next(s for s in self.client.get(url).json['sections'] if s['type'] == 'hero')
+        self.assertEqual(live['templateVariant'], 'c')
+        self.assertNotIn('publishedTemplateVariant', live)
+        brand = self.client.get(brand_url).json
+        self.assertEqual((brand['headerVariant'],brand['footerVariant'],brand['showCart']),('b','c',False))
     def test_salon_signup_uses_per_module_layouts(self):
         body={'organizationName':'Glow Salon','siteName':'Glow Salon','vertical':'salon','slug':'glow-salon','ownerName':'Owner','ownerEmail':'glow@example.com','password':'StrongPass123','passwordConfirmation':'StrongPass123','branding':{'themePresetId':'rosewood'}}
         with patch('app.auth.routes.issue_link'):
@@ -211,6 +275,7 @@ class TenantTests(unittest.TestCase):
         sid=r.json['user']['restaurantId'];h={'Authorization':'Bearer '+r.json['token']}
         brand=self.client.get('/api/v1/restaurants/'+sid+'/brand?version=draft',headers=h).json
         self.assertEqual((brand['headerVariant'],brand['footerVariant']),('a','a'))
+        self.assertTrue(brand['showCart'])
         sections=self.client.get('/api/v1/restaurants/'+sid+'/homepage?version=draft',headers=h).json['sections']
         self.assertTrue(sections);self.assertTrue(all(s['templateVariant']=='a' for s in sections))
         r=self.client.put('/api/v1/restaurants/'+sid+'/homepage/sections/hero',headers=h,json={'templateVariant':'b'})
@@ -251,6 +316,11 @@ class TenantTests(unittest.TestCase):
         self.assertEqual(self.raw.organizations.count_documents({}),7)
         self.assertEqual(self.raw.restaurants.find_one({'_id':site['_id']})['restaurantId'],'lumiere-mayfair')
         self.assertEqual(self.raw.page_configs.count_documents({'restaurantId':'lumiere-mayfair','enabled':True,'published.enabled':True}),4)
+        self.raw.homepage_sections.update_one({'restaurantId':'lumiere-mayfair','type':'hero'}, {'$set':{'templateVariant':'b','publishedTemplateVariant':'c','publishedVisible':False}})
+        migrate(self.raw,True)
+        section=self.raw.homepage_sections.find_one({'restaurantId':'lumiere-mayfair','type':'hero'})
+        self.assertEqual(section['publishedTemplateVariant'],'c')
+        self.assertFalse(section['publishedVisible'])
 
     def test_duplicate_email_allowed_only_in_different_organizations(self):
         h,u=self.login();base={'name':'Staff','email':'same@example.com','password':'StrongPass123','role':'staff','siteAccess':['lumiere-mayfair']}
