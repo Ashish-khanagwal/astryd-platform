@@ -61,14 +61,17 @@ def verify(app, mongo):
                 with patch.object(mongo, 'db', TransactionDatabase(db, session)):
                     client = app.test_client()
                     previous_headers = None
-                    for vertical in ('restaurant', 'gym', 'retail', 'salon', 'coffee'):
+                    for index, vertical in enumerate(('restaurant', 'gym', 'retail', 'salon', 'coffee', 'laundry')):
                         slug = 'parity-probe-' + secrets.token_hex(6)
                         slugs.append(slug)
                         body = dict(vertical=vertical, slug=slug, siteName='Parity probe',
                                     organizationName=slug, ownerName='Probe owner',
                                     ownerEmail=slug+'@example.invalid', password='ParityProbe123',
                                     passwordConfirmation='ParityProbe123')
-                        response = client.post('/api/v1/auth/signup', json=body)
+                        # Signup is limited to five requests per IP. Give each
+                        # isolated probe its own simulated client address.
+                        response = client.post('/api/v1/auth/signup', json=body,
+                                               environ_overrides={'REMOTE_ADDR': f'127.0.0.{index + 10}'})
                         assert response.status_code == 201, (vertical, response.status_code)
                         assert response.json['emailVerificationRequiredForPublish'] is False
                         user = response.json['user']

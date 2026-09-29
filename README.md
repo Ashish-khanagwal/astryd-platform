@@ -1,6 +1,7 @@
 # Astryd API
 
-Flask backend for a multi-tenant restaurant, gym, retail, salon and coffee platform. Features
+Flask backend for a multi-tenant restaurant, gym, retail, salon, coffee and
+laundry platform. Features
 include organization-scoped login, business onboarding, website drafts and
 publishing, catalogs, reservations, orders, memberships and Finix card payments.
 
@@ -167,7 +168,7 @@ sets `publishStatus=published` and `publishedAt`. Later draft edits do not repla
 the published snapshot until publishing again. Publish does not configure DNS,
 custom domains, TLS or hosting.
 
-Signup accepts `restaurant`, `gym`, `retail`, `salon` and `coffee`. All use the
+Signup accepts `restaurant`, `gym`, `retail`, `salon`, `coffee` and `laundry`. All use the
 same four configurable modules; their labels, enabled states and layout choices
 are defaults, not hard-coded feature restrictions. Module, homepage-section,
 header and footer layout edits stay in draft until Publish. Existing homepage
@@ -217,7 +218,7 @@ The seed defaults to dry-run and preserves existing edits. Never seed production
 or copy staging into production. The staging verifier checks demo accounts and
 tenant contracts; login checks may update rate-limit counters.
 
-Atlas onboarding/publishing probes for all five verticals run inside explicitly
+Atlas onboarding/publishing probes for all six verticals run inside explicitly
 aborted transactions:
 
 ```bash
