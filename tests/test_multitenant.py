@@ -374,5 +374,16 @@ class TenantTests(unittest.TestCase):
         self.assertFalse(self.client.get('/api/v1/public/sites/site_pulsefit/branding-badge').json['enabled'])
         self.assertEqual(self.client.post('/api/v1/organizations/'+str(ObjectId())+'/sites',headers=platform,json={'name':'Orphan','vertical':'gym','slug':'orphan'}).status_code,404)
 
+    def test_super_admin_cannot_manage_an_orgs_users(self):
+        from werkzeug.security import generate_password_hash
+        self.raw.restaurant_users.insert_one({'email':'platform2@example.com','name':'Platform Admin','role':'super_admin','isActive':True,'passwordHash':generate_password_hash('PlatformPass123')})
+        response=self.client.post('/api/v1/auth/super-admin-login',json={'email':'platform2@example.com','password':'PlatformPass123'})
+        self.assertEqual(response.status_code,200)
+        platform={'Authorization':'Bearer '+response.json['token']}
+        self.assertEqual(self.client.get('/api/v1/restaurants/lumiere-mayfair/users',headers=platform).status_code,403)
+        self.assertEqual(self.client.post('/api/v1/restaurants/lumiere-mayfair/users',headers=platform,json={'email':'new@example.com','name':'New Staff','password':'StrongPass123'}).status_code,403)
+        # Reading the Site itself (support/impersonation per Plan §5.1) is still allowed - only Staff management is not.
+        self.assertEqual(self.client.get('/api/v1/restaurants/lumiere-mayfair/homepage?version=draft',headers=platform).status_code,200)
+
 
 if __name__=='__main__': unittest.main()
