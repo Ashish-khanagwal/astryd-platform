@@ -172,11 +172,9 @@ def update_reservation_status(reservation_id):
     return jsonify(reservation=serialize_doc(reservation))
 
 def _owner(rid):
- i,f=require_restaurant(rid,{"owner","admin","super_admin"},permission='users')
- if not f and i.get('role')=='super_admin':
-  site=mongo.db.restaurants.find_one({'restaurantId':rid})
-  i={**i,'organizationId':site.get('organizationId'),'restaurantId':rid}
- return i,f
+ # Managing an Org's own Staff is an Org Owner action, not a Super Admin one (Multi-Vertical Platform
+ # Plan §4/§5.1) - a Super Admin isn't a member of any Org, so it never reaches this endpoint.
+ return require_restaurant(rid,{"owner","admin"},permission='users')
 def _audit(i,a,t,e,s,d=None):log_audit_event(mongo.db,(request.view_args or {}).get('rid',i["restaurantId"]),i["userId"],i["name"],a,t,e,s,d)
 @bp.get("/restaurants/<rid>/users")
 @jwt_required()
