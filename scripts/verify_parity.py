@@ -61,7 +61,7 @@ def verify(app, mongo):
                 with patch.object(mongo, 'db', TransactionDatabase(db, session)):
                     client = app.test_client()
                     previous_headers = None
-                    for vertical in ('restaurant', 'gym', 'retail'):
+                    for vertical in ('restaurant', 'gym', 'retail', 'salon', 'coffee'):
                         slug = 'parity-probe-' + secrets.token_hex(6)
                         slugs.append(slug)
                         body = dict(vertical=vertical, slug=slug, siteName='Parity probe',
@@ -84,7 +84,11 @@ def verify(app, mongo):
                         previous_headers = headers
                         assert client.get('/api/v1/public/sites/resolve?slug='+slug).status_code == 404
                         assert client.put(f'/api/v1/restaurants/{sid}/brand', headers=headers, json={'tagline':'Published probe'}).status_code == 200
+                        assert client.put(f'/api/v1/restaurants/{sid}/homepage/sections/hero', headers=headers, json={'templateVariant':'c'}).status_code == 200
+                        assert next(s for s in client.get(f'/api/v1/restaurants/{sid}/homepage?version=draft', headers=headers).json['sections'] if s['type']=='hero')['templateVariant'] == 'c'
+                        assert next(s for s in client.get(f'/api/v1/restaurants/{sid}/homepage').json['sections'] if s['type']=='hero')['templateVariant'] == 'a'
                         assert client.post(f'/api/v1/restaurants/{sid}/publish', headers=headers).status_code == 200
+                        assert next(s for s in client.get(f'/api/v1/restaurants/{sid}/homepage').json['sections'] if s['type']=='hero')['templateVariant'] == 'c'
                         settings = mongo.db.website_settings.find_one({'restaurantId':sid})
                         assert settings['publishStatus'] == 'published' and settings['publishedAt'] is not None
                         assert client.get('/api/v1/public/sites/resolve?slug='+slug).status_code == 200

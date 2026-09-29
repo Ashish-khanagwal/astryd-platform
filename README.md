@@ -1,6 +1,6 @@
 # Astryd API
 
-Flask backend for a multi-tenant restaurant, gym and retail platform. Features
+Flask backend for a multi-tenant restaurant, gym, retail, salon and coffee platform. Features
 include organization-scoped login, business onboarding, website drafts and
 publishing, catalogs, reservations, orders, memberships and Finix card payments.
 
@@ -167,6 +167,31 @@ sets `publishStatus=published` and `publishedAt`. Later draft edits do not repla
 the published snapshot until publishing again. Publish does not configure DNS,
 custom domains, TLS or hosting.
 
+Signup accepts `restaurant`, `gym`, `retail`, `salon` and `coffee`. All use the
+same four configurable modules; their labels, enabled states and layout choices
+are defaults, not hard-coded feature restrictions. Module, homepage-section,
+header and footer layout edits stay in draft until Publish. Existing homepage
+sections without a stored layout use layout `a`.
+
+### Platform administrator
+
+The Platform Admin login is separate from organization login and requires a
+real operator-provisioned account in **each** database. Frontend mock demo
+credentials do not work against the backend. Use the existing provisioning
+script with an operator-owned email; it prompts privately for a strong password:
+
+```bash
+.venv/bin/python scripts/create_platform_admin.py --environment staging --email YOUR_EMAIL --name "Platform Admin"
+.venv/bin/python scripts/create_platform_admin.py --environment staging --email YOUR_EMAIL --name "Platform Admin" --apply
+.venv/bin/python scripts/create_platform_admin.py --environment production --email YOUR_EMAIL --name "Platform Admin"
+.venv/bin/python scripts/create_platform_admin.py --environment production --email YOUR_EMAIL --name "Platform Admin" --apply
+```
+
+Use separate passwords for staging and production, never put them in the shell
+command or repository, and do not use the frontend's mock `password123`. The
+current Platform Admin UI lists all sites and controls the Astryd badge; it
+does not provide cross-tenant dashboard editing.
+
 Paid bookings and public paid memberships are confirmed/activated only after
 server-verified payment success. Membership checkout is one-time enrollment,
 not recurring billing. Existing global Finix merchant routing is retained; this
@@ -192,7 +217,8 @@ The seed defaults to dry-run and preserves existing edits. Never seed production
 or copy staging into production. The staging verifier checks demo accounts and
 tenant contracts; login checks may update rate-limit counters.
 
-Atlas onboarding/publishing probes run inside explicitly aborted transactions:
+Atlas onboarding/publishing probes for all five verticals run inside explicitly
+aborted transactions:
 
 ```bash
 .venv/bin/python scripts/verify_parity.py --environment staging

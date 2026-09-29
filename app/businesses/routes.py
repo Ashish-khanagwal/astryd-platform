@@ -30,9 +30,11 @@ def tenant_boundary():
   if failure:return failure
 def ensure(r):
  if not mongo.db.homepage_sections.count_documents({"restaurantId":r}):
-  now=datetime.utcnow();mongo.db.homepage_sections.insert_many([{ "restaurantId":r,"type":t,"order":n,"visible":True,"draftContent":{},"publishedContent":{},"updatedAt":now} for n,t in enumerate(TYPES)])
+  now=datetime.utcnow();mongo.db.homepage_sections.insert_many([{ "restaurantId":r,"type":t,"order":n,"visible":True,"draftContent":{},"publishedContent":{},"templateVariant":"a","publishedTemplateVariant":"a","updatedAt":now} for n,t in enumerate(TYPES)])
 def section(d,v):
  x=serialize_doc(d);x["content"]=x.pop("draftContent" if v=="draft" else "publishedContent",{});x.pop("draftContent",None);x.pop("publishedContent",None)
+ x['templateVariant']=d.get('templateVariant','a') if v=='draft' else d.get('publishedTemplateVariant','a')
+ x.pop('publishedTemplateVariant',None)
  if v=='published':x['visible']=d.get('publishedVisible',d.get('visible',True));x['order']=d.get('publishedOrder',d.get('order',0))
  return x
 @bp.get("/restaurants/<rid>/homepage")
@@ -54,7 +56,13 @@ def section_order(rid):
 def section_put(rid,typ):
  i,f=gate(rid)
  if f:return f
- ensure(rid);b=request.get_json(silent=True) or {};u={"updatedAt":datetime.utcnow()}
+ b=request.get_json(silent=True) or {}
+ if not isinstance(b,dict):return jsonify(error='validation_error',message='Request body must be an object'),400
+ u={"updatedAt":datetime.utcnow()}
+ if 'templateVariant' in b:
+  if not isinstance(b['templateVariant'],str) or b['templateVariant'] not in {'a','b','c'}:return jsonify(error='validation_error',message='templateVariant must be a, b or c'),400
+  u['templateVariant']=b['templateVariant']
+ ensure(rid)
  if "visible" in b:u["visible"]=b["visible"]
  if "content" in b:u["draftContent"]=b["content"]
  d=mongo.db.homepage_sections.find_one_and_update({"restaurantId":rid,"type":typ},{"$set":u},return_document=True)
@@ -88,7 +96,7 @@ def publish(rid):
  if current_app.config.get('REQUIRE_EMAIL_VERIFICATION_FOR_PUBLISH',True) and not i.get('emailVerified',False):return jsonify(error='email_verification_required',message='Verify your email before publishing'),403
  timestamp=datetime.utcnow()
  def commit(session):
-  for d in mongo.db.homepage_sections.find({'restaurantId':rid},session=session):mongo.db.homepage_sections.update_one({'_id':d['_id']},{'$set':{'publishedContent':d.get('draftContent',{}),'publishedVisible':d.get('visible',True),'publishedOrder':d.get('order',0),'updatedAt':timestamp}},session=session)
+  for d in mongo.db.homepage_sections.find({'restaurantId':rid},session=session):mongo.db.homepage_sections.update_one({'_id':d['_id']},{'$set':{'publishedContent':d.get('draftContent',{}),'publishedVisible':d.get('visible',True),'publishedOrder':d.get('order',0),'publishedTemplateVariant':d.get('templateVariant','a'),'updatedAt':timestamp}},session=session)
   for collection in ('brand_settings','page_content'):
    d=mongo.db[collection].find_one({'restaurantId':rid},session=session)
    if d:mongo.db[collection].update_one({'_id':d['_id']},{'$set':{'published':d.get('draft',{}),'updatedAt':timestamp}},session=session)
