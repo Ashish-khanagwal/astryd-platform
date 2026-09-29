@@ -34,6 +34,13 @@
       "name": "Fernwood Coffee Co.",
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "org_brightside",
+      "code": "BRIGHTSIDE",
+      "name": "Brightside Laundry Co.",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "users": [
@@ -122,6 +129,18 @@
       "isActive": true,
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "user_brightside_owner",
+      "organizationId": "org_brightside",
+      "email": "owner@brightsidelaundry.com",
+      "name": "Maria Delgado",
+      "role": "owner",
+      "restaurantId": "site_brightside",
+      "siteAccess": "all",
+      "isActive": true,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "restaurants": [
@@ -196,6 +215,18 @@
       "brandingBadgeEnabled": true,
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "site_brightside",
+      "organizationId": "org_brightside",
+      "slug": "brightside-laundry",
+      "name": "Brightside Laundry Co.",
+      "ownerUserId": "user_brightside_owner",
+      "status": "active",
+      "vertical": "laundry",
+      "brandingBadgeEnabled": true,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "brand": {
@@ -1064,6 +1095,150 @@
         "createdAt": "2026-09-28T04:53:24.573Z",
         "updatedAt": "2026-09-28T04:53:24.573Z"
       }
+    },
+    "site_brightside": {
+      "draft": {
+        "restaurantId": "site_brightside",
+        "restaurantName": "Brightside Laundry Co.",
+        "tagline": "Laundry day, handled with care.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "aqua",
+        "primaryFont": "Inter",
+        "headingFont": "DM Sans",
+        "fontWeight": "medium",
+        "buttonStyle": "rounded",
+        "borderRadius": "lg",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "https://instagram.com/brightsidelaundry",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (718) 555-0148",
+          "email": "hello@brightsidelaundry.com",
+          "address": "215 5th Ave, Park Slope, Brooklyn, NY 11217"
+        },
+        "description": "Brightside Laundry Co. is a family-owned laundry and dry cleaner in Park Slope, Brooklyn - everything cleaned in-house, with free pickup and delivery.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "17:00"
+          }
+        ],
+        "createdAt": "2026-09-29T13:55:06.768Z",
+        "updatedAt": "2026-09-29T13:55:06.768Z"
+      },
+      "published": {
+        "restaurantId": "site_brightside",
+        "restaurantName": "Brightside Laundry Co.",
+        "tagline": "Laundry day, handled with care.",
+        "logoMediaId": null,
+        "faviconMediaId": null,
+        "themePresetId": "aqua",
+        "primaryFont": "Inter",
+        "headingFont": "DM Sans",
+        "fontWeight": "medium",
+        "buttonStyle": "rounded",
+        "borderRadius": "lg",
+        "navPosition": "right",
+        "socialLinks": {
+          "instagram": "https://instagram.com/brightsidelaundry",
+          "facebook": ""
+        },
+        "contact": {
+          "phone": "+1 (718) 555-0148",
+          "email": "hello@brightsidelaundry.com",
+          "address": "215 5th Ave, Park Slope, Brooklyn, NY 11217"
+        },
+        "description": "Brightside Laundry Co. is a family-owned laundry and dry cleaner in Park Slope, Brooklyn - everything cleaned in-house, with free pickup and delivery.",
+        "cuisineType": "",
+        "businessHours": [
+          {
+            "day": "mon",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "tue",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "wed",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "thu",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "fri",
+            "isClosed": false,
+            "openTime": "07:00",
+            "closeTime": "20:00"
+          },
+          {
+            "day": "sat",
+            "isClosed": false,
+            "openTime": "08:00",
+            "closeTime": "18:00"
+          },
+          {
+            "day": "sun",
+            "isClosed": false,
+            "openTime": "09:00",
+            "closeTime": "17:00"
+          }
+        ],
+        "createdAt": "2026-09-29T13:55:06.768Z",
+        "updatedAt": "2026-09-29T13:55:06.768Z"
+      }
     }
   },
   "website": {
@@ -1120,6 +1295,15 @@
       "seoDescription": "Small-batch roasted coffee, pastries and order-ahead pickup in Fremont, Seattle, WA.",
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    "site_brightside": {
+      "restaurantId": "site_brightside",
+      "publishStatus": "published",
+      "publishedAt": "2026-09-29T13:55:06.768Z",
+      "seoTitle": "Brightside Laundry Co. | Laundry & Dry Cleaning in Park Slope, Brooklyn",
+      "seoDescription": "Family-owned laundry and dry cleaner in Park Slope, Brooklyn, NY - free pickup and delivery. Schedule online.",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   },
   "homepage": {
@@ -3094,6 +3278,354 @@
           }
         ]
       }
+    },
+    "site_brightside": {
+      "draft": {
+        "restaurantId": "site_brightside",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_brightside_hero",
+            "restaurantId": "site_brightside",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "templateVariant": "a",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "content": {
+              "eyebrow": "Park Slope · Brooklyn, NY",
+              "heading": "Brightside Laundry Co.",
+              "description": "Dry cleaning, wash & fold and alterations - all cleaned in-house, with free pickup and delivery on every order over $35.",
+              "buttonText": "Schedule a Pickup",
+              "buttonLink": "#/reservations",
+              "secondaryButtonText": "View Services",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_bs_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Laundry day, handled with care.",
+              "description": "Brightside Laundry Co. is a family-owned laundry and dry cleaner in Park Slope - every order is cleaned in-house, never outsourced, with free pickup and delivery on top.",
+              "imageMediaId": "media_bs_about",
+              "quote": "We treat every order like it is going to our own family - because for 20 years, it has been.",
+              "chefName": "Maria Delgado, Founder",
+              "chefQuote": "My parents opened this shop so neighbors could trust exactly who was cleaning their clothes. Twenty years later, that is still the whole business.",
+              "chefBio": "Maria grew up folding towels behind the counter of her parents' laundromat. She took over in 2014, added dry cleaning and free pickup and delivery, and now runs the shop with a team of 14 across two Brooklyn locations.",
+              "chefImageMediaId": "media_bs_founder"
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Booked",
+              "heading": "Popular Services",
+              "description": "What our neighbors send us most.",
+              "selectedItemIds": [
+                "bs_wf_standard",
+                "bs_shirt",
+                "bs_comforter",
+                "bs_dress"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "Behind the Counter",
+              "heading": "A Look Inside Brightside",
+              "description": "Every order, washed, pressed and folded in-house.",
+              "images": [
+                {
+                  "mediaId": "media_bs_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_bs_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_bs_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_bs_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_bs_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_bs_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Current Offers",
+              "description": "A little extra for new and returning neighbors.",
+              "selectedOfferIds": [
+                "offer_bs_newcustomer",
+                "offer_bs_freedelivery"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Neighborhood Reviews",
+              "heading": "What Our Customers Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_bs_1",
+                  "customerName": "Dana R.",
+                  "quote": "Free pickup and delivery changed my life. Everything comes back folded better than I could ever do it.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_bs_2",
+                  "customerName": "Marcus T.",
+                  "quote": "They saved my wedding suit after a wine spill the night before. Genuinely grateful.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_bs_3",
+                  "customerName": "Priya S.",
+                  "quote": "Same-day wash and fold has been a lifesaver with two kids. Never going back to doing it myself.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Visit or Schedule a Pickup",
+              "showHoursTable": true
+            }
+          }
+        ]
+      },
+      "published": {
+        "restaurantId": "site_brightside",
+        "status": "published",
+        "sections": [
+          {
+            "id": "section_brightside_hero",
+            "restaurantId": "site_brightside",
+            "type": "hero",
+            "order": 1,
+            "visible": true,
+            "templateVariant": "a",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "content": {
+              "eyebrow": "Park Slope · Brooklyn, NY",
+              "heading": "Brightside Laundry Co.",
+              "description": "Dry cleaning, wash & fold and alterations - all cleaned in-house, with free pickup and delivery on every order over $35.",
+              "buttonText": "Schedule a Pickup",
+              "buttonLink": "#/reservations",
+              "secondaryButtonText": "View Services",
+              "secondaryButtonLink": "#/items",
+              "backgroundMediaId": "media_bs_hero",
+              "overlayOpacity": 45
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_about",
+            "type": "about",
+            "order": 2,
+            "visible": true,
+            "content": {
+              "eyebrow": "Our Story",
+              "heading": "Laundry day, handled with care.",
+              "description": "Brightside Laundry Co. is a family-owned laundry and dry cleaner in Park Slope - every order is cleaned in-house, never outsourced, with free pickup and delivery on top.",
+              "imageMediaId": "media_bs_about",
+              "quote": "We treat every order like it is going to our own family - because for 20 years, it has been.",
+              "chefName": "Maria Delgado, Founder",
+              "chefQuote": "My parents opened this shop so neighbors could trust exactly who was cleaning their clothes. Twenty years later, that is still the whole business.",
+              "chefBio": "Maria grew up folding towels behind the counter of her parents' laundromat. She took over in 2014, added dry cleaning and free pickup and delivery, and now runs the shop with a team of 14 across two Brooklyn locations.",
+              "chefImageMediaId": "media_bs_founder"
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_featured_menu",
+            "type": "featured_menu",
+            "order": 3,
+            "visible": true,
+            "content": {
+              "eyebrow": "Most Booked",
+              "heading": "Popular Services",
+              "description": "What our neighbors send us most.",
+              "selectedItemIds": [
+                "bs_wf_standard",
+                "bs_shirt",
+                "bs_comforter",
+                "bs_dress"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_gallery",
+            "type": "gallery",
+            "order": 4,
+            "visible": true,
+            "content": {
+              "eyebrow": "Behind the Counter",
+              "heading": "A Look Inside Brightside",
+              "description": "Every order, washed, pressed and folded in-house.",
+              "images": [
+                {
+                  "mediaId": "media_bs_g1",
+                  "order": 0
+                },
+                {
+                  "mediaId": "media_bs_g2",
+                  "order": 1
+                },
+                {
+                  "mediaId": "media_bs_g3",
+                  "order": 2
+                },
+                {
+                  "mediaId": "media_bs_g4",
+                  "order": 3
+                },
+                {
+                  "mediaId": "media_bs_g5",
+                  "order": 4
+                },
+                {
+                  "mediaId": "media_bs_g6",
+                  "order": 5
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_offers",
+            "type": "offers",
+            "order": 5,
+            "visible": true,
+            "content": {
+              "eyebrow": "Limited Time",
+              "heading": "Current Offers",
+              "description": "A little extra for new and returning neighbors.",
+              "selectedOfferIds": [
+                "offer_bs_newcustomer",
+                "offer_bs_freedelivery"
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_testimonials",
+            "type": "testimonials",
+            "order": 6,
+            "visible": true,
+            "content": {
+              "eyebrow": "Neighborhood Reviews",
+              "heading": "What Our Customers Say",
+              "testimonials": [
+                {
+                  "id": "testimonial_bs_1",
+                  "customerName": "Dana R.",
+                  "quote": "Free pickup and delivery changed my life. Everything comes back folded better than I could ever do it.",
+                  "rating": 5,
+                  "order": 0
+                },
+                {
+                  "id": "testimonial_bs_2",
+                  "customerName": "Marcus T.",
+                  "quote": "They saved my wedding suit after a wine spill the night before. Genuinely grateful.",
+                  "rating": 5,
+                  "order": 1
+                },
+                {
+                  "id": "testimonial_bs_3",
+                  "customerName": "Priya S.",
+                  "quote": "Same-day wash and fold has been a lifesaver with two kids. Never going back to doing it myself.",
+                  "rating": 4,
+                  "order": 2
+                }
+              ]
+            }
+          },
+          {
+            "restaurantId": "site_brightside",
+            "updatedAt": "2026-09-29T13:55:06.768Z",
+            "templateVariant": "a",
+            "id": "section_site_brightside_location",
+            "type": "location",
+            "order": 7,
+            "visible": true,
+            "content": {
+              "heading": "Visit or Schedule a Pickup",
+              "showHoursTable": true
+            }
+          }
+        ]
+      }
     }
   },
   "media": [
@@ -3746,6 +4278,149 @@
       "folder": "images",
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "media_bs_hero",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?w=1800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "the-brightside-laundry-co-storefront.jpg",
+      "fileSizeBytes": 0,
+      "altText": "The Brightside Laundry Co. storefront",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_about",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=1600&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "inside-the-brightside-laundry-room.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Inside the Brightside laundry room",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_founder",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "founder-maria-delgado.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Founder Maria Delgado",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_offer",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "a-fresh-basket-of-folded-laundry.jpg",
+      "fileSizeBytes": 0,
+      "altText": "A fresh basket of folded laundry",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_offer2",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "dry-cleaned-shirts-ready-for-pickup.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Dry-cleaned shirts ready for pickup",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_g1",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "a-row-of-washing-machines-at-work.jpg",
+      "fileSizeBytes": 0,
+      "altText": "A row of washing machines at work",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_g2",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1567113463300-102a7eb3cb26?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "folding-a-fresh-load.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Folding a fresh load",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_g3",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1489274495757-95c7c837b101?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "pressing-a-shirt-to-a-crisp-finish.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Pressing a shirt to a crisp finish",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_g4",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1544441893-675973e31985?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "a-neatly-packed-order-ready-to-go.jpg",
+      "fileSizeBytes": 0,
+      "altText": "A neatly packed order, ready to go",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_g5",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "dry-cleaning-on-the-rack.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Dry cleaning on the rack",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "media_bs_g6",
+      "restaurantId": "site_brightside",
+      "fileUrl": "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=1200&q=80&auto=format&fit=crop",
+      "fileType": "image",
+      "mimeType": "image/jpeg",
+      "fileName": "clean-laundry-folded-and-boxed.jpg",
+      "fileSizeBytes": 0,
+      "altText": "Clean laundry, folded and boxed",
+      "folder": "images",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "categories": [
@@ -3998,6 +4673,56 @@
       "deletedAt": null,
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "cat_bs_dry_cleaning",
+      "restaurantId": "site_brightside",
+      "name": "Dry Cleaning",
+      "displayOrder": 0,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "cat_bs_wash_fold",
+      "restaurantId": "site_brightside",
+      "name": "Wash & Fold",
+      "displayOrder": 1,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "cat_bs_household_bedding",
+      "restaurantId": "site_brightside",
+      "name": "Household & Bedding",
+      "displayOrder": 2,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "cat_bs_alterations_repairs",
+      "restaurantId": "site_brightside",
+      "name": "Alterations & Repairs",
+      "displayOrder": 3,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "cat_bs_specialty_care",
+      "restaurantId": "site_brightside",
+      "name": "Specialty Care",
+      "displayOrder": 4,
+      "isVisible": true,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "items": [
@@ -5649,6 +6374,317 @@
       "deletedAt": null,
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "bs_shirt",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_dry_cleaning",
+      "name": "Dress Shirt",
+      "description": "Professionally dry cleaned and pressed to a crisp finish, on a hanger.",
+      "price": 4.5,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "rating": 4.9,
+      "reviewCount": 412,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 0,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_suit",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_dry_cleaning",
+      "name": "2-Piece Suit",
+      "description": "Jacket and trousers dry cleaned and hand-pressed, ready to wear.",
+      "price": 16,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 187,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 1,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_dress",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_dry_cleaning",
+      "name": "Dress (Silk & Formal)",
+      "description": "Gentle care for delicate fabrics - silk, chiffon and beaded formalwear.",
+      "price": 14,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Bestseller"
+      ],
+      "rating": 4.9,
+      "reviewCount": 231,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 2,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_coat",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_dry_cleaning",
+      "name": "Winter Coat",
+      "description": "Heavy coats and parkas, deep cleaned and refreshed for the season.",
+      "price": 22,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 98,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 3,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_wf_standard",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_wash_fold",
+      "name": "Wash & Fold (per lb)",
+      "description": "Washed, dried and neatly folded - 10 lb minimum. Ready in 24-48 hours.",
+      "price": 2.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1567113463300-102a7eb3cb26?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Bestseller"
+      ],
+      "rating": 4.9,
+      "reviewCount": 538,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 4,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_wf_rush",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_wash_fold",
+      "name": "Same-Day Wash & Fold (per lb)",
+      "description": "Drop off by 10am, pick up by 6pm - same-day turnaround.",
+      "price": 3.25,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "New"
+      ],
+      "rating": 4.8,
+      "reviewCount": 104,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 5,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_comforter",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_household_bedding",
+      "name": "Comforter / Duvet (Queen)",
+      "description": "Deep cleaned and fluffed - fits queen and smaller sizes.",
+      "price": 28,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Popular"
+      ],
+      "rating": 4.8,
+      "reviewCount": 156,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 6,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_sheets",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_household_bedding",
+      "name": "Bed Sheet Set",
+      "description": "Washed, pressed and folded - fitted sheet, flat sheet and pillowcases.",
+      "price": 12,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1544441893-675973e31985?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 121,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 7,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_rug",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_household_bedding",
+      "name": "Area Rug Cleaning (per sq ft)",
+      "description": "Deep steam cleaning for area rugs, picked up and delivered back.",
+      "price": 3,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.6,
+      "reviewCount": 67,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 8,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_hem",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_alterations_repairs",
+      "name": "Hem Pants",
+      "description": "A clean, tailored hem - while your other items are being cleaned.",
+      "price": 12,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1544441893-675973e31985?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 143,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 9,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_zipper",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_alterations_repairs",
+      "name": "Zipper Replacement",
+      "description": "A full zipper swap on jackets, bags and trousers.",
+      "price": 18,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1489274495757-95c7c837b101?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.7,
+      "reviewCount": 58,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 10,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_wedding",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_specialty_care",
+      "name": "Wedding Dress Cleaning & Preservation",
+      "description": "Museum-grade cleaning and an acid-free preservation box for the big day.",
+      "price": 150,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [
+        "Premium"
+      ],
+      "rating": 5,
+      "reviewCount": 41,
+      "isAvailable": true,
+      "isFeatured": true,
+      "displayOrder": 11,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "bs_leather",
+      "restaurantId": "site_brightside",
+      "categoryId": "cat_bs_specialty_care",
+      "name": "Leather & Suede Cleaning",
+      "description": "Specialized care for leather jackets, bags and suede footwear.",
+      "price": 45,
+      "imageMediaId": null,
+      "imageUrl": "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=1200&q=80&auto=format&fit=crop",
+      "foodType": "na",
+      "tags": [],
+      "rating": 4.8,
+      "reviewCount": 39,
+      "isAvailable": true,
+      "isFeatured": false,
+      "displayOrder": 12,
+      "variants": [],
+      "addonIds": [],
+      "activeOfferId": null,
+      "deletedAt": null,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "addons": [
@@ -5966,6 +7002,42 @@
       "imageMediaId": "media_fw_offer2",
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "offer_bs_newcustomer",
+      "restaurantId": "site_brightside",
+      "name": "New Customer Welcome",
+      "type": "percentage",
+      "discountValue": 20,
+      "startDate": "2026-09-29T13:55:06.768Z",
+      "endDate": "2026-11-28T13:55:06.779Z",
+      "isActive": true,
+      "appliesToItemIds": [],
+      "appliesToCategoryIds": [
+        "cat_bs_dry_cleaning"
+      ],
+      "cta": "Schedule a Pickup",
+      "imageMediaId": "media_bs_offer2",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "offer_bs_freedelivery",
+      "restaurantId": "site_brightside",
+      "name": "Free Pickup & Delivery",
+      "type": "fixed",
+      "discountValue": 5,
+      "startDate": "2026-09-29T13:55:06.768Z",
+      "endDate": "2026-11-13T13:55:06.779Z",
+      "isActive": true,
+      "appliesToItemIds": [],
+      "appliesToCategoryIds": [
+        "cat_bs_wash_fold"
+      ],
+      "cta": "Book Now",
+      "imageMediaId": "media_bs_offer",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "orders": [
@@ -7308,6 +8380,75 @@
         }
       ],
       "blockedDates": []
+    },
+    "site_brightside": {
+      "restaurantId": "site_brightside",
+      "days": [
+        {
+          "day": "mon",
+          "isClosed": false,
+          "openTime": "07:00",
+          "closeTime": "20:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 5,
+          "slots": []
+        },
+        {
+          "day": "tue",
+          "isClosed": false,
+          "openTime": "07:00",
+          "closeTime": "20:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 5,
+          "slots": []
+        },
+        {
+          "day": "wed",
+          "isClosed": false,
+          "openTime": "07:00",
+          "closeTime": "20:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 5,
+          "slots": []
+        },
+        {
+          "day": "thu",
+          "isClosed": false,
+          "openTime": "07:00",
+          "closeTime": "20:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 5,
+          "slots": []
+        },
+        {
+          "day": "fri",
+          "isClosed": false,
+          "openTime": "07:00",
+          "closeTime": "20:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 5,
+          "slots": []
+        },
+        {
+          "day": "sat",
+          "isClosed": false,
+          "openTime": "08:00",
+          "closeTime": "18:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 5,
+          "slots": []
+        },
+        {
+          "day": "sun",
+          "isClosed": false,
+          "openTime": "09:00",
+          "closeTime": "17:00",
+          "slotDurationMins": 30,
+          "maxPerSlot": 5,
+          "slots": []
+        }
+      ],
+      "blockedDates": []
     }
   },
   "pageConfigs": [
@@ -7574,6 +8715,50 @@
       "templateVariant": "a",
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "pageconfig_site_brightside_items",
+      "restaurantId": "site_brightside",
+      "module": "items",
+      "enabled": true,
+      "navLabel": "Services",
+      "order": 0,
+      "templateVariant": "a",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "pageconfig_site_brightside_catalog",
+      "restaurantId": "site_brightside",
+      "module": "catalog",
+      "enabled": true,
+      "navLabel": "Order Online",
+      "order": 1,
+      "templateVariant": "a",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "pageconfig_site_brightside_booking",
+      "restaurantId": "site_brightside",
+      "module": "booking",
+      "enabled": true,
+      "navLabel": "Schedule Pickup",
+      "order": 2,
+      "templateVariant": "a",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "pageconfig_site_brightside_membership",
+      "restaurantId": "site_brightside",
+      "module": "membership",
+      "enabled": true,
+      "navLabel": "Laundry Plan",
+      "order": 3,
+      "templateVariant": "a",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "membershipPlans": [
@@ -7793,6 +8978,40 @@
       "order": 1,
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "plan_brightside_basic",
+      "restaurantId": "site_brightside",
+      "name": "Brightside Basic",
+      "description": "Free to join - earn credit toward every order.",
+      "priceCents": 0,
+      "billingInterval": "one_time",
+      "benefits": [
+        "5% credit on every order",
+        "Free pickup & delivery",
+        "Birthday bonus credit"
+      ],
+      "isActive": true,
+      "order": 0,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
+    },
+    {
+      "id": "plan_brightside_unlimited",
+      "restaurantId": "site_brightside",
+      "name": "Unlimited Wash & Fold",
+      "description": "Unlimited wash & fold, up to 30 lbs a week.",
+      "priceCents": 12900,
+      "billingInterval": "monthly",
+      "benefits": [
+        "Up to 30 lbs a week",
+        "Priority same-day slots",
+        "15% off dry cleaning"
+      ],
+      "isActive": true,
+      "order": 1,
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "members": [
@@ -7935,6 +9154,19 @@
       "sslStatus": "issued",
       "createdAt": "2026-09-28T04:53:24.573Z",
       "updatedAt": "2026-09-28T04:53:24.573Z"
+    },
+    {
+      "id": "domain_site_brightside_platform",
+      "restaurantId": "site_brightside",
+      "type": "platform_subdomain",
+      "hostname": "brightside-laundry.ourplatform.com",
+      "recordType": "CNAME",
+      "recordName": "@",
+      "recordValue": "brightside-laundry.ourplatform.com",
+      "verificationStatus": "verified",
+      "sslStatus": "issued",
+      "createdAt": "2026-09-29T13:55:06.768Z",
+      "updatedAt": "2026-09-29T13:55:06.768Z"
     }
   ],
   "pageContent": {
@@ -7959,6 +9191,10 @@
       "published": {}
     },
     "site_fernwood": {
+      "draft": {},
+      "published": {}
+    },
+    "site_brightside": {
       "draft": {},
       "published": {}
     }
