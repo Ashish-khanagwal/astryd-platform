@@ -177,4 +177,6 @@ def _object_id(value, label):
 
 
 def _iso(value):
+    if isinstance(value, datetime):
+        return value.isoformat() + ("Z" if value.tzinfo is None else "")
     return value.isoformat() if hasattr(value, "isoformat") else value

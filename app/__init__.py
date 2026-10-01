@@ -76,6 +76,17 @@ def create_app(config_name=None):
     def health_check():
         return jsonify({"status": "ok", "service": "astryd-api"})
 
+    @app.cli.command("website-sync-drain")
+    def website_sync_drain():
+        """Retry pending website imports after broker or network outages."""
+        from app.integrations.website_sync import deliver
+        pending = mongo.db.website_sync_outbox.find({"state": "pending"}).sort("updatedAt", 1).limit(500)
+        for item in pending:
+            try:
+                deliver(item["entityType"], item["entityId"], item["version"])
+            except Exception:
+                app.logger.exception("Website sync drain failed for %s", item["entityId"])
+
     return app
 
 
@@ -122,6 +133,7 @@ def _register_blueprints(app):
     from app.reservations.routes import bp as reservations_bp
     from app.platform.routes import bp as platform_bp
     from app.platform.membership import bp as membership_bp
+    from app.integrations.routes import bp as website_sync_bp
 
     for blueprint in (
         auth_bp,
@@ -135,6 +147,7 @@ def _register_blueprints(app):
         admin_bp,
         platform_bp,
         membership_bp,
+        website_sync_bp,
     ):
         app.register_blueprint(blueprint, url_prefix=f"/api/v1{blueprint.url_prefix}")
 

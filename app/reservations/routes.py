@@ -6,6 +6,7 @@ from flask import Blueprint, current_app, jsonify, request
 from app.availability.service import ConflictError, NotFoundError
 from app.extensions import mongo
 from app.notifications.tasks import send_confirmation_email
+from app.integrations.website_sync import enqueue
 from app.reservations.service import (
     create_reservation,
     get_reservation_by_code,
@@ -35,6 +36,7 @@ def create():
     except NotFoundError as exc:
         return jsonify(error="not_found", message=str(exc)), 404
     _queue_confirmation_email(reservation_id, reservation)
+    enqueue("booking", reservation_id)
     booking = reservation["booking"]
     guest = reservation["guest"]
     return jsonify(
@@ -106,6 +108,7 @@ def modify(confirmation_code):
         updated = update_reservation(mongo.db, reservation, payload)
     except ConflictError as exc:
         return jsonify(error="conflict", message=str(exc)), 409
+    enqueue("booking", updated["_id"])
     return jsonify(serialize_reservation(updated))
 
 
@@ -117,6 +120,7 @@ def cancel(confirmation_code):
     if reservation["status"] == "cancelled":
         return jsonify(error="invalid_state", message="Reservation is already cancelled"), 400
     mongo.db.reservations.update_one({"_id": reservation["_id"]}, {"$set": {"status": "cancelled"}})
+    enqueue("booking", reservation["_id"])
     return jsonify(success=True, message="Reservation cancelled successfully")
 
 

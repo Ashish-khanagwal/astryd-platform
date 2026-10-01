@@ -21,5 +21,5 @@ def create_celery(app):
 
     celery.Task = FlaskTask
     celery.set_default()
-    celery.autodiscover_tasks(["app.notifications"])
+    celery.autodiscover_tasks(["app.notifications", "app.integrations"])
     return celery

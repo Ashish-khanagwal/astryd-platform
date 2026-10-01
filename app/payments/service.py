@@ -216,6 +216,8 @@ def fulfill_succeeded_payment(db, payment_id):
                 }},
             )
             context_id = payment["context_id"]
+            from app.integrations.website_sync import enqueue
+            enqueue("order", context_id)
         elif payment["context_type"] == "reservation":
             snapshot_booking = payment["context_snapshot"]["booking"]
             availability = get_available_slots(
@@ -238,6 +240,8 @@ def fulfill_succeeded_payment(db, payment_id):
                 payment={"payment_id": payment["_id"], "amount_cents": payment["amount_cents"], "currency": payment["currency"]},
             )
             context_id = reservation_id
+            from app.integrations.website_sync import enqueue
+            enqueue("booking", reservation_id)
             _queue_reservation_confirmation(reservation_id, reservation)
         elif payment['context_type'] == 'membership':
             member = db.members.find_one_and_update(
@@ -371,6 +375,8 @@ def _mark_context_failed(db, payment_id):
             {"_id": payment["context_id"], "business_id": payment["business_id"]},
             {"$set": {"status": "payment_failed", "payment_status": "failed", "updated_at": datetime.utcnow()}},
         )
+        from app.integrations.website_sync import enqueue
+        enqueue("order", payment["context_id"])
     if payment and payment['context_type']=='membership':
         db.members.update_one({'_id':payment['context_id'],'restaurantId':payment['business_id'],'paymentId':payment['_id'],'status':'paused'},
             {'$set':{'paymentStatus':'failed','updatedAt':datetime.utcnow()}})

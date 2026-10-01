@@ -7,6 +7,7 @@ from flask_jwt_extended import get_jwt_identity, jwt_required
 from pymongo import ReturnDocument
 
 from app.extensions import mongo
+from app.integrations.website_sync import enqueue
 from app.availability.service import (
     NotFoundError,
     generate_time_slots,
@@ -169,6 +170,7 @@ def update_reservation_status(reservation_id):
     )
     if reservation is None:
         return jsonify(error="not_found", message="Reservation not found"), 404
+    enqueue("booking", reservation["_id"])
     return jsonify(reservation=serialize_doc(reservation))
 
 def _owner(rid):

@@ -2,12 +2,13 @@ import hashlib
 import hmac
 import json
 import unittest
+from datetime import datetime, timedelta, timezone
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
 from bson import ObjectId
 
-from app.orders.service import create_order_checkout, money_to_cents
+from app.orders.service import _iso, create_order_checkout, money_to_cents
 from app import create_app
 from app.payments.finix_client import FinixClient
 from app.payments.service import apply_transfer_state, create_payment_attempt, get_authorized_payment
@@ -46,6 +47,11 @@ class FakeResponse:
 
 
 class PaymentTests(unittest.TestCase):
+    def test_order_api_timestamps_mark_naive_utc(self):
+        self.assertEqual(_iso(datetime(2026, 10, 1, 17, 0)), "2026-10-01T17:00:00Z")
+        aware = datetime(2026, 10, 1, 22, 30, tzinfo=timezone(timedelta(hours=5, minutes=30)))
+        self.assertEqual(_iso(aware), "2026-10-01T22:30:00+05:30")
+
     def test_money_conversion_uses_decimal_rounding(self):
         self.assertEqual(money_to_cents("12.345"), 1235)
         self.assertEqual(money_to_cents(0.1), 10)
