@@ -29,6 +29,9 @@ def _optional_positive_int(name):
 class Config:
     """Base configuration loaded only from environment variables."""
 
+    ASTRYD_MAIN_API_URL = os.getenv("ASTRYD_MAIN_API_URL", "").rstrip("/")
+    ASTRYD_MAIN_SYNC_SECRET = os.getenv("ASTRYD_MAIN_SYNC_SECRET", "")
+
     SECRET_KEY = os.getenv("SECRET_KEY", "development-only-secret-change-before-production")
     MONGO_URI = _mongo_uri()
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", SECRET_KEY)

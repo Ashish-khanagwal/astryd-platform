@@ -3,6 +3,8 @@
 from pymongo import ASCENDING, DESCENDING
 
 INDEXES = {
+    "website_sync_links": (([("organizationId", ASCENDING)], {"unique": True}),),
+    "website_sync_outbox": (([("entityType", ASCENDING), ("entityId", ASCENDING)], {"unique": True}),),
     "reservations": (
         ([ ("business_id", ASCENDING), ("date", ASCENDING), ("status", ASCENDING) ], {}),
         ([ ("confirmation_code", ASCENDING) ], {"unique": True}),

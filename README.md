@@ -275,3 +275,22 @@ backup and persistent-storage plan for deployment.
 - `config.py`, `wsgi.py`, `celery_worker.py`: environment-aware entry points.
 
 API routes are under `/api/v1`; `/health` and `/uploads/<filename>` are separate.
+# Astryd Main website sync
+
+Set `ASTRYD_MAIN_API_URL` to the astryd-main backend origin and set
+`ASTRYD_MAIN_SYNC_SECRET` to the same strong random value as
+`ASTRYD_WEBSITE_SYNC_SECRET` in astryd-main. The secret is server-side only.
+The website owner verifies their email, then uses **Settings → Astryd Main sync**
+to link the matching main organization and map each Site to a POS location.
+Restaurant Sites also map their reservable tables to POS table numbers.
+
+Paid website orders enter the main POS/KDS workflow; order history includes
+checkout records with `source=website`. Restaurant reservations enter the POS
+tables board, while gym and retail bookings appear in Website Bookings. Main
+does not charge imported orders or send imported booking confirmations.
+
+Celery delivers records asynchronously. If broker dispatch or network delivery
+fails, records remain in `website_sync_outbox`. Run `flask --app wsgi:app
+website-sync-drain` periodically to retry pending records. Saving a Site mapping
+queues a backfill of its existing orders and reservations. Monitor pending and
+conflict counts in the owner settings screen.

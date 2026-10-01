@@ -10,6 +10,7 @@ from pymongo import ReturnDocument
 from app.common.api import require_restaurant
 from app.extensions import mongo
 from app.orders.service import create_order_checkout, serialize_order
+from app.integrations.website_sync import enqueue
 from app.payments.exceptions import CheckoutValidationError
 from app.payments.service import create_payment_attempt, serialize_payment
 
@@ -49,6 +50,7 @@ def checkout():
         {"$set": {"payment_id": payment["_id"], "updated_at": datetime.utcnow()}},
     )
     order["payment_id"] = payment["_id"]
+    enqueue("order", order["_id"])
     response = serialize_payment(mongo.db, payment)
     response.update({"checkout_secret": checkout_secret, "order": serialize_order(order)})
     return jsonify(response), 201
@@ -94,4 +96,5 @@ def update_status(restaurant_id, order_id):
     )
     if updated is None:
         return jsonify(error="conflict", message="Order changed; refresh and try again"), 409
+    enqueue("order", updated["_id"])
     return jsonify(serialize_order(updated))
